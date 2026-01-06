@@ -7,12 +7,31 @@ import (
 
 templ Home() {
 	@layouts.Base(meta.New("Luxury Menswear & Timepieces", "Discover the epitome of luxury menswear, fine jewelry, and prestigious timepieces. Handcrafted excellence for the distinguished gentleman.")) {
-		// Hero Section
+		// Hero Section with Slideshow Background
 		<section class="hero">
-			<div class="hero-background">
-				<div class="hero-gradient"></div>
-				<div class="hero-particles"></div>
+			<div class="hero-slideshow">
+				<div class="slideshow-slide active">
+					<img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=1920&q=80" alt="Luxury watch"/>
+				</div>
+				<div class="slideshow-slide">
+					<img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1920&q=80" alt="Luxury suit"/>
+				</div>
+				<div class="slideshow-slide">
+					<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1920&q=80" alt="Premium timepiece"/>
+				</div>
+				<div class="slideshow-slide">
+					<img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1920&q=80" alt="Designer blazer"/>
+				</div>
+				<div class="slideshow-slide">
+					<img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=1920&q=80" alt="Gold chronograph"/>
+				</div>
 			</div>
+			<div class="hero-light-overlay">
+				<div class="light-beam light-beam-1"></div>
+				<div class="light-beam light-beam-2"></div>
+				<div class="light-beam light-beam-3"></div>
+			</div>
+			<div class="hero-gradient-overlay"></div>
 			<div class="hero-content" data-animate="fade-up">
 				<span class="hero-label">Autumn/Winter Collection</span>
 				<h1 class="hero-title">
@@ -29,12 +48,6 @@ templ Home() {
 						</svg>
 					</a>
 					<a href="/heritage" class="btn-secondary">Our Heritage</a>
-				</div>
-			</div>
-			<div class="hero-visual">
-				<div class="hero-image-container">
-					<img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=800&q=80" alt="Luxury timepiece" class="hero-image"/>
-					<div class="hero-image-glow"></div>
 				</div>
 			</div>
 			<div class="hero-scroll">

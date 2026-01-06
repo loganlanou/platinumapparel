@@ -20,6 +20,42 @@
   }
 
   // ============================================
+  // Hero Background Slideshow
+  // ============================================
+  const heroSlideshow = document.querySelector('.hero-slideshow');
+
+  if (heroSlideshow) {
+    const slides = heroSlideshow.querySelectorAll('.slideshow-slide');
+    let currentSlide = 0;
+    const slideInterval = 5000; // 5 seconds per slide
+
+    function nextSlide() {
+      // Remove active class from current slide
+      slides[currentSlide].classList.remove('active');
+
+      // Move to next slide
+      currentSlide = (currentSlide + 1) % slides.length;
+
+      // Add active class to new slide
+      slides[currentSlide].classList.add('active');
+    }
+
+    // Start slideshow
+    if (slides.length > 1) {
+      setInterval(nextSlide, slideInterval);
+    }
+
+    // Preload images for smoother transitions
+    slides.forEach(slide => {
+      const img = slide.querySelector('img');
+      if (img && img.src) {
+        const preload = new Image();
+        preload.src = img.src;
+      }
+    });
+  }
+
+  // ============================================
   // Navigation
   // ============================================
   const nav = document.getElementById('mainNav');
