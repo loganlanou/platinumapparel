@@ -11,11 +11,13 @@
   // ============================================
   const pageLoader = document.getElementById('pageLoader');
 
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      pageLoader.classList.add('loaded');
-    }, 1500);
-  });
+  if (pageLoader) {
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        pageLoader.classList.add('loaded');
+      }, 1500);
+    });
+  }
 
   // ============================================
   // Navigation
@@ -38,24 +40,30 @@
     lastScrollY = currentScrollY;
   }
 
-  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  if (nav) {
+    window.addEventListener('scroll', handleNavScroll, { passive: true });
+  }
 
   // Mobile menu toggle
-  mobileMenuBtn.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-  });
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenuBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+  }
 
   // Close mobile menu on link click
-  const mobileNavLinks = mobileMenu.querySelectorAll('a');
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenuBtn.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.style.overflow = '';
+  if (mobileMenu && mobileMenuBtn) {
+    const mobileNavLinks = mobileMenu.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
     });
-  });
+  }
 
   // ============================================
   // Scroll Animations (Intersection Observer)
@@ -68,18 +76,20 @@
     threshold: 0.1
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
+  if (animatedElements.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
 
-  animatedElements.forEach(el => {
-    observer.observe(el);
-  });
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+  }
 
   // ============================================
   // Testimonial Carousel
@@ -109,37 +119,41 @@
     });
   }
 
-  prevBtn.addEventListener('click', () => {
-    updateTestimonial(currentTestimonial - 1);
-  });
-
-  nextBtn.addEventListener('click', () => {
-    updateTestimonial(currentTestimonial + 1);
-  });
-
-  // Dot navigation
-  testimonialDots.querySelectorAll('.dot').forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      updateTestimonial(i);
+  if (testimonialTrack && testimonialDots && prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      updateTestimonial(currentTestimonial - 1);
     });
-  });
 
-  // Auto-advance testimonials
-  let testimonialInterval = setInterval(() => {
-    updateTestimonial(currentTestimonial + 1);
-  }, 6000);
+    nextBtn.addEventListener('click', () => {
+      updateTestimonial(currentTestimonial + 1);
+    });
 
-  // Pause on hover
-  const testimonialCarousel = document.querySelector('.testimonial-carousel');
-  testimonialCarousel.addEventListener('mouseenter', () => {
-    clearInterval(testimonialInterval);
-  });
+    // Dot navigation
+    testimonialDots.querySelectorAll('.dot').forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        updateTestimonial(i);
+      });
+    });
 
-  testimonialCarousel.addEventListener('mouseleave', () => {
-    testimonialInterval = setInterval(() => {
+    // Auto-advance testimonials
+    let testimonialInterval = setInterval(() => {
       updateTestimonial(currentTestimonial + 1);
     }, 6000);
-  });
+
+    // Pause on hover
+    const testimonialCarousel = document.querySelector('.testimonial-carousel');
+    if (testimonialCarousel) {
+      testimonialCarousel.addEventListener('mouseenter', () => {
+        clearInterval(testimonialInterval);
+      });
+
+      testimonialCarousel.addEventListener('mouseleave', () => {
+        testimonialInterval = setInterval(() => {
+          updateTestimonial(currentTestimonial + 1);
+        }, 6000);
+      });
+    }
+  }
 
   // ============================================
   // Smooth Scroll for Anchor Links
@@ -153,7 +167,7 @@
       const target = document.querySelector(href);
 
       if (target) {
-        const navHeight = nav.offsetHeight;
+        const navHeight = nav ? nav.offsetHeight : 0;
         const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
 
         window.scrollTo({
@@ -169,48 +183,52 @@
   // ============================================
   const newsletterForm = document.getElementById('newsletterForm');
 
-  newsletterForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-    const email = newsletterForm.querySelector('input[type="email"]').value;
-    const button = newsletterForm.querySelector('button');
-    const originalContent = button.innerHTML;
+      const button = newsletterForm.querySelector('button');
+      const originalContent = button.innerHTML;
 
-    // Simulate submission
-    button.innerHTML = '<span>Subscribing...</span>';
-    button.disabled = true;
-
-    setTimeout(() => {
-      button.innerHTML = '<span>Subscribed!</span>';
-      button.style.background = 'linear-gradient(135deg, #4ade80, #22c55e)';
+      // Simulate submission
+      button.innerHTML = '<span>Subscribing...</span>';
+      button.disabled = true;
 
       setTimeout(() => {
-        button.innerHTML = originalContent;
-        button.style.background = '';
-        button.disabled = false;
-        newsletterForm.reset();
-      }, 2000);
-    }, 1500);
-  });
+        button.innerHTML = '<span>Subscribed!</span>';
+        button.style.background = 'linear-gradient(135deg, #4ade80, #22c55e)';
+
+        setTimeout(() => {
+          button.innerHTML = originalContent;
+          button.style.background = '';
+          button.disabled = false;
+          newsletterForm.reset();
+        }, 2000);
+      }, 1500);
+    });
+  }
 
   // ============================================
   // Parallax Effect on Scroll
   // ============================================
   const parallaxElements = document.querySelectorAll('.vault-glow, .aura');
 
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
+  if (parallaxElements.length) {
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
 
-    parallaxElements.forEach(el => {
-      const speed = 0.3;
-      el.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-  }, { passive: true });
+      parallaxElements.forEach(el => {
+        const speed = 0.3;
+        el.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    }, { passive: true });
+  }
 
   // ============================================
   // Button Ripple Effect
   // ============================================
-  document.querySelectorAll('.primary, .secondary').forEach(button => {
+  const rippleButtons = document.querySelectorAll('.primary, .secondary');
+  rippleButtons.forEach(button => {
     button.addEventListener('click', function(e) {
       const rect = this.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -389,7 +407,7 @@
   // ============================================
   document.addEventListener('keydown', (e) => {
     // Escape closes mobile menu
-    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+    if (e.key === 'Escape' && mobileMenu && mobileMenuBtn && mobileMenu.classList.contains('active')) {
       mobileMenuBtn.classList.remove('active');
       mobileMenu.classList.remove('active');
       document.body.style.overflow = '';
