@@ -13,7 +13,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <noscript><style>.page-loader{display:none !important;}</style></noscript>
 </head>
-<body>
+<body class="page-home">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="page-loader" id="pageLoader">
     <div class="loader-content">
       <div class="loader-logo">PA</div>
@@ -35,11 +36,12 @@
       </a>
     </div>
     <nav class="nav-links" id="navLinks">
-      <a href="#collections">Collections</a>
-      <a href="#featured">Featured</a>
-      <a href="#craft">Craftsmanship</a>
-      <a href="#heritage">Heritage</a>
-      <a href="#bespoke">Bespoke</a>
+      <a class="active" href="index.html" aria-current="page">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="featured.html">Featured</a>
+      <a href="craft.html">Craftsmanship</a>
+      <a href="heritage.html">Heritage</a>
+      <a href="bespoke.html">Bespoke</a>
     </nav>
     <div class="nav-right">
       <button class="nav-icon" aria-label="Search">
@@ -61,16 +63,17 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <nav class="mobile-nav-links">
-      <a href="#collections">Collections</a>
-      <a href="#featured">Featured</a>
-      <a href="#craft">Craftsmanship</a>
-      <a href="#heritage">Heritage</a>
-      <a href="#bespoke">Bespoke</a>
+      <a class="active" href="index.html" aria-current="page">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="featured.html">Featured</a>
+      <a href="craft.html">Craftsmanship</a>
+      <a href="heritage.html">Heritage</a>
+      <a href="bespoke.html">Bespoke</a>
       <button class="nav-cta mobile">Private Consultation</button>
     </nav>
   </div>
 
-  <main>
+  <main id="main">
     <section class="hero">
       <div class="hero-content" data-animate>
         <div class="eyebrow">The 2025 Collection</div>
@@ -182,7 +185,7 @@
             <div class="card-label">Menswear</div>
             <h3>Architected Tailoring</h3>
             <p>Strong lines, breathable luxury fabrics, and hand-set structure that defines the modern silhouette.</p>
-            <a class="card-link" href="#">
+            <a class="card-link" href="collections.html#menswear">
               <span>Explore Collection</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -199,7 +202,7 @@
             <div class="card-label">Jewelry</div>
             <h3>Rare Metals, Quiet Signals</h3>
             <p>Platinum, gold, and blackened alloys crafted with concealed brilliance for the understated collector.</p>
-            <a class="card-link" href="#">
+            <a class="card-link" href="collections.html#jewelry">
               <span>Explore Collection</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -216,7 +219,7 @@
             <div class="card-label">Timepieces</div>
             <h3>Precision That Commands</h3>
             <p>Swiss chronometry built for legacy, with certified movement testing and lifetime servicing.</p>
-            <a class="card-link" href="#">
+            <a class="card-link" href="collections.html#timepieces">
               <span>Explore Collection</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -292,7 +295,7 @@
         </article>
       </div>
       <div class="featured-cta" data-animate>
-        <button class="primary large">View All Products</button>
+        <a class="primary large" href="featured.html">View All Products</a>
       </div>
     </section>
 
@@ -590,22 +593,22 @@
       <div class="footer-links">
         <div class="footer-column">
           <h4>Collections</h4>
-          <a href="#">Menswear</a>
-          <a href="#">Jewelry</a>
-          <a href="#">Timepieces</a>
-          <a href="#">Accessories</a>
+          <a href="collections.html#menswear">Menswear</a>
+          <a href="collections.html#jewelry">Jewelry</a>
+          <a href="collections.html#timepieces">Timepieces</a>
+          <a href="featured.html">Accessories</a>
         </div>
         <div class="footer-column">
           <h4>Services</h4>
-          <a href="#">Bespoke</a>
-          <a href="#">Consultations</a>
-          <a href="#">Care & Repair</a>
-          <a href="#">Authentication</a>
+          <a href="bespoke.html">Bespoke</a>
+          <a href="featured.html">Consultations</a>
+          <a href="craft.html">Care & Repair</a>
+          <a href="heritage.html">Authentication</a>
         </div>
         <div class="footer-column">
           <h4>Company</h4>
-          <a href="#">Our Story</a>
-          <a href="#">Craftsmanship</a>
+          <a href="heritage.html">Our Story</a>
+          <a href="craft.html">Craftsmanship</a>
           <a href="#">Careers</a>
           <a href="#">Press</a>
         </div>
