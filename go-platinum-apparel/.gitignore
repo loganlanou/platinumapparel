@@ -35,3 +35,7 @@ data/*.db
 
 # Vercel
 .vercel
+
+# SQLite temporary files
+*.db-shm
+*.db-wal
