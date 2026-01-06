@@ -1,0 +1,123 @@
+package pages
+
+import (
+	"platinumapparel/internal/meta"
+	"platinumapparel/templates/layouts"
+)
+
+templ Bespoke() {
+	@layouts.Base(meta.New("Bespoke Services", "Commission a piece as unique as you are with our bespoke tailoring and custom jewelry services.")) {
+		// Hero
+		<section class="page-hero bespoke-hero">
+			<div class="bespoke-background">
+				<img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80" alt="Bespoke tailoring"/>
+				<div class="bespoke-overlay"></div>
+			</div>
+			<div class="page-hero-content" data-animate="fade-up">
+				<span class="page-label">Personalized Excellence</span>
+				<h1 class="page-title">The Bespoke Experience</h1>
+				<p class="page-subtitle">Commission a piece as unique as you are. Our master craftsmen will guide you through every detail, from material selection to final fitting.</p>
+			</div>
+		</section>
+		// Services
+		<section class="bespoke-services">
+			<div class="services-grid">
+				<div class="service-card" data-animate="fade-up">
+					<div class="service-image">
+						<img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80" alt="Bespoke Tailoring"/>
+					</div>
+					<div class="service-content">
+						<h2 class="service-title">Bespoke Tailoring</h2>
+						<p class="service-description">Experience the pinnacle of sartorial excellence with a suit crafted exclusively for you. From fabric selection to final fitting, every detail is tailored to your exact specifications.</p>
+						<ul class="service-features">
+							<li>Over 5,000 fabric options</li>
+							<li>Multiple fitting sessions</li>
+							<li>Hand-finished details</li>
+							<li>Lifetime alterations</li>
+						</ul>
+						<div class="service-price">Starting from $4,500</div>
+					</div>
+				</div>
+				<div class="service-card reverse" data-animate="fade-up">
+					<div class="service-image">
+						<img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=600&q=80" alt="Custom Timepieces"/>
+					</div>
+					<div class="service-content">
+						<h2 class="service-title">Custom Timepieces</h2>
+						<p class="service-description">Collaborate with our master horologists to create a one-of-a-kind timepiece that reflects your personal style and becomes a treasured heirloom.</p>
+						<ul class="service-features">
+							<li>Swiss movement options</li>
+							<li>Custom dial designs</li>
+							<li>Precious metal cases</li>
+							<li>Personalized engravings</li>
+						</ul>
+						<div class="service-price">Starting from $15,000</div>
+					</div>
+				</div>
+				<div class="service-card" data-animate="fade-up">
+					<div class="service-image">
+						<img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Custom Jewelry"/>
+					</div>
+					<div class="service-content">
+						<h2 class="service-title">Custom Jewelry</h2>
+						<p class="service-description">Work with our master jewelers to design a piece that tells your story. From engagement rings to heirloom bracelets, we bring your vision to life.</p>
+						<ul class="service-features">
+							<li>GIA-certified stones</li>
+							<li>3D design previews</li>
+							<li>18k gold and platinum</li>
+							<li>Certificate of authenticity</li>
+						</ul>
+						<div class="service-price">Starting from $3,000</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		// Process
+		<section class="bespoke-process">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">Your Journey</span>
+				<h2 class="section-title">The Bespoke Process</h2>
+			</div>
+			<div class="process-timeline">
+				<div class="process-item" data-animate="fade-up">
+					<div class="process-number">1</div>
+					<div class="process-content">
+						<h3>Consultation</h3>
+						<p>Begin with a private consultation where we discuss your vision, preferences, and lifestyle to understand your unique requirements.</p>
+					</div>
+				</div>
+				<div class="process-item" data-animate="fade-up">
+					<div class="process-number">2</div>
+					<div class="process-content">
+						<h3>Design</h3>
+						<p>Our artisans present material options and design choices. Together, we refine every detail until the design is perfect.</p>
+					</div>
+				</div>
+				<div class="process-item" data-animate="fade-up">
+					<div class="process-number">3</div>
+					<div class="process-content">
+						<h3>Crafting</h3>
+						<p>Master craftsmen bring your piece to life using traditional techniques and the finest materials. This stage typically takes 6-12 weeks.</p>
+					</div>
+				</div>
+				<div class="process-item" data-animate="fade-up">
+					<div class="process-number">4</div>
+					<div class="process-content">
+						<h3>Delivery</h3>
+						<p>Your bespoke piece is presented in a private unveiling, complete with documentation of its creation and care instructions.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		// CTA
+		<section class="bespoke-cta">
+			<div class="cta-content" data-animate="fade-up">
+				<h2 class="cta-title">Begin Your Bespoke Journey</h2>
+				<p class="cta-description">Schedule a private consultation with our bespoke specialists to discuss your vision.</p>
+				<a href="/contact" class="btn-gold">
+					<span>Request Consultation</span>
+				</a>
+			</div>
+		</section>
+	}
+}

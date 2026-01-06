@@ -1,0 +1,109 @@
+package pages
+
+import (
+	"platinumapparel/internal/meta"
+	"platinumapparel/templates/layouts"
+)
+
+templ Collections() {
+	@layouts.Base(meta.New("Collections", "Explore our curated collections of luxury menswear, fine jewelry, and prestigious timepieces.")) {
+		// Hero
+		<section class="page-hero">
+			<div class="page-hero-content" data-animate="fade-up">
+				<span class="page-label">Curated Excellence</span>
+				<h1 class="page-title">Our Collections</h1>
+				<p class="page-subtitle">Each collection represents a distinct expression of luxury, crafted for those who appreciate the finest things in life.</p>
+			</div>
+		</section>
+		// Collections Grid
+		<section class="page-content">
+			<div class="collections-showcase">
+				// Signature Collection
+				<div class="showcase-item" data-animate="fade-up">
+					<div class="showcase-image">
+						<img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" alt="Signature Collection"/>
+					</div>
+					<div class="showcase-content">
+						<span class="showcase-label">Collection</span>
+						<h2 class="showcase-title">Signature</h2>
+						<p class="showcase-description">Our flagship collection embodies the pinnacle of sartorial excellence. Each piece is meticulously crafted from the world's finest fabrics, featuring hand-finished details that define true luxury.</p>
+						<ul class="showcase-features">
+							<li>Hand-stitched Milanese buttonholes</li>
+							<li>Full-canvas construction</li>
+							<li>Exclusive Super 180s wool</li>
+						</ul>
+						<a href="/collections/signature" class="btn-primary">Explore Signature</a>
+					</div>
+				</div>
+				// Heritage Collection
+				<div class="showcase-item reverse" data-animate="fade-up">
+					<div class="showcase-image">
+						<img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=800&q=80" alt="Heritage Collection"/>
+					</div>
+					<div class="showcase-content">
+						<span class="showcase-label">Collection</span>
+						<h2 class="showcase-title">Heritage</h2>
+						<p class="showcase-description">Drawing inspiration from our storied past, the Heritage collection celebrates timeless designs reimagined for the modern gentleman. Classic silhouettes meet contemporary craftsmanship.</p>
+						<ul class="showcase-features">
+							<li>Archival patterns and designs</li>
+							<li>Traditional construction methods</li>
+							<li>Limited edition pieces</li>
+						</ul>
+						<a href="/collections/heritage" class="btn-primary">Explore Heritage</a>
+					</div>
+				</div>
+				// Timepieces Collection
+				<div class="showcase-item" data-animate="fade-up">
+					<div class="showcase-image">
+						<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80" alt="Timepieces Collection"/>
+					</div>
+					<div class="showcase-content">
+						<span class="showcase-label">Collection</span>
+						<h2 class="showcase-title">Horlogerie</h2>
+						<p class="showcase-description">Our timepiece collection represents the apex of horological artistry. Each watch is a masterpiece of precision engineering and aesthetic perfection, destined to be treasured for generations.</p>
+						<ul class="showcase-features">
+							<li>Swiss-made movements</li>
+							<li>Sapphire crystal glass</li>
+							<li>Precious metal cases</li>
+						</ul>
+						<a href="/collections/timepieces" class="btn-primary">Explore Timepieces</a>
+					</div>
+				</div>
+				// Fine Jewelry Collection
+				<div class="showcase-item reverse" data-animate="fade-up">
+					<div class="showcase-image">
+						<img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80" alt="Fine Jewelry"/>
+					</div>
+					<div class="showcase-content">
+						<span class="showcase-label">Collection</span>
+						<h2 class="showcase-title">Fine Jewelry</h2>
+						<p class="showcase-description">Exquisite jewelry crafted from the finest precious metals and ethically sourced gemstones. Each piece is a statement of refined taste and enduring value.</p>
+						<ul class="showcase-features">
+							<li>18k gold and platinum settings</li>
+							<li>GIA-certified diamonds</li>
+							<li>Hand-engraved details</li>
+						</ul>
+						<a href="/collections/jewelry" class="btn-primary">Explore Jewelry</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	}
+}
+
+templ CollectionDetail(slug string) {
+	@layouts.Base(meta.New("Collection", "Explore our curated collection of luxury pieces.")) {
+		<section class="page-hero">
+			<div class="page-hero-content" data-animate="fade-up">
+				<span class="page-label">Collection</span>
+				<h1 class="page-title capitalize">{ slug }</h1>
+			</div>
+		</section>
+		<section class="page-content">
+			<div class="products-grid">
+				// Products would be dynamically loaded
+				<p class="text-muted text-center">Collection items coming soon.</p>
+			</div>
+		</section>
+	}
+}

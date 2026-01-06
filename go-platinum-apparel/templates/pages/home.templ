@@ -1,0 +1,209 @@
+package pages
+
+import (
+	"platinumapparel/internal/meta"
+	"platinumapparel/templates/layouts"
+)
+
+templ Home() {
+	@layouts.Base(meta.New("Luxury Menswear & Timepieces", "Discover the epitome of luxury menswear, fine jewelry, and prestigious timepieces. Handcrafted excellence for the distinguished gentleman.")) {
+		// Hero Section
+		<section class="hero">
+			<div class="hero-background">
+				<div class="hero-gradient"></div>
+				<div class="hero-particles"></div>
+			</div>
+			<div class="hero-content" data-animate="fade-up">
+				<span class="hero-label">Autumn/Winter Collection</span>
+				<h1 class="hero-title">
+					<span class="title-line">Timeless</span>
+					<span class="title-line accent">Elegance</span>
+				</h1>
+				<p class="hero-subtitle">Where craftsmanship meets distinction. Discover pieces that define generations.</p>
+				<div class="hero-actions">
+					<a href="/collections" class="btn-primary">
+						<span>Explore Collections</span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="5" y1="12" x2="19" y2="12"></line>
+							<polyline points="12 5 19 12 12 19"></polyline>
+						</svg>
+					</a>
+					<a href="/heritage" class="btn-secondary">Our Heritage</a>
+				</div>
+			</div>
+			<div class="hero-visual">
+				<div class="hero-image-container">
+					<img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=800&q=80" alt="Luxury timepiece" class="hero-image"/>
+					<div class="hero-image-glow"></div>
+				</div>
+			</div>
+			<div class="hero-scroll">
+				<span>Scroll to discover</span>
+				<div class="scroll-indicator"></div>
+			</div>
+		</section>
+		// Collections Grid
+		<section class="collections-section" id="collections">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">Curated Excellence</span>
+				<h2 class="section-title">Our Collections</h2>
+			</div>
+			<div class="collections-grid">
+				<a href="/collections/signature" class="collection-card large" data-animate="fade-up">
+					<div class="card-image">
+						<img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" alt="Signature Collection"/>
+					</div>
+					<div class="card-content">
+						<span class="card-label">Signature</span>
+						<h3 class="card-title">Tailored Suiting</h3>
+						<p class="card-description">Impeccably crafted suits that define modern sophistication</p>
+					</div>
+					<div class="card-overlay"></div>
+				</a>
+				<a href="/collections/timepieces" class="collection-card" data-animate="fade-up" data-delay="100">
+					<div class="card-image">
+						<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80" alt="Timepieces"/>
+					</div>
+					<div class="card-content">
+						<span class="card-label">Horlogerie</span>
+						<h3 class="card-title">Timepieces</h3>
+					</div>
+					<div class="card-overlay"></div>
+				</a>
+				<a href="/collections/jewelry" class="collection-card" data-animate="fade-up" data-delay="200">
+					<div class="card-image">
+						<img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Fine Jewelry"/>
+					</div>
+					<div class="card-content">
+						<span class="card-label">Precious</span>
+						<h3 class="card-title">Fine Jewelry</h3>
+					</div>
+					<div class="card-overlay"></div>
+				</a>
+				<a href="/collections/accessories" class="collection-card wide" data-animate="fade-up" data-delay="300">
+					<div class="card-image">
+						<img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80" alt="Leather Goods"/>
+					</div>
+					<div class="card-content">
+						<span class="card-label">Artisan</span>
+						<h3 class="card-title">Leather & Accessories</h3>
+						<p class="card-description">Hand-selected materials, artisanal craftsmanship</p>
+					</div>
+					<div class="card-overlay"></div>
+				</a>
+			</div>
+		</section>
+		// Featured Products
+		<section class="featured-section">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">Editor's Selection</span>
+				<h2 class="section-title">Featured Pieces</h2>
+			</div>
+			<div class="products-grid">
+				@ProductCard("Platinum Chronograph", "$2,495", "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=500&q=80", "/product/platinum-chronograph")
+				@ProductCard("Obsidian Cufflinks", "$385", "https://images.unsplash.com/photo-1590548784585-643d2b9f2925?w=500&q=80", "/product/obsidian-cufflinks")
+				@ProductCard("Heritage Blazer", "$1,850", "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&q=80", "/product/heritage-blazer")
+				@ProductCard("Gold Signet Ring", "$2,200", "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80", "/product/gold-signet-ring")
+			</div>
+			<div class="section-cta" data-animate="fade-up">
+				<a href="/featured" class="btn-outline">View All Featured</a>
+			</div>
+		</section>
+		// Craftsmanship Banner
+		<section class="craft-banner">
+			<div class="craft-content" data-animate="fade-up">
+				<span class="craft-label">The Art of Excellence</span>
+				<h2 class="craft-title">Uncompromising Craftsmanship</h2>
+				<p class="craft-text">Each piece in our collection represents hundreds of hours of meticulous handwork by master artisans who have dedicated their lives to their craft.</p>
+				<a href="/craft" class="btn-primary">
+					<span>Discover The Craft</span>
+				</a>
+			</div>
+			<div class="craft-stats">
+				<div class="stat" data-animate="fade-up" data-delay="100">
+					<span class="stat-number">150+</span>
+					<span class="stat-label">Hours per piece</span>
+				</div>
+				<div class="stat" data-animate="fade-up" data-delay="200">
+					<span class="stat-number">47</span>
+					<span class="stat-label">Master artisans</span>
+				</div>
+				<div class="stat" data-animate="fade-up" data-delay="300">
+					<span class="stat-number">1892</span>
+					<span class="stat-label">Year established</span>
+				</div>
+			</div>
+		</section>
+		// Testimonials
+		<section class="testimonials-section">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">Distinguished Clientele</span>
+				<h2 class="section-title">Client Testimonials</h2>
+			</div>
+			<div class="testimonial-carousel">
+				<div class="testimonial-track" id="testimonialTrack">
+					@Testimonial("The attention to detail is extraordinary. My bespoke suit from Platinum is the finest I've ever owned.", "James Richardson", "CEO, Sterling Holdings")
+					@Testimonial("Their timepieces are not merely watches—they are heirlooms. Exceptional in every way.", "Michael Chen", "Collector")
+					@Testimonial("From consultation to delivery, the experience was impeccable. True luxury service.", "David Ashford", "Private Client")
+				</div>
+				<div class="testimonial-nav">
+					<button id="prevTestimonial" class="nav-btn" aria-label="Previous">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="15 18 9 12 15 6"></polyline>
+						</svg>
+					</button>
+					<div class="testimonial-dots" id="testimonialDots">
+						<button class="dot active" aria-label="Testimonial 1"></button>
+						<button class="dot" aria-label="Testimonial 2"></button>
+						<button class="dot" aria-label="Testimonial 3"></button>
+					</div>
+					<button id="nextTestimonial" class="nav-btn" aria-label="Next">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="9 18 15 12 9 6"></polyline>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</section>
+		// Bespoke CTA
+		<section class="bespoke-section">
+			<div class="bespoke-background">
+				<img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80" alt="Bespoke tailoring"/>
+				<div class="bespoke-overlay"></div>
+			</div>
+			<div class="bespoke-content" data-animate="fade-up">
+				<span class="bespoke-label">Personalized Excellence</span>
+				<h2 class="bespoke-title">The Bespoke Experience</h2>
+				<p class="bespoke-text">Commission a piece as unique as you are. Our master craftsmen will guide you through every detail, from fabric selection to final fitting.</p>
+				<a href="/bespoke" class="btn-gold">
+					<span>Begin Your Journey</span>
+				</a>
+			</div>
+		</section>
+	}
+}
+
+templ ProductCard(name, price, image, href string) {
+	<a href={ templ.SafeURL(href) } class="product-card" data-animate="fade-up">
+		<div class="product-image">
+			<img src={ image } alt={ name }/>
+			<div class="product-overlay">
+				<span class="quick-view">Quick View</span>
+			</div>
+		</div>
+		<div class="product-info">
+			<h3 class="product-name">{ name }</h3>
+			<span class="product-price">{ price }</span>
+		</div>
+	</a>
+}
+
+templ Testimonial(quote, name, title string) {
+	<div class="testimonial">
+		<blockquote class="testimonial-quote">{ quote }</blockquote>
+		<div class="testimonial-author">
+			<span class="author-name">{ name }</span>
+			<span class="author-title">{ title }</span>
+		</div>
+	</div>
+}

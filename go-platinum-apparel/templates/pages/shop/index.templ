@@ -1,0 +1,89 @@
+package shop
+
+import (
+	"platinumapparel/internal/meta"
+	"platinumapparel/templates/layouts"
+	"platinumapparel/templates/pages"
+)
+
+templ Index() {
+	@layouts.Base(meta.New("Shop", "Browse our complete collection of luxury menswear, timepieces, and fine jewelry.")) {
+		// Hero
+		<section class="page-hero shop-hero">
+			<div class="page-hero-content" data-animate="fade-up">
+				<span class="page-label">Shop</span>
+				<h1 class="page-title">All Products</h1>
+				<p class="page-subtitle">Browse our complete collection of luxury pieces.</p>
+			</div>
+		</section>
+		// Filters
+		<section class="shop-content">
+			<aside class="shop-filters" data-animate="fade-up">
+				<div class="filter-group">
+					<h3 class="filter-title">Category</h3>
+					<ul class="filter-options">
+						<li><a href="/shop" class="filter-link active">All</a></li>
+						<li><a href="/shop/category/watches" class="filter-link">Watches</a></li>
+						<li><a href="/shop/category/jewelry" class="filter-link">Jewelry</a></li>
+						<li><a href="/shop/category/clothing" class="filter-link">Clothing</a></li>
+						<li><a href="/shop/category/accessories" class="filter-link">Accessories</a></li>
+					</ul>
+				</div>
+				<div class="filter-group">
+					<h3 class="filter-title">Collection</h3>
+					<ul class="filter-options">
+						<li><a href="/shop?collection=signature" class="filter-link">Signature</a></li>
+						<li><a href="/shop?collection=heritage" class="filter-link">Heritage</a></li>
+						<li><a href="/shop?collection=artisan" class="filter-link">Artisan</a></li>
+					</ul>
+				</div>
+				<div class="filter-group">
+					<h3 class="filter-title">Price</h3>
+					<ul class="filter-options">
+						<li><a href="/shop?price=under-500" class="filter-link">Under $500</a></li>
+						<li><a href="/shop?price=500-1000" class="filter-link">$500 - $1,000</a></li>
+						<li><a href="/shop?price=1000-5000" class="filter-link">$1,000 - $5,000</a></li>
+						<li><a href="/shop?price=over-5000" class="filter-link">Over $5,000</a></li>
+					</ul>
+				</div>
+			</aside>
+			<main class="shop-products">
+				<div class="shop-toolbar">
+					<span class="product-count">Showing 8 products</span>
+					<select class="sort-select">
+						<option value="featured">Featured</option>
+						<option value="price-low">Price: Low to High</option>
+						<option value="price-high">Price: High to Low</option>
+						<option value="newest">Newest</option>
+					</select>
+				</div>
+				<div class="products-grid">
+					@pages.ProductCard("Platinum Chronograph", "$2,495", "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=500&q=80", "/product/platinum-chronograph")
+					@pages.ProductCard("Obsidian Cufflinks", "$385", "https://images.unsplash.com/photo-1590548784585-643d2b9f2925?w=500&q=80", "/product/obsidian-cufflinks")
+					@pages.ProductCard("Heritage Blazer", "$1,850", "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&q=80", "/product/heritage-blazer")
+					@pages.ProductCard("Gold Signet Ring", "$2,200", "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80", "/product/gold-signet-ring")
+					@pages.ProductCard("Midnight Dress Shirt", "$425", "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&q=80", "/product/midnight-dress-shirt")
+					@pages.ProductCard("Platinum Tie Bar", "$295", "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&q=80", "/product/platinum-tie-bar")
+					@pages.ProductCard("Artisan Belt", "$575", "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80", "/product/artisan-belt")
+					@pages.ProductCard("Diamond Bracelet", "$4,850", "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=80", "/product/diamond-bracelet")
+				</div>
+			</main>
+		</section>
+	}
+}
+
+templ Category(category string) {
+	@layouts.Base(meta.New(category + " Collection", "Browse our " + category + " collection.")) {
+		<section class="page-hero shop-hero">
+			<div class="page-hero-content" data-animate="fade-up">
+				<span class="page-label">Category</span>
+				<h1 class="page-title capitalize">{ category }</h1>
+			</div>
+		</section>
+		<section class="shop-content">
+			<div class="products-grid">
+				<p class="text-muted text-center">Products in { category } category coming soon.</p>
+			</div>
+		</section>
+	}
+}

@@ -1,0 +1,92 @@
+package products
+
+type CartItem struct {
+	ID       int64
+	Name     string
+	Price    int64
+	Quantity int64
+	ImageURL string
+}
+
+templ CartDrawer(items []CartItem, total int64) {
+	<div class="cart-drawer-content">
+		<div class="cart-header">
+			<h2 class="cart-title">Your Cart</h2>
+			<button class="cart-close" onclick="document.getElementById('cart-drawer').classList.remove('active')">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<line x1="18" y1="6" x2="6" y2="18"></line>
+					<line x1="6" y1="6" x2="18" y2="18"></line>
+				</svg>
+			</button>
+		</div>
+		if len(items) == 0 {
+			<div class="cart-empty">
+				<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+					<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+					<line x1="3" y1="6" x2="21" y2="6"></line>
+					<path d="M16 10a4 4 0 0 1-8 0"></path>
+				</svg>
+				<p>Your cart is empty</p>
+				<a href="/shop" class="btn-outline">Start Shopping</a>
+			</div>
+		} else {
+			<div class="cart-items">
+				for _, item := range items {
+					@CartItemRow(item)
+				}
+			</div>
+			<div class="cart-footer">
+				<div class="cart-total">
+					<span>Total</span>
+					<span class="total-amount">${ formatPrice(total) }</span>
+				</div>
+				<a href="/checkout" class="btn-gold cart-checkout">Proceed to Checkout</a>
+			</div>
+		}
+	</div>
+}
+
+templ CartItemRow(item CartItem) {
+	<div class="cart-item">
+		<img src={ item.ImageURL } alt={ item.Name } class="item-image"/>
+		<div class="item-details">
+			<h3 class="item-name">{ item.Name }</h3>
+			<span class="item-price">${ formatPrice(item.Price) }</span>
+			<div class="item-quantity">
+				<button
+					class="qty-btn"
+					hx-post="/cart/update"
+					hx-vals={ `{"product_id": "` + string(rune(item.ID)) + `", "quantity": "` + string(rune(item.Quantity-1)) + `"}` }
+					hx-target="#cart-drawer"
+				>-</button>
+				<span>{ string(rune(item.Quantity + '0')) }</span>
+				<button
+					class="qty-btn"
+					hx-post="/cart/update"
+					hx-vals={ `{"product_id": "` + string(rune(item.ID)) + `", "quantity": "` + string(rune(item.Quantity+1)) + `"}` }
+					hx-target="#cart-drawer"
+				>+</button>
+			</div>
+		</div>
+		<button
+			class="item-remove"
+			hx-post="/cart/remove"
+			hx-vals={ `{"product_id": "` + string(rune(item.ID)) + `"}` }
+			hx-target="#cart-drawer"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<line x1="18" y1="6" x2="6" y2="18"></line>
+				<line x1="6" y1="6" x2="18" y2="18"></line>
+			</svg>
+		</button>
+	</div>
+}
+
+func formatPrice(cents int64) string {
+	dollars := cents / 100
+	remainder := cents % 100
+	if remainder == 0 {
+		return string(rune(dollars))
+	}
+	return string(rune(dollars)) + "." + string(rune(remainder))
+}

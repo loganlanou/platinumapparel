@@ -1,0 +1,52 @@
+package layouts
+
+import "platinumapparel/internal/meta"
+
+templ Base(m meta.PageMeta) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			@MetaTags(m)
+			<link rel="stylesheet" href="/static/css/output.css"/>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+			<script src="https://unpkg.com/htmx.org@2.0.4"></script>
+			// Clerk authentication (configured via env)
+			if meta.ClerkPublishableKeyFromCtx(ctx) != "" {
+				<script
+					async
+					crossorigin="anonymous"
+					data-clerk-publishable-key={ meta.ClerkPublishableKeyFromCtx(ctx) }
+					src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
+					type="text/javascript"
+				></script>
+			}
+		</head>
+		<body class="bg-primary text-secondary min-h-screen antialiased">
+			// Page loader
+			<div id="pageLoader" class="page-loader">
+				<div class="loader-content">
+					<div class="loader-logo">PLATINUM</div>
+					<div class="loader-bar"></div>
+				</div>
+			</div>
+			// Skip link for accessibility
+			<a href="#main-content" class="skip-link">Skip to main content</a>
+			// Navigation
+			@Navbar()
+			// Mobile menu
+			@MobileMenu()
+			// Main content
+			<main id="main-content">
+				{ children... }
+			</main>
+			// Footer
+			@Footer()
+			// Scripts
+			<script src="/static/js/main.js" defer></script>
+		</body>
+	</html>
+}

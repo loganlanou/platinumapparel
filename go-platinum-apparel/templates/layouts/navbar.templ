@@ -1,0 +1,62 @@
+package layouts
+
+templ Navbar() {
+	<nav id="mainNav" class="main-nav">
+		<div class="nav-container">
+			<a href="/" class="nav-logo">
+				<span class="logo-text">PLATINUM</span>
+				<span class="logo-sub">APPAREL</span>
+			</a>
+			<div class="nav-links">
+				<a href="/collections" class="nav-link">Collections</a>
+				<a href="/featured" class="nav-link">Featured</a>
+				<a href="/craft" class="nav-link">The Craft</a>
+				<a href="/heritage" class="nav-link">Heritage</a>
+				<a href="/bespoke" class="nav-link">Bespoke</a>
+			</div>
+			<div class="nav-actions">
+				<button class="nav-search" aria-label="Search">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+						<circle cx="11" cy="11" r="8"></circle>
+						<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+					</svg>
+				</button>
+				<button
+					class="nav-cart"
+					aria-label="Shopping cart"
+					hx-get="/cart"
+					hx-target="#cart-drawer"
+					hx-trigger="click"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+						<line x1="3" y1="6" x2="21" y2="6"></line>
+						<path d="M16 10a4 4 0 0 1-8 0"></path>
+					</svg>
+					<span class="cart-badge" id="cart-count">0</span>
+				</button>
+				<button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+			</div>
+		</div>
+	</nav>
+	// Cart drawer
+	<div id="cart-drawer" class="cart-drawer"></div>
+}
+
+templ MobileMenu() {
+	<div id="mobileMenu" class="mobile-menu">
+		<div class="mobile-menu-content">
+			<a href="/collections" class="mobile-link">Collections</a>
+			<a href="/featured" class="mobile-link">Featured</a>
+			<a href="/craft" class="mobile-link">The Craft</a>
+			<a href="/heritage" class="mobile-link">Heritage</a>
+			<a href="/bespoke" class="mobile-link">Bespoke</a>
+			<div class="mobile-divider"></div>
+			<a href="/shop" class="mobile-link">Shop All</a>
+		</div>
+	</div>
+}

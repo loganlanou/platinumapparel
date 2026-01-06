@@ -1,0 +1,26 @@
+# Copy this file to .envrc and edit with your values
+# Then run: direnv allow
+
+# Database (SQLite)
+export DATABASE_URL="./data/platinumapparel.db"
+
+# Server
+export PORT="3000"
+export ENV="development"
+export LOG_LEVEL="DEBUG"
+
+# Site / SEO (used for meta tags, OG, etc.)
+export SITE_NAME="Platinum Apparel"
+export SITE_URL="http://localhost:3000"
+export DEFAULT_OG_IMAGE="/static/images/og-default.png"
+
+# Clerk Authentication
+# Get these from https://dashboard.clerk.com
+export CLERK_SECRET_KEY="sk_test_YOUR_SECRET_KEY"
+export CLERK_PUBLISHABLE_KEY="pk_test_YOUR_PUBLISHABLE_KEY"
+
+# Stripe Payments
+# Get these from https://dashboard.stripe.com
+export STRIPE_SECRET_KEY="sk_test_YOUR_SECRET_KEY"
+export STRIPE_PUBLISHABLE_KEY="pk_test_YOUR_PUBLISHABLE_KEY"
+export STRIPE_WEBHOOK_SECRET="whsec_YOUR_WEBHOOK_SECRET"

@@ -1,0 +1,102 @@
+package pages
+
+import (
+	"platinumapparel/internal/meta"
+	"platinumapparel/templates/layouts"
+)
+
+templ Heritage() {
+	@layouts.Base(meta.New("Our Heritage", "Discover the rich history and legacy of Platinum Apparel since 1892.")) {
+		// Hero
+		<section class="page-hero heritage-hero">
+			<div class="page-hero-content" data-animate="fade-up">
+				<span class="page-label">Since 1892</span>
+				<h1 class="page-title">Our Heritage</h1>
+				<p class="page-subtitle">A legacy of excellence spanning over a century, built on the principles of uncompromising quality and timeless elegance.</p>
+			</div>
+		</section>
+		// Timeline
+		<section class="heritage-timeline">
+			<div class="timeline-intro" data-animate="fade-up">
+				<h2 class="timeline-title">A Journey Through Time</h2>
+				<p class="timeline-description">From humble beginnings in a small London atelier to becoming one of the world's most prestigious luxury houses, our story is one of passion, perseverance, and pursuit of perfection.</p>
+			</div>
+			<div class="timeline">
+				<div class="timeline-item" data-animate="fade-up">
+					<div class="timeline-year">1892</div>
+					<div class="timeline-content">
+						<h3 class="timeline-heading">The Beginning</h3>
+						<p>Edward Platinum establishes his first bespoke tailoring atelier in London's Savile Row, quickly gaining recognition for exceptional craftsmanship.</p>
+					</div>
+				</div>
+				<div class="timeline-item" data-animate="fade-up">
+					<div class="timeline-year">1920</div>
+					<div class="timeline-content">
+						<h3 class="timeline-heading">Royal Warrant</h3>
+						<p>Awarded the Royal Warrant of Appointment, cementing our position as purveyors of the finest menswear to distinguished clientele.</p>
+					</div>
+				</div>
+				<div class="timeline-item" data-animate="fade-up">
+					<div class="timeline-year">1956</div>
+					<div class="timeline-content">
+						<h3 class="timeline-heading">Horological Mastery</h3>
+						<p>Partnership with Swiss watchmakers begins, introducing our first collection of luxury timepieces to complement our sartorial offerings.</p>
+					</div>
+				</div>
+				<div class="timeline-item" data-animate="fade-up">
+					<div class="timeline-year">1978</div>
+					<div class="timeline-content">
+						<h3 class="timeline-heading">Fine Jewelry</h3>
+						<p>Launch of our fine jewelry collection, featuring precious metals and ethically sourced gemstones crafted by master jewelers.</p>
+					</div>
+				</div>
+				<div class="timeline-item" data-animate="fade-up">
+					<div class="timeline-year">2024</div>
+					<div class="timeline-content">
+						<h3 class="timeline-heading">A New Chapter</h3>
+						<p>Continuing our legacy of excellence while embracing innovation, we remain committed to creating pieces that transcend generations.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		// Values
+		<section class="heritage-values">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">Our Foundation</span>
+				<h2 class="section-title">Core Values</h2>
+			</div>
+			<div class="values-grid">
+				<div class="value-card" data-animate="fade-up">
+					<div class="value-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+							<path d="M2 17l10 5 10-5"></path>
+							<path d="M2 12l10 5 10-5"></path>
+						</svg>
+					</div>
+					<h3 class="value-title">Excellence</h3>
+					<p class="value-description">We never compromise on quality. Every piece must meet our exacting standards before bearing the Platinum name.</p>
+				</div>
+				<div class="value-card" data-animate="fade-up" data-delay="100">
+					<div class="value-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+							<circle cx="12" cy="12" r="10"></circle>
+							<polyline points="12 6 12 12 16 14"></polyline>
+						</svg>
+					</div>
+					<h3 class="value-title">Timelessness</h3>
+					<p class="value-description">We create pieces designed to transcend trends, becoming treasured possessions passed down through generations.</p>
+				</div>
+				<div class="value-card" data-animate="fade-up" data-delay="200">
+					<div class="value-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+						</svg>
+					</div>
+					<h3 class="value-title">Integrity</h3>
+					<p class="value-description">We conduct business with honor, treating our clients, artisans, and suppliers with the utmost respect and fairness.</p>
+				</div>
+			</div>
+		</section>
+	}
+}

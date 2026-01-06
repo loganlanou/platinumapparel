@@ -1,0 +1,78 @@
+package middleware
+
+import (
+	"context"
+	"log/slog"
+	"time"
+
+	"platinumapparel/internal/config"
+	"platinumapparel/internal/ctxkeys"
+	"platinumapparel/internal/services/clerk"
+
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+)
+
+func Setup(e *echo.Echo, cfg *config.Config, clerkSvc *clerk.Service) {
+	e.Use(middleware.RequestID())
+	e.Use(middleware.Recover())
+	e.Use(SiteConfigMiddleware(cfg))
+	e.Use(requestLogger(cfg.IsDevelopment()))
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+	}))
+	e.Use(middleware.GzipWithConfig(middleware.GzipConfig{
+		Level: 5,
+	}))
+	e.Use(middleware.SecureWithConfig(middleware.SecureConfig{
+		XSSProtection:      "1; mode=block",
+		ContentTypeNosniff: "nosniff",
+		XFrameOptions:      "SAMEORIGIN",
+		HSTSMaxAge:         31536000,
+	}))
+}
+
+func SiteConfigMiddleware(cfg *config.Config) echo.MiddlewareFunc {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			ctx := c.Request().Context()
+			ctx = context.WithValue(ctx, ctxkeys.SiteConfig, cfg.Site)
+			ctx = context.WithValue(ctx, ctxkeys.ClerkPublishableKey, cfg.ClerkPublishableKey)
+			ctx = context.WithValue(ctx, ctxkeys.StripePublishableKey, cfg.StripePublishableKey)
+			c.SetRequest(c.Request().WithContext(ctx))
+			return next(c)
+		}
+	}
+}
+
+func requestLogger(isDev bool) echo.MiddlewareFunc {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			start := time.Now()
+			err := next(c)
+			latency := time.Since(start)
+
+			req := c.Request()
+			res := c.Response()
+
+			attrs := []any{
+				"request_id", c.Response().Header().Get(echo.HeaderXRequestID),
+				"method", req.Method,
+				"uri", req.RequestURI,
+				"status", res.Status,
+				"latency", latency.String(),
+			}
+
+			if isDev {
+				slog.Debug("request", attrs...)
+			} else if res.Status >= 500 {
+				slog.Error("request", attrs...)
+			} else {
+				slog.Info("request", attrs...)
+			}
+
+			return err
+		}
+	}
+}

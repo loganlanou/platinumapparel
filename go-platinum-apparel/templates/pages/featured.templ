@@ -1,0 +1,46 @@
+package pages
+
+import (
+	"platinumapparel/internal/meta"
+	"platinumapparel/templates/layouts"
+)
+
+templ Featured() {
+	@layouts.Base(meta.New("Featured Pieces", "Discover our editor's selection of the most exceptional luxury pieces.")) {
+		// Hero
+		<section class="page-hero">
+			<div class="page-hero-content" data-animate="fade-up">
+				<span class="page-label">Editor's Selection</span>
+				<h1 class="page-title">Featured Pieces</h1>
+				<p class="page-subtitle">A curated selection of our most exceptional creations, chosen for their extraordinary craftsmanship and timeless appeal.</p>
+			</div>
+		</section>
+		// Featured Products
+		<section class="page-content">
+			<div class="featured-grid">
+				// Highlight piece
+				<div class="featured-highlight" data-animate="fade-up">
+					<div class="highlight-image">
+						<img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=1000&q=80" alt="Platinum Chronograph"/>
+					</div>
+					<div class="highlight-content">
+						<span class="highlight-label">Piece of the Month</span>
+						<h2 class="highlight-title">The Platinum Chronograph</h2>
+						<p class="highlight-description">A masterpiece of horological engineering, featuring a hand-assembled Swiss movement with 72-hour power reserve. The 41mm platinum case houses a midnight blue dial with applied gold indices.</p>
+						<div class="highlight-price">$24,500</div>
+						<a href="/product/platinum-chronograph" class="btn-gold">View Details</a>
+					</div>
+				</div>
+				// Products grid
+				<div class="products-grid">
+					@ProductCard("Obsidian Cufflinks", "$385", "https://images.unsplash.com/photo-1590548784585-643d2b9f2925?w=500&q=80", "/product/obsidian-cufflinks")
+					@ProductCard("Heritage Blazer", "$1,850", "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&q=80", "/product/heritage-blazer")
+					@ProductCard("Gold Signet Ring", "$2,200", "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80", "/product/gold-signet-ring")
+					@ProductCard("Midnight Dress Shirt", "$425", "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&q=80", "/product/midnight-dress-shirt")
+					@ProductCard("Platinum Tie Bar", "$295", "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&q=80", "/product/platinum-tie-bar")
+					@ProductCard("Artisan Belt", "$575", "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80", "/product/artisan-belt")
+				</div>
+			</div>
+		</section>
+	}
+}

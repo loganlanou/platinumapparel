@@ -1,0 +1,37 @@
+# Binaries
+platinumapparel
+*.exe
+
+# Build artifacts
+tmp/
+*.log
+
+# Environment (never commit secrets)
+.envrc
+.env
+
+# Generated files (can be regenerated)
+*_templ.go
+internal/database/sqlc/
+
+# Dependencies
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tailwind output (generated)
+static/css/output.css
+
+# SQLite database
+data/*.db
+*.db
+
+# Vercel
+.vercel

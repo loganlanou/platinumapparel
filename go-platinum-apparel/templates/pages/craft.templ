@@ -1,0 +1,107 @@
+package pages
+
+import (
+	"platinumapparel/internal/meta"
+	"platinumapparel/templates/layouts"
+)
+
+templ Craft() {
+	@layouts.Base(meta.New("The Craft", "Discover the meticulous craftsmanship behind every Platinum Apparel creation.")) {
+		// Hero
+		<section class="page-hero craft-hero">
+			<div class="page-hero-content" data-animate="fade-up">
+				<span class="page-label">The Art of Excellence</span>
+				<h1 class="page-title">The Craft</h1>
+				<p class="page-subtitle">Behind every piece lies hundreds of hours of meticulous handwork by master artisans who have dedicated their lives to perfection.</p>
+			</div>
+		</section>
+		// Process
+		<section class="craft-process">
+			<div class="process-intro" data-animate="fade-up">
+				<h2 class="process-title">Our Process</h2>
+				<p class="process-description">From initial concept to final stitch, every Platinum piece undergoes a rigorous journey of creation that honors centuries of tradition while embracing modern innovation.</p>
+			</div>
+			<div class="process-steps">
+				<div class="process-step" data-animate="fade-up">
+					<div class="step-number">01</div>
+					<div class="step-content">
+						<h3 class="step-title">Material Selection</h3>
+						<p class="step-description">We source only the finest materials from renowned mills and suppliers worldwide. Each fabric is hand-selected for its exceptional quality, texture, and longevity.</p>
+					</div>
+					<div class="step-image">
+						<img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&q=80" alt="Material selection"/>
+					</div>
+				</div>
+				<div class="process-step reverse" data-animate="fade-up">
+					<div class="step-number">02</div>
+					<div class="step-content">
+						<h3 class="step-title">Pattern Making</h3>
+						<p class="step-description">Our master pattern makers create precise templates that ensure perfect fit and proportion. Each pattern is refined over dozens of iterations to achieve sartorial perfection.</p>
+					</div>
+					<div class="step-image">
+						<img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Pattern making"/>
+					</div>
+				</div>
+				<div class="process-step" data-animate="fade-up">
+					<div class="step-number">03</div>
+					<div class="step-content">
+						<h3 class="step-title">Hand Assembly</h3>
+						<p class="step-description">Skilled artisans bring each piece to life through traditional hand-sewing techniques passed down through generations. Every stitch is placed with intention and care.</p>
+					</div>
+					<div class="step-image">
+						<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Hand assembly"/>
+					</div>
+				</div>
+				<div class="process-step reverse" data-animate="fade-up">
+					<div class="step-number">04</div>
+					<div class="step-content">
+						<h3 class="step-title">Quality Control</h3>
+						<p class="step-description">Each finished piece undergoes rigorous inspection by our quality assurance team. Only those meeting our exacting standards bear the Platinum name.</p>
+					</div>
+					<div class="step-image">
+						<img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80" alt="Quality control"/>
+					</div>
+				</div>
+			</div>
+		</section>
+		// Artisans
+		<section class="craft-artisans">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">The Masters</span>
+				<h2 class="section-title">Our Artisans</h2>
+			</div>
+			<div class="artisans-grid">
+				<div class="artisan-card" data-animate="fade-up">
+					<div class="artisan-image">
+						<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="Master Tailor"/>
+					</div>
+					<div class="artisan-info">
+						<h3 class="artisan-name">Giovanni Rossi</h3>
+						<span class="artisan-title">Master Tailor</span>
+						<span class="artisan-years">42 years experience</span>
+					</div>
+				</div>
+				<div class="artisan-card" data-animate="fade-up" data-delay="100">
+					<div class="artisan-image">
+						<img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Master Horologist"/>
+					</div>
+					<div class="artisan-info">
+						<h3 class="artisan-name">Hans Weber</h3>
+						<span class="artisan-title">Master Horologist</span>
+						<span class="artisan-years">35 years experience</span>
+					</div>
+				</div>
+				<div class="artisan-card" data-animate="fade-up" data-delay="200">
+					<div class="artisan-image">
+						<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Master Jeweler"/>
+					</div>
+					<div class="artisan-info">
+						<h3 class="artisan-name">Philippe Laurent</h3>
+						<span class="artisan-title">Master Jeweler</span>
+						<span class="artisan-years">38 years experience</span>
+					</div>
+				</div>
+			</div>
+		</section>
+	}
+}

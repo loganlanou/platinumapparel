@@ -1,0 +1,90 @@
+package pages
+
+import (
+	"platinumapparel/internal/meta"
+	"platinumapparel/templates/layouts"
+)
+
+templ ProductDetail(slug string) {
+	@layouts.Base(meta.New("Product Details", "Discover the craftsmanship and details of this exceptional piece.").AsProduct()) {
+		<section class="product-detail">
+			<div class="product-gallery" data-animate="fade-up">
+				<div class="gallery-main">
+					<img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=800&q=80" alt="Product image"/>
+				</div>
+				<div class="gallery-thumbs">
+					<button class="thumb active">
+						<img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=200&q=80" alt="Thumbnail 1"/>
+					</button>
+					<button class="thumb">
+						<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&q=80" alt="Thumbnail 2"/>
+					</button>
+					<button class="thumb">
+						<img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=200&q=80" alt="Thumbnail 3"/>
+					</button>
+				</div>
+			</div>
+			<div class="product-info" data-animate="fade-up">
+				<span class="product-collection">Signature Collection</span>
+				<h1 class="product-title capitalize">{ slug }</h1>
+				<div class="product-price">$2,495</div>
+				<p class="product-description">
+					A masterpiece of horological engineering, this timepiece features a hand-assembled Swiss movement with 72-hour power reserve. The 41mm case is crafted from solid platinum, housing a midnight blue dial with applied gold indices.
+				</p>
+				<div class="product-details">
+					<div class="detail-item">
+						<span class="detail-label">Movement</span>
+						<span class="detail-value">Swiss Automatic</span>
+					</div>
+					<div class="detail-item">
+						<span class="detail-label">Case</span>
+						<span class="detail-value">41mm Platinum</span>
+					</div>
+					<div class="detail-item">
+						<span class="detail-label">Water Resistance</span>
+						<span class="detail-value">100m</span>
+					</div>
+					<div class="detail-item">
+						<span class="detail-label">Power Reserve</span>
+						<span class="detail-value">72 Hours</span>
+					</div>
+				</div>
+				<div class="product-actions">
+					<button
+						class="btn-gold"
+						hx-post="/cart/add"
+						hx-vals='{"product_id": "1", "quantity": "1"}'
+						hx-swap="none"
+					>
+						<span>Add to Cart</span>
+					</button>
+					<button class="btn-outline">Request Information</button>
+				</div>
+				<div class="product-services">
+					<div class="service-item">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<rect x="1" y="3" width="22" height="5" rx="2" ry="2"></rect>
+							<path d="M21 8v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"></path>
+							<path d="M10 12h4"></path>
+						</svg>
+						<span>Complimentary Shipping</span>
+					</div>
+					<div class="service-item">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+							<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+							<line x1="12" y1="22.08" x2="12" y2="12"></line>
+						</svg>
+						<span>Luxury Packaging</span>
+					</div>
+					<div class="service-item">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+						</svg>
+						<span>5-Year Warranty</span>
+					</div>
+				</div>
+			</div>
+		</section>
+	}
+}
