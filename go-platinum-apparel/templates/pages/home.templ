@@ -7,20 +7,12 @@ import (
 
 templ Home() {
 	@layouts.Base(meta.New("Luxury Menswear & Timepieces", "Discover the epitome of luxury menswear, fine jewelry, and prestigious timepieces. Handcrafted excellence for the distinguished gentleman.")) {
-		// Hero Section with Cinematic Background
+		// Hero Section
 		<section class="hero">
 			<div class="hero-background">
 				<img src="/static/images/hero-luxury.png" alt="Luxury Rolex watch with gold coins and fine jewelry" class="hero-bg-image"/>
 			</div>
-			// Cinematic light effects
-			<div class="hero-cinematic-overlay">
-				<div class="light-sweep"></div>
-				<div class="light-flare light-flare-1"></div>
-				<div class="light-flare light-flare-2"></div>
-				<div class="golden-shimmer"></div>
-			</div>
-			<div class="hero-vignette"></div>
-			<div class="hero-gradient-overlay"></div>
+			<div class="hero-overlay"></div>
 			<div class="hero-content" data-animate="fade-up">
 				<span class="hero-label">Autumn/Winter Collection</span>
 				<h1 class="hero-title">
