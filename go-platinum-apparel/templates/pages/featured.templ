@@ -8,38 +8,132 @@ import (
 templ Featured() {
 	@layouts.Base(meta.New("Featured Pieces", "Discover our editor's selection of the most exceptional luxury pieces.")) {
 		// Hero
-		<section class="page-hero">
+		<section class="page-hero featured-hero">
 			<div class="page-hero-content" data-animate="fade-up">
 				<span class="page-label">Editor's Selection</span>
 				<h1 class="page-title">Featured Pieces</h1>
 				<p class="page-subtitle">A curated selection of our most exceptional creations, chosen for their extraordinary craftsmanship and timeless appeal.</p>
 			</div>
 		</section>
-		// Featured Products
-		<section class="page-content">
-			<div class="featured-grid">
-				// Highlight piece
-				<div class="featured-highlight" data-animate="fade-up">
-					<div class="highlight-image">
-						<img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=1000&q=80" alt="Platinum Chronograph"/>
-					</div>
-					<div class="highlight-content">
-						<span class="highlight-label">Piece of the Month</span>
-						<h2 class="highlight-title">The Platinum Chronograph</h2>
-						<p class="highlight-description">A masterpiece of horological engineering, featuring a hand-assembled Swiss movement with 72-hour power reserve. The 41mm platinum case houses a midnight blue dial with applied gold indices.</p>
-						<div class="highlight-price">$24,500</div>
-						<a href="/product/platinum-chronograph" class="btn-gold">View Details</a>
-					</div>
+
+		// Highlight Piece
+		<section class="featured-highlight-section">
+			<div class="highlight-wrapper" data-animate="fade-up">
+				<div class="highlight-image image-reveal">
+					<img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=1200&q=90" alt="Perpetual Chronograph" loading="eager"/>
+					<span class="highlight-badge">Piece of the Month</span>
 				</div>
-				// Products grid
-				<div class="products-grid">
-					@ProductCard("Obsidian Cufflinks", "$385", "https://images.unsplash.com/photo-1590548784585-643d2b9f2925?w=500&q=80", "/product/obsidian-cufflinks")
-					@ProductCard("Heritage Blazer", "$1,850", "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&q=80", "/product/heritage-blazer")
-					@ProductCard("Gold Signet Ring", "$2,200", "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80", "/product/gold-signet-ring")
-					@ProductCard("Midnight Dress Shirt", "$425", "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&q=80", "/product/midnight-dress-shirt")
-					@ProductCard("Platinum Tie Bar", "$295", "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&q=80", "/product/platinum-tie-bar")
-					@ProductCard("Artisan Belt", "$575", "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80", "/product/artisan-belt")
+				<div class="highlight-content">
+					<span class="highlight-category">Fine Horology</span>
+					<h2 class="highlight-title">The Perpetual Chronograph</h2>
+					<p class="highlight-description">A masterpiece of horological engineering, featuring a hand-assembled Swiss movement with 72-hour power reserve. The 41mm platinum case houses a midnight blue dial with applied 18k gold indices, completed with a hand-stitched alligator strap.</p>
+					<ul class="highlight-features">
+						<li>COSC-certified Swiss automatic movement</li>
+						<li>72-hour power reserve</li>
+						<li>Sapphire crystal with AR coating</li>
+						<li>Water resistant to 100 meters</li>
+					</ul>
+					<div class="highlight-price">$24,500</div>
+					<a href="/product/perpetual-chronograph" class="btn-gold"><span>View Details</span></a>
 				</div>
+			</div>
+		</section>
+
+		// Featured Timepieces
+		<section class="featured-section">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">Horology</span>
+				<h2 class="section-title">Featured Timepieces</h2>
+			</div>
+			<div class="products-grid">
+				@ProductCard("Royal Oak Platinum", "$48,900", "https://images.unsplash.com/photo-1622434641406-a158123450f9?w=600&q=85", "/product/royal-oak-platinum")
+				@ProductCard("Submariner Gold", "$32,750", "https://images.unsplash.com/photo-1548171915-e79a380a2a4b?w=600&q=85", "/product/submariner-gold")
+				@ProductCard("Datejust Classic", "$18,200", "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600&q=85", "/product/datejust-classic")
+				@ProductCard("GMT Master II", "$28,500", "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&q=85", "/product/gmt-master")
+			</div>
+		</section>
+
+		// Luxury Banner
+		<section class="luxury-banner">
+			<div class="luxury-banner-bg">
+				<img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1920&q=90" alt="Sartorial excellence" loading="lazy"/>
+			</div>
+			<div class="luxury-banner-overlay"></div>
+			<div class="luxury-banner-content" data-animate="fade-up">
+				<span class="luxury-banner-label">Sartorial Excellence</span>
+				<h2 class="luxury-banner-title">Impeccable<br/>Tailoring</h2>
+				<p class="luxury-banner-text">Our featured menswear pieces represent the pinnacle of sartorial craftsmanship—hand-selected fabrics, meticulous construction, and timeless design that transcends seasons.</p>
+			</div>
+		</section>
+
+		// Featured Menswear
+		<section class="featured-section">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">Menswear</span>
+				<h2 class="section-title">Featured Tailoring</h2>
+			</div>
+			<div class="products-grid">
+				@ProductCard("Midnight Tuxedo", "$4,850", "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=600&q=85", "/product/midnight-tuxedo")
+				@ProductCard("Navy Pinstripe Suit", "$3,200", "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=600&q=85", "/product/navy-pinstripe-suit")
+				@ProductCard("Charcoal Wool Blazer", "$1,950", "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=85", "/product/charcoal-wool-blazer")
+				@ProductCard("Heritage Cashmere Coat", "$5,200", "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=600&q=85", "/product/heritage-cashmere-coat")
+			</div>
+		</section>
+
+		// Featured Jewelry
+		<section class="featured-section">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">Fine Jewelry</span>
+				<h2 class="section-title">Featured Pieces</h2>
+			</div>
+			<div class="products-grid">
+				@ProductCard("Gold Signet Ring", "$2,850", "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=85", "/product/gold-signet-ring")
+				@ProductCard("Diamond Cufflinks", "$4,200", "https://images.unsplash.com/photo-1590548784585-643d2b9f2925?w=600&q=85", "/product/diamond-cufflinks")
+				@ProductCard("Platinum Chain", "$3,500", "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=85", "/product/platinum-chain")
+				@ProductCard("Onyx & Gold Bracelet", "$2,450", "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=85", "/product/onyx-gold-bracelet")
+			</div>
+		</section>
+
+		// Featured Accessories
+		<section class="featured-section">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">Leather Goods</span>
+				<h2 class="section-title">Featured Accessories</h2>
+			</div>
+			<div class="products-grid">
+				@ProductCard("Crocodile Wallet", "$1,450", "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=85", "/product/crocodile-wallet")
+				@ProductCard("Executive Briefcase", "$2,800", "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=85", "/product/executive-briefcase")
+				@ProductCard("Calfskin Belt", "$485", "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=85", "/product/calfskin-belt")
+				@ProductCard("Travel Duffle", "$3,200", "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=85", "/product/travel-duffle")
+			</div>
+		</section>
+
+		// Newsletter
+		<section class="featured-newsletter">
+			<div class="newsletter-content" data-animate="fade-up">
+				<span class="newsletter-label">Stay Informed</span>
+				<h2 class="newsletter-title">Be First to Know</h2>
+				<p class="newsletter-description">Subscribe to receive exclusive previews of new arrivals, limited editions, and private sale invitations.</p>
+				<form class="newsletter-form" action="/newsletter/subscribe" method="POST">
+					<input type="email" name="email" placeholder="Enter your email address" required/>
+					<button type="submit" class="btn-gold"><span>Subscribe</span></button>
+				</form>
+			</div>
+		</section>
+
+		// CTA
+		<section class="bespoke-section">
+			<div class="bespoke-background">
+				<img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1920&q=90" alt="Visit our boutique" loading="lazy"/>
+				<div class="bespoke-overlay"></div>
+			</div>
+			<div class="bespoke-content" data-animate="fade-up">
+				<span class="bespoke-label">Exclusive Experience</span>
+				<h2 class="bespoke-title">Private Viewing</h2>
+				<p class="bespoke-text">Request a private appointment to view our featured pieces in person with a dedicated style consultant.</p>
+				<a href="/appointments" class="btn-gold">
+					<span>Book Appointment</span>
+				</a>
 			</div>
 		</section>
 	}

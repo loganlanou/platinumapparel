@@ -9,112 +9,163 @@ templ Bespoke() {
 	@layouts.Base(meta.New("Bespoke Services", "Commission a piece as unique as you are with our bespoke tailoring and custom jewelry services.")) {
 		// Hero
 		<section class="page-hero bespoke-hero">
-			<div class="bespoke-background">
-				<img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80" alt="Bespoke tailoring"/>
-				<div class="bespoke-overlay"></div>
+			<div class="bespoke-hero-bg">
+				<img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=90" alt="Bespoke tailoring" loading="eager"/>
 			</div>
+			<div class="bespoke-hero-overlay"></div>
 			<div class="page-hero-content" data-animate="fade-up">
 				<span class="page-label">Personalized Excellence</span>
 				<h1 class="page-title">The Bespoke Experience</h1>
 				<p class="page-subtitle">Commission a piece as unique as you are. Our master craftsmen will guide you through every detail, from material selection to final fitting.</p>
 			</div>
 		</section>
+
+		// Intro Banner
+		<section class="luxury-banner">
+			<div class="luxury-banner-bg">
+				<img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1920&q=90" alt="Master tailoring" loading="lazy"/>
+			</div>
+			<div class="luxury-banner-overlay"></div>
+			<div class="luxury-banner-content" data-animate="fade-up">
+				<span class="luxury-banner-label">Master Craftsmanship</span>
+				<h2 class="luxury-banner-title">Your Vision,<br/>Our Expertise</h2>
+				<p class="luxury-banner-text">For over 130 years, we have been creating bespoke pieces for the world's most discerning clientele. Each commission begins with a conversation and ends with a masterpiece that reflects your unique style and personality.</p>
+			</div>
+		</section>
+
 		// Services
 		<section class="bespoke-services">
+			<div class="section-header" data-animate="fade-up">
+				<span class="section-label">Our Offerings</span>
+				<h2 class="section-title">Bespoke Services</h2>
+			</div>
 			<div class="services-grid">
 				<div class="service-card" data-animate="fade-up">
-					<div class="service-image">
-						<img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80" alt="Bespoke Tailoring"/>
+					<div class="service-image image-reveal">
+						<img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=700&q=85" alt="Bespoke Tailoring" loading="lazy"/>
 					</div>
 					<div class="service-content">
-						<h2 class="service-title">Bespoke Tailoring</h2>
+						<h3 class="service-title">Bespoke Tailoring</h3>
 						<p class="service-description">Experience the pinnacle of sartorial excellence with a suit crafted exclusively for you. From fabric selection to final fitting, every detail is tailored to your exact specifications.</p>
 						<ul class="service-features">
-							<li>Over 5,000 fabric options</li>
-							<li>Multiple fitting sessions</li>
-							<li>Hand-finished details</li>
-							<li>Lifetime alterations</li>
+							<li>Over 5,000 fabric options from world-renowned mills</li>
+							<li>Minimum three fitting sessions for perfect fit</li>
+							<li>Hand-finished details by master tailors</li>
+							<li>Lifetime alterations guarantee</li>
 						</ul>
 						<div class="service-price">Starting from $4,500</div>
+						<a href="/appointments" class="btn-outline"><span>Book Consultation</span></a>
 					</div>
 				</div>
 				<div class="service-card reverse" data-animate="fade-up">
-					<div class="service-image">
-						<img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=600&q=80" alt="Custom Timepieces"/>
+					<div class="service-image image-reveal">
+						<img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=700&q=85" alt="Custom Timepieces" loading="lazy"/>
 					</div>
 					<div class="service-content">
-						<h2 class="service-title">Custom Timepieces</h2>
-						<p class="service-description">Collaborate with our master horologists to create a one-of-a-kind timepiece that reflects your personal style and becomes a treasured heirloom.</p>
+						<h3 class="service-title">Custom Timepieces</h3>
+						<p class="service-description">Collaborate with our master horologists to create a one-of-a-kind timepiece that reflects your personal style and becomes a treasured heirloom for generations.</p>
 						<ul class="service-features">
-							<li>Swiss movement options</li>
-							<li>Custom dial designs</li>
-							<li>Precious metal cases</li>
-							<li>Personalized engravings</li>
+							<li>COSC-certified Swiss movement options</li>
+							<li>Custom dial designs and hand-engraving</li>
+							<li>18k gold and platinum case options</li>
+							<li>Personalized caseback engravings</li>
 						</ul>
 						<div class="service-price">Starting from $15,000</div>
+						<a href="/appointments" class="btn-outline"><span>Book Consultation</span></a>
 					</div>
 				</div>
 				<div class="service-card" data-animate="fade-up">
-					<div class="service-image">
-						<img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Custom Jewelry"/>
+					<div class="service-image image-reveal">
+						<img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=700&q=85" alt="Custom Jewelry" loading="lazy"/>
 					</div>
 					<div class="service-content">
-						<h2 class="service-title">Custom Jewelry</h2>
-						<p class="service-description">Work with our master jewelers to design a piece that tells your story. From engagement rings to heirloom bracelets, we bring your vision to life.</p>
+						<h3 class="service-title">Custom Jewelry</h3>
+						<p class="service-description">Work with our master jewelers to design a piece that tells your story. From engagement rings to heirloom bracelets, we bring your vision to life in precious metals and stones.</p>
 						<ul class="service-features">
-							<li>GIA-certified stones</li>
-							<li>3D design previews</li>
-							<li>18k gold and platinum</li>
-							<li>Certificate of authenticity</li>
+							<li>GIA-certified diamonds and gemstones</li>
+							<li>3D CAD design previews before crafting</li>
+							<li>18k gold, platinum, and palladium options</li>
+							<li>Certificate of authenticity included</li>
 						</ul>
 						<div class="service-price">Starting from $3,000</div>
+						<a href="/appointments" class="btn-outline"><span>Book Consultation</span></a>
 					</div>
 				</div>
 			</div>
 		</section>
+
 		// Process
-		<section class="bespoke-process">
+		<section class="bespoke-process-section">
 			<div class="section-header" data-animate="fade-up">
 				<span class="section-label">Your Journey</span>
 				<h2 class="section-title">The Bespoke Process</h2>
+				<p class="section-description">Every bespoke commission follows a meticulous journey from initial consultation to final presentation, ensuring a result that exceeds your expectations.</p>
 			</div>
 			<div class="process-timeline">
 				<div class="process-item" data-animate="fade-up">
-					<div class="process-number">1</div>
+					<div class="process-number">01</div>
 					<div class="process-content">
-						<h3>Consultation</h3>
-						<p>Begin with a private consultation where we discuss your vision, preferences, and lifestyle to understand your unique requirements.</p>
+						<h3>Private Consultation</h3>
+						<p>Begin with an intimate consultation where we discuss your vision, preferences, and lifestyle. Our specialists take the time to understand your unique requirements and aspirations.</p>
 					</div>
 				</div>
-				<div class="process-item" data-animate="fade-up">
-					<div class="process-number">2</div>
+				<div class="process-item" data-animate="fade-up" data-delay="100">
+					<div class="process-number">02</div>
 					<div class="process-content">
-						<h3>Design</h3>
-						<p>Our artisans present material options and design choices. Together, we refine every detail until the design is perfect.</p>
+						<h3>Design & Selection</h3>
+						<p>Our artisans present curated material options and design choices. Together, we refine every detail—from fabrics and finishes to stones and settings—until the design achieves perfection.</p>
 					</div>
 				</div>
-				<div class="process-item" data-animate="fade-up">
-					<div class="process-number">3</div>
+				<div class="process-item" data-animate="fade-up" data-delay="200">
+					<div class="process-number">03</div>
 					<div class="process-content">
-						<h3>Crafting</h3>
-						<p>Master craftsmen bring your piece to life using traditional techniques and the finest materials. This stage typically takes 6-12 weeks.</p>
+						<h3>Master Crafting</h3>
+						<p>Master craftsmen bring your piece to life using traditional techniques honed over generations. This meticulous stage typically takes 8-16 weeks, depending on complexity.</p>
 					</div>
 				</div>
-				<div class="process-item" data-animate="fade-up">
-					<div class="process-number">4</div>
+				<div class="process-item" data-animate="fade-up" data-delay="300">
+					<div class="process-number">04</div>
 					<div class="process-content">
-						<h3>Delivery</h3>
-						<p>Your bespoke piece is presented in a private unveiling, complete with documentation of its creation and care instructions.</p>
+						<h3>Private Presentation</h3>
+						<p>Your bespoke creation is presented in a private unveiling ceremony, complete with documentation of its creation, care instructions, and a certificate of authenticity.</p>
 					</div>
 				</div>
 			</div>
 		</section>
+
+		// Testimonial
+		<section class="bespoke-testimonial">
+			<div class="testimonial-bg">
+				<img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1920&q=90" alt="Luxury atelier" loading="lazy"/>
+			</div>
+			<div class="testimonial-overlay"></div>
+			<div class="testimonial-content" data-animate="fade-up">
+				<div class="quote-icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l-.007.003z"></path>
+					</svg>
+				</div>
+				<blockquote class="testimonial-quote">
+					"The bespoke experience at Platinum exceeded every expectation. From the initial consultation to the final fitting, every detail was handled with extraordinary care. My suit is not just a garment—it's a work of art."
+				</blockquote>
+				<div class="testimonial-author">
+					<span class="author-name">James Worthington III</span>
+					<span class="author-title">Private Banking Director</span>
+				</div>
+			</div>
+		</section>
+
 		// CTA
-		<section class="bespoke-cta">
-			<div class="cta-content" data-animate="fade-up">
-				<h2 class="cta-title">Begin Your Bespoke Journey</h2>
-				<p class="cta-description">Schedule a private consultation with our bespoke specialists to discuss your vision.</p>
-				<a href="/contact" class="btn-gold">
+		<section class="bespoke-section">
+			<div class="bespoke-background">
+				<img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=1920&q=90" alt="Begin your journey" loading="lazy"/>
+				<div class="bespoke-overlay"></div>
+			</div>
+			<div class="bespoke-content" data-animate="fade-up">
+				<span class="bespoke-label">Your Journey Begins</span>
+				<h2 class="bespoke-title">Begin Your Bespoke Experience</h2>
+				<p class="bespoke-text">Schedule a private consultation with our bespoke specialists at your nearest Platinum boutique or request a virtual appointment.</p>
+				<a href="/appointments" class="btn-gold">
 					<span>Request Consultation</span>
 				</a>
 			</div>
