@@ -26,8 +26,10 @@ templ Index() {
 						<li><a href="/shop" class="filter-link active">All Products</a></li>
 						<li><a href="/shop/category/watches" class="filter-link">Timepieces</a></li>
 						<li><a href="/shop/category/jewelry" class="filter-link">Fine Jewelry</a></li>
-						<li><a href="/shop/category/clothing" class="filter-link">Menswear</a></li>
-						<li><a href="/shop/category/accessories" class="filter-link">Accessories</a></li>
+						<li><a href="/shop/category/suits" class="filter-link">Tailored Suits</a></li>
+						<li><a href="/shop/category/handbags" class="filter-link">Handbags</a></li>
+						<li><a href="/shop/category/perfume" class="filter-link">Fragrances</a></li>
+						<li><a href="/shop/category/bullion" class="filter-link">Precious Metals</a></li>
 					</ul>
 				</div>
 				<div class="filter-group">
@@ -53,7 +55,7 @@ templ Index() {
 
 			<main class="shop-products">
 				<div class="shop-toolbar">
-					<span class="product-count">Showing 16 of 48 products</span>
+					<span class="product-count">Showing 24 of 51 products</span>
 					<select class="sort-select">
 						<option value="featured">Featured</option>
 						<option value="newest">Newest Arrivals</option>
@@ -63,29 +65,41 @@ templ Index() {
 				</div>
 
 				<div class="products-grid">
-					// Timepieces
-					@pages.ProductCard("Perpetual Chronograph", "$24,500", "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=85", "/product/perpetual-chronograph")
-					@pages.ProductCard("Royal Oak Platinum", "$48,900", "https://images.unsplash.com/photo-1622434641406-a158123450f9?w=600&q=85", "/product/royal-oak-platinum")
-					@pages.ProductCard("Submariner Gold", "$32,750", "https://images.unsplash.com/photo-1548171915-e79a380a2a4b?w=600&q=85", "/product/submariner-gold")
-					@pages.ProductCard("Datejust Classic", "$18,200", "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600&q=85", "/product/datejust-classic")
+					// Watches
+					@pages.ProductCard("Black Leather Chronograph", "$18,500", "/static/images/watches/watch_01_black_leather_dial.jpg", "/product/black-leather-chronograph")
+					@pages.ProductCard("Steel Chronograph", "$24,500", "/static/images/watches/watch_02_steel_chronograph.jpg", "/product/steel-chronograph")
+					@pages.ProductCard("Blue Diver Watch", "$32,750", "/static/images/watches/watch_03_blue_diver_watch.jpg", "/product/blue-diver-watch")
+					@pages.ProductCard("Grand Complication", "$48,900", "/static/images/watches/watch_05_macro_luxury_dial.jpg", "/product/grand-complication")
 
 					// Jewelry
-					@pages.ProductCard("Gold Signet Ring", "$2,850", "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=85", "/product/gold-signet-ring")
-					@pages.ProductCard("Diamond Cufflinks", "$4,200", "https://images.unsplash.com/photo-1590548784585-643d2b9f2925?w=600&q=85", "/product/diamond-cufflinks")
-					@pages.ProductCard("Platinum Chain", "$3,500", "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=85", "/product/platinum-chain")
-					@pages.ProductCard("Onyx Bracelet", "$1,850", "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=85", "/product/onyx-bracelet")
+					@pages.ProductCard("Teardrop Diamond Ring", "$12,500", "/static/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg", "/product/teardrop-diamond-ring")
+					@pages.ProductCard("Gold Drop Earrings", "$4,200", "/static/images/jewelry/jewelry_02_gold_earrings_reflection.jpg", "/product/gold-drop-earrings")
+					@pages.ProductCard("Rose Gold Bridal Set", "$18,500", "/static/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg", "/product/rose-gold-bridal-set")
+					@pages.ProductCard("Sapphire Diamond Ring", "$15,200", "/static/images/jewelry/jewelry_09_sapphire_diamond_gold_ring.jpg", "/product/sapphire-diamond-ring")
 
-					// Menswear
-					@pages.ProductCard("Midnight Tuxedo", "$4,850", "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=600&q=85", "/product/midnight-tuxedo")
-					@pages.ProductCard("Navy Pinstripe Suit", "$3,200", "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=600&q=85", "/product/navy-pinstripe-suit")
-					@pages.ProductCard("Charcoal Wool Blazer", "$1,950", "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=85", "/product/charcoal-wool-blazer")
-					@pages.ProductCard("Italian Silk Tie", "$295", "https://images.unsplash.com/photo-1589756823695-278bc923f962?w=600&q=85", "/product/italian-silk-tie")
+					// Suits
+					@pages.ProductCard("Grey Tweed Formal", "$4,850", "/static/images/suits/suit_01_groom_boutonniere.jpg", "/product/grey-tweed-formal")
+					@pages.ProductCard("Riviera Linen Suit", "$3,200", "/static/images/suits/suit_02_beach_cufflinks.jpg", "/product/riviera-linen-suit")
+					@pages.ProductCard("Double-Breasted City", "$5,500", "/static/images/suits/suit_04_city_sportscar.jpg", "/product/double-breasted-city")
+					@pages.ProductCard("Midnight Dinner Jacket", "$3,800", "/static/images/suits/suit_05_black_jacket_detail.jpg", "/product/midnight-dinner-jacket")
 
-					// Accessories
-					@pages.ProductCard("Crocodile Wallet", "$1,450", "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=85", "/product/crocodile-wallet")
-					@pages.ProductCard("Executive Briefcase", "$2,800", "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=85", "/product/executive-briefcase")
-					@pages.ProductCard("Calfskin Belt", "$485", "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=85", "/product/calfskin-belt")
-					@pages.ProductCard("Travel Duffle", "$3,200", "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=85", "/product/travel-duffle")
+					// Handbags
+					@pages.ProductCard("Minimal Pedestal Bag", "$2,800", "/static/images/handbags/handbag_01_minimal_pedestal_bags.jpg", "/product/minimal-pedestal-bag")
+					@pages.ProductCard("Vintage Gold Handle", "$3,500", "/static/images/handbags/handbag_02_vintage_gold_handle.jpg", "/product/vintage-gold-handle")
+					@pages.ProductCard("Orange Designer Bag", "$4,200", "/static/images/handbags/handbag_05_orange_designer_stand.jpg", "/product/orange-designer-bag")
+					@pages.ProductCard("Croc Texture Bag", "$5,800", "/static/images/handbags/handbag_06_green_croc_texture.jpg", "/product/croc-texture-bag")
+
+					// Perfume
+					@pages.ProductCard("Platinum Collection Set", "$850", "/static/images/perfume/perfume_01_fur_surface_collection.jpg", "/product/platinum-collection-set")
+					@pages.ProductCard("Amber Night Eau", "$385", "/static/images/perfume/perfume_03_warm_lit_givenchy.jpg", "/product/amber-night-eau")
+					@pages.ProductCard("Glitter Peony Parfum", "$320", "/static/images/perfume/perfume_06_glitter_bottle_peonies.jpg", "/product/glitter-peony-parfum")
+					@pages.ProductCard("Designer Trio Set", "$650", "/static/images/perfume/perfume_09_designer_bottle_group.jpg", "/product/designer-trio-set")
+
+					// Bullion
+					@pages.ProductCard("Gold Nugget Collection", "$12,500", "/static/images/bullion/bullion_01_gold_nugget_bars.jpg", "/product/gold-nugget-collection")
+					@pages.ProductCard("Gold Bar Stack", "$65,000", "/static/images/bullion/bullion_02_gold_bar_stack.jpg", "/product/gold-bar-stack")
+					@pages.ProductCard("Mixed Gold Bars", "$25,000", "/static/images/bullion/bullion_05_mixed_gold_bars.jpg", "/product/mixed-gold-bars")
+					@pages.ProductCard("Silver Bar Stack", "$1,250", "/static/images/bullion/bullion_09_silver_bars_stack.jpg", "/product/silver-bar-stack")
 				</div>
 
 				<div class="section-cta" data-animate="fade-up">
@@ -96,21 +110,103 @@ templ Index() {
 	}
 }
 
+func categoryTitle(slug string) string {
+	switch slug {
+	case "watches":
+		return "Timepieces"
+	case "jewelry":
+		return "Fine Jewelry"
+	case "suits":
+		return "Tailored Suits"
+	case "handbags":
+		return "Luxury Handbags"
+	case "perfume":
+		return "Fragrances"
+	case "bullion":
+		return "Precious Metals"
+	default:
+		return "Timepieces"
+	}
+}
+
 templ Category(category string) {
-	@layouts.Base(meta.New(category + " | Shop", "Browse our " + category + " collection.")) {
+	@layouts.Base(meta.New(categoryTitle(category) + " | Shop", "Browse our " + categoryTitle(category) + " collection.")) {
 		<section class="page-hero shop-hero">
 			<div class="page-hero-content" data-animate="fade-up">
 				<span class="page-label">Category</span>
-				<h1 class="page-title capitalize">{ category }</h1>
-				<p class="page-subtitle">Discover our finest { category } collection.</p>
+				<h1 class="page-title">{ categoryTitle(category) }</h1>
+				<p class="page-subtitle">Discover our finest { categoryTitle(category) } collection.</p>
 			</div>
 		</section>
 		<section class="featured-section">
 			<div class="products-grid">
-				@pages.ProductCard("Perpetual Chronograph", "$24,500", "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=85", "/product/perpetual-chronograph")
-				@pages.ProductCard("Royal Oak Platinum", "$48,900", "https://images.unsplash.com/photo-1622434641406-a158123450f9?w=600&q=85", "/product/royal-oak-platinum")
-				@pages.ProductCard("Submariner Gold", "$32,750", "https://images.unsplash.com/photo-1548171915-e79a380a2a4b?w=600&q=85", "/product/submariner-gold")
-				@pages.ProductCard("Datejust Classic", "$18,200", "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600&q=85", "/product/datejust-classic")
+				switch category {
+					case "watches":
+						@pages.ProductCard("Black Leather Chronograph", "$18,500", "/static/images/watches/watch_01_black_leather_dial.jpg", "/product/black-leather-chronograph")
+						@pages.ProductCard("Steel Chronograph", "$24,500", "/static/images/watches/watch_02_steel_chronograph.jpg", "/product/steel-chronograph")
+						@pages.ProductCard("Blue Diver Watch", "$32,750", "/static/images/watches/watch_03_blue_diver_watch.jpg", "/product/blue-diver-watch")
+						@pages.ProductCard("Platinum Presentation Set", "$85,000", "/static/images/watches/watch_04_watch_case_selection.jpg", "/product/platinum-presentation-set")
+						@pages.ProductCard("Grand Complication", "$48,900", "/static/images/watches/watch_05_macro_luxury_dial.jpg", "/product/grand-complication")
+						@pages.ProductCard("Skeleton Mechanical", "$28,500", "/static/images/watches/watch_07_skeleton_mechanical.jpg", "/product/skeleton-mechanical")
+						@pages.ProductCard("Steel Chrono Classic", "$22,200", "/static/images/watches/watch_09_steel_chrono_studio.jpg", "/product/steel-chrono-classic")
+						@pages.ProductCard("Blue Sapphire Mesh", "$15,800", "/static/images/watches/watch_10_blue_sapphire_mesh.jpg", "/product/blue-sapphire-mesh")
+					case "jewelry":
+						@pages.ProductCard("Teardrop Diamond Ring", "$12,500", "/static/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg", "/product/teardrop-diamond-ring")
+						@pages.ProductCard("Gold Drop Earrings", "$4,200", "/static/images/jewelry/jewelry_02_gold_earrings_reflection.jpg", "/product/gold-drop-earrings")
+						@pages.ProductCard("Pearl Diamond Ring", "$6,800", "/static/images/jewelry/jewelry_03_pearl_diamond_ring.jpg", "/product/pearl-diamond-ring")
+						@pages.ProductCard("Rose Gold Bridal Set", "$18,500", "/static/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg", "/product/rose-gold-bridal-set")
+						@pages.ProductCard("Monochrome Diamond Ring", "$22,000", "/static/images/jewelry/jewelry_06_monochrome_diamond_ring.jpg", "/product/monochrome-diamond-ring")
+						@pages.ProductCard("Diamond Wave Ring", "$8,900", "/static/images/jewelry/jewelry_07_ring_on_wavy_dark_surface.jpg", "/product/diamond-wave-ring")
+						@pages.ProductCard("Sapphire Diamond Ring", "$15,200", "/static/images/jewelry/jewelry_09_sapphire_diamond_gold_ring.jpg", "/product/sapphire-diamond-ring")
+						@pages.ProductCard("Diamond Pendant Necklace", "$9,500", "/static/images/jewelry/jewelry_10_diamond_pendant_necklace.jpg", "/product/diamond-pendant-necklace")
+					case "suits":
+						@pages.ProductCard("Grey Tweed Formal", "$4,850", "/static/images/suits/suit_01_groom_boutonniere.jpg", "/product/grey-tweed-formal")
+						@pages.ProductCard("Riviera Linen Suit", "$3,200", "/static/images/suits/suit_02_beach_cufflinks.jpg", "/product/riviera-linen-suit")
+						@pages.ProductCard("Double-Breasted City", "$5,500", "/static/images/suits/suit_04_city_sportscar.jpg", "/product/double-breasted-city")
+						@pages.ProductCard("Midnight Dinner Jacket", "$3,800", "/static/images/suits/suit_05_black_jacket_detail.jpg", "/product/midnight-dinner-jacket")
+						@pages.ProductCard("Ivory Tailored Suit", "$4,200", "/static/images/suits/suit_06_white_womens_suit.jpg", "/product/ivory-tailored-suit")
+						@pages.ProductCard("Executive Tie Set", "$495", "/static/images/suits/suit_08_tie_adjustment_closeup.jpg", "/product/executive-tie-set")
+						@pages.ProductCard("White Modern Suit", "$3,950", "/static/images/suits/suit_09_white_suit_bench.jpg", "/product/white-modern-suit")
+						@pages.ProductCard("Black City Fashion", "$4,100", "/static/images/suits/suit_10_black_city_fashion.jpg", "/product/black-city-fashion")
+					case "handbags":
+						@pages.ProductCard("Minimal Pedestal Bag", "$2,800", "/static/images/handbags/handbag_01_minimal_pedestal_bags.jpg", "/product/minimal-pedestal-bag")
+						@pages.ProductCard("Vintage Gold Handle", "$3,500", "/static/images/handbags/handbag_02_vintage_gold_handle.jpg", "/product/vintage-gold-handle")
+						@pages.ProductCard("Quilted Pastel Bag", "$2,400", "/static/images/handbags/handbag_04_blue_mint_quilted.jpg", "/product/quilted-pastel-bag")
+						@pages.ProductCard("Orange Designer Bag", "$4,200", "/static/images/handbags/handbag_05_orange_designer_stand.jpg", "/product/orange-designer-bag")
+						@pages.ProductCard("Croc Texture Bag", "$5,800", "/static/images/handbags/handbag_06_green_croc_texture.jpg", "/product/croc-texture-bag")
+						@pages.ProductCard("Boutique Crossbody", "$1,950", "/static/images/handbags/handbag_08_brown_store_crossbody.jpg", "/product/boutique-crossbody")
+						@pages.ProductCard("Metal Trim Structured", "$3,200", "/static/images/handbags/handbag_09_black_white_metal_trim.jpg", "/product/metal-trim-structured")
+						@pages.ProductCard("Luxury Lifestyle Tote", "$2,600", "/static/images/handbags/handbag_10_flatlay_bag_perfume_makeup.jpg", "/product/luxury-lifestyle-tote")
+					case "perfume":
+						@pages.ProductCard("Platinum Collection Set", "$850", "/static/images/perfume/perfume_01_fur_surface_collection.jpg", "/product/platinum-collection-set")
+						@pages.ProductCard("Classic No.5 Parfum", "$295", "/static/images/perfume/perfume_02_chanel_no5_minimal.jpg", "/product/classic-no5-parfum")
+						@pages.ProductCard("Amber Night Eau", "$385", "/static/images/perfume/perfume_03_warm_lit_givenchy.jpg", "/product/amber-night-eau")
+						@pages.ProductCard("Rose Blush Parfum", "$245", "/static/images/perfume/perfume_04_pink_bottle_white_surface.jpg", "/product/rose-blush-parfum")
+						@pages.ProductCard("Petal Romance Eau", "$195", "/static/images/perfume/perfume_05_escada_with_petals.jpg", "/product/petal-romance-eau")
+						@pages.ProductCard("Glitter Peony Parfum", "$320", "/static/images/perfume/perfume_06_glitter_bottle_peonies.jpg", "/product/glitter-peony-parfum")
+						@pages.ProductCard("Dried Rose Essence", "$275", "/static/images/perfume/perfume_07_clean_bottle_with_dried_roses.jpg", "/product/dried-rose-essence")
+						@pages.ProductCard("Designer Trio Set", "$650", "/static/images/perfume/perfume_09_designer_bottle_group.jpg", "/product/designer-trio-set")
+					case "bullion":
+						@pages.ProductCard("Gold Nugget Collection", "$12,500", "/static/images/bullion/bullion_01_gold_nugget_bars.jpg", "/product/gold-nugget-collection")
+						@pages.ProductCard("Gold Bar Stack", "$65,000", "/static/images/bullion/bullion_02_gold_bar_stack.jpg", "/product/gold-bar-stack")
+						@pages.ProductCard("Fine Gold Bar", "$7,800", "/static/images/bullion/bullion_03_fine_gold_closeup.jpg", "/product/fine-gold-bar")
+						@pages.ProductCard("Single Gold Ingot", "$3,950", "/static/images/bullion/bullion_04_single_gold_ingot.jpg", "/product/single-gold-ingot")
+						@pages.ProductCard("Mixed Gold Bars", "$25,000", "/static/images/bullion/bullion_05_mixed_gold_bars.jpg", "/product/mixed-gold-bars")
+						@pages.ProductCard("Investment Gold Bullion", "$42,000", "/static/images/bullion/bullion_06_gold_bullion_rows.jpg", "/product/investment-gold-bullion")
+						@pages.ProductCard("Gold Bar Wood Display", "$8,200", "/static/images/bullion/bullion_07_single_gold_bar_wood.jpg", "/product/gold-bar-wood-display")
+						@pages.ProductCard("Gold Bar Pattern", "$95,000", "/static/images/bullion/bullion_08_gold_bar_pattern.jpg", "/product/gold-bar-pattern")
+						@pages.ProductCard("Silver Bar Stack", "$1,250", "/static/images/bullion/bullion_09_silver_bars_stack.jpg", "/product/silver-bar-stack")
+						@pages.ProductCard("Silver Coin Collector", "$485", "/static/images/bullion/bullion_10_silver_coin_reflection.jpg", "/product/silver-coin-collector")
+					default:
+						@pages.ProductCard("Black Leather Chronograph", "$18,500", "/static/images/watches/watch_01_black_leather_dial.jpg", "/product/black-leather-chronograph")
+						@pages.ProductCard("Steel Chronograph", "$24,500", "/static/images/watches/watch_02_steel_chronograph.jpg", "/product/steel-chronograph")
+						@pages.ProductCard("Blue Diver Watch", "$32,750", "/static/images/watches/watch_03_blue_diver_watch.jpg", "/product/blue-diver-watch")
+						@pages.ProductCard("Platinum Presentation Set", "$85,000", "/static/images/watches/watch_04_watch_case_selection.jpg", "/product/platinum-presentation-set")
+						@pages.ProductCard("Grand Complication", "$48,900", "/static/images/watches/watch_05_macro_luxury_dial.jpg", "/product/grand-complication")
+						@pages.ProductCard("Skeleton Mechanical", "$28,500", "/static/images/watches/watch_07_skeleton_mechanical.jpg", "/product/skeleton-mechanical")
+						@pages.ProductCard("Steel Chrono Classic", "$22,200", "/static/images/watches/watch_09_steel_chrono_studio.jpg", "/product/steel-chrono-classic")
+						@pages.ProductCard("Blue Sapphire Mesh", "$15,800", "/static/images/watches/watch_10_blue_sapphire_mesh.jpg", "/product/blue-sapphire-mesh")
+				}
 			</div>
 		</section>
 	}

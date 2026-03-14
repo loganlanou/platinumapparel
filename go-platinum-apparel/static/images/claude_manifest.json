@@ -1,0 +1,514 @@
+{
+  "pack_name": "luxury_stock_pack",
+  "image_count": 50,
+  "categories": [
+    "bullion",
+    "handbags",
+    "jewelry",
+    "perfume",
+    "suits",
+    "watches"
+  ],
+  "images": [
+    {
+      "path": "watches/watch_01_black_leather_dial.jpg",
+      "category": "watches",
+      "title": "Black leather strap watch",
+      "description": "Moody close-up of a black luxury watch with a brown leather strap; ideal for a premium product card or hero section.",
+      "recommended_placement": [
+        "product-card",
+        "hero"
+      ]
+    },
+    {
+      "path": "watches/watch_02_steel_chronograph.jpg",
+      "category": "watches",
+      "title": "Steel chronograph on wood",
+      "description": "Polished stainless steel chronograph styled on a wooden surface; works well for product listings and feature highlights.",
+      "recommended_placement": [
+        "product-card",
+        "feature-block"
+      ]
+    },
+    {
+      "path": "watches/watch_03_blue_diver_watch.jpg",
+      "category": "watches",
+      "title": "Blue diver-style watch",
+      "description": "Clean studio shot of a blue dial diver-style watch; great for a high-end product window or comparison grid.",
+      "recommended_placement": [
+        "product-card",
+        "collection-grid"
+      ]
+    },
+    {
+      "path": "watches/watch_04_watch_case_selection.jpg",
+      "category": "watches",
+      "title": "Luxury watches in presentation case",
+      "description": "Lifestyle image of a curated watch case with a hand selecting a timepiece; best for banners and collection promos.",
+      "recommended_placement": [
+        "hero",
+        "promo-banner"
+      ]
+    },
+    {
+      "path": "watches/watch_05_macro_luxury_dial.jpg",
+      "category": "watches",
+      "title": "Macro luxury watch face",
+      "description": "Detailed macro of a premium watch dial with cinematic blur; useful for feature sections about craftsmanship and detail.",
+      "recommended_placement": [
+        "feature-block",
+        "craftsmanship-section"
+      ]
+    },
+    {
+      "path": "watches/watch_07_skeleton_mechanical.jpg",
+      "category": "watches",
+      "title": "Skeleton mechanical watch",
+      "description": "Front-facing skeleton mechanical watch on a dark background; fits premium product pages and watch enthusiast sections.",
+      "recommended_placement": [
+        "product-card",
+        "detail-page"
+      ]
+    },
+    {
+      "path": "watches/watch_09_steel_chrono_studio.jpg",
+      "category": "watches",
+      "title": "Steel chronograph studio shot",
+      "description": "Bright, crisp studio photo of a stainless steel chronograph; well suited for a clean ecommerce listing.",
+      "recommended_placement": [
+        "product-card",
+        "catalog-grid"
+      ]
+    },
+    {
+      "path": "watches/watch_10_blue_sapphire_mesh.jpg",
+      "category": "watches",
+      "title": "Blue sapphire mesh watch",
+      "description": "Minimalist blue dial watch with mesh strap against a dark backdrop; perfect for a modern luxury collection block.",
+      "recommended_placement": [
+        "feature-block",
+        "product-card"
+      ]
+    },
+    {
+      "path": "jewelry/jewelry_01_teardrop_diamond_ring.jpg",
+      "category": "jewelry",
+      "title": "Teardrop diamond ring",
+      "description": "Statement teardrop diamond ring on a dark textured background; ideal for a hero product tile or featured ring section.",
+      "recommended_placement": [
+        "hero",
+        "product-card"
+      ]
+    },
+    {
+      "path": "jewelry/jewelry_02_gold_earrings_reflection.jpg",
+      "category": "jewelry",
+      "title": "Gold earrings on black reflection",
+      "description": "Reflective gold earrings on a glossy black surface; works well for elegant product windows and category headers.",
+      "recommended_placement": [
+        "product-card",
+        "category-header"
+      ]
+    },
+    {
+      "path": "jewelry/jewelry_03_pearl_diamond_ring.jpg",
+      "category": "jewelry",
+      "title": "Pearl ring with diamonds",
+      "description": "Classic pearl ring framed by diamonds in a velvet display; great for bridal or heirloom-style product sections.",
+      "recommended_placement": [
+        "product-card",
+        "bridal-section"
+      ]
+    },
+    {
+      "path": "jewelry/jewelry_05_rose_gold_bridal_set.jpg",
+      "category": "jewelry",
+      "title": "Rose gold bridal jewelry",
+      "description": "Rose gold jewelry draped over satin fabric; ideal for bridal pages, featured collections, or elegant ad blocks.",
+      "recommended_placement": [
+        "hero",
+        "bridal-banner"
+      ]
+    },
+    {
+      "path": "jewelry/jewelry_06_monochrome_diamond_ring.jpg",
+      "category": "jewelry",
+      "title": "Monochrome diamond ring close-up",
+      "description": "Black-and-white close-up of an oversized diamond ring; useful for luxury editorial sections and dramatic highlights.",
+      "recommended_placement": [
+        "editorial-block",
+        "feature-card"
+      ]
+    },
+    {
+      "path": "jewelry/jewelry_07_ring_on_wavy_dark_surface.jpg",
+      "category": "jewelry",
+      "title": "Diamond ring on wavy dark background",
+      "description": "Sparkling ring centered over a dark rippled surface; strong fit for premium ad placements and homepage promos.",
+      "recommended_placement": [
+        "ad-tile",
+        "homepage-promo"
+      ]
+    },
+    {
+      "path": "jewelry/jewelry_09_sapphire_diamond_gold_ring.jpg",
+      "category": "jewelry",
+      "title": "Sapphire and diamond gold ring",
+      "description": "Blue sapphire and diamond ring with high-contrast lighting; perfect for gemstone pages and featured luxury offers.",
+      "recommended_placement": [
+        "product-card",
+        "gemstone-section"
+      ]
+    },
+    {
+      "path": "jewelry/jewelry_10_diamond_pendant_necklace.jpg",
+      "category": "jewelry",
+      "title": "Diamond pendant necklace",
+      "description": "Minimal pendant necklace on a light blue background; clean choice for modern ecommerce product layouts.",
+      "recommended_placement": [
+        "product-card",
+        "catalog-grid"
+      ]
+    },
+    {
+      "path": "suits/suit_01_groom_boutonniere.jpg",
+      "category": "suits",
+      "title": "Grey suit with boutonniere",
+      "description": "Close-up of a textured grey suit with floral boutonniere; works well for formalwear features and elegant lifestyle banners.",
+      "recommended_placement": [
+        "hero",
+        "formalwear-section"
+      ]
+    },
+    {
+      "path": "suits/suit_02_beach_cufflinks.jpg",
+      "category": "suits",
+      "title": "Tailored suit adjusting cufflinks",
+      "description": "Lifestyle portrait of a man adjusting cufflinks on a beach; ideal for luxury menswear ads and landing sections.",
+      "recommended_placement": [
+        "hero",
+        "ad-banner"
+      ]
+    },
+    {
+      "path": "suits/suit_04_city_sportscar.jpg",
+      "category": "suits",
+      "title": "Tailored suit by luxury car",
+      "description": "Sharp double-breasted suit styled beside a luxury car; best for homepage hero sections and aspirational branding.",
+      "recommended_placement": [
+        "hero",
+        "promo-banner"
+      ]
+    },
+    {
+      "path": "suits/suit_05_black_jacket_detail.jpg",
+      "category": "suits",
+      "title": "Black suit jacket detail",
+      "description": "Tight crop of a black suit jacket being buttoned; useful for craftsmanship, tailoring, and detail-focused sections.",
+      "recommended_placement": [
+        "feature-block",
+        "craftsmanship-section"
+      ]
+    },
+    {
+      "path": "suits/suit_06_white_womens_suit.jpg",
+      "category": "suits",
+      "title": "White women’s tailored suit",
+      "description": "Editorial fashion portrait in a clean white suit; great for modern luxury fashion pages and style lookbooks.",
+      "recommended_placement": [
+        "lookbook",
+        "fashion-section"
+      ]
+    },
+    {
+      "path": "suits/suit_08_tie_adjustment_closeup.jpg",
+      "category": "suits",
+      "title": "Tie adjustment close-up",
+      "description": "Close-up of patterned tie, pocket square, and dress watch; ideal for accessory-focused menswear sections.",
+      "recommended_placement": [
+        "feature-block",
+        "accessory-section"
+      ]
+    },
+    {
+      "path": "suits/suit_09_white_suit_bench.jpg",
+      "category": "suits",
+      "title": "White suit modern lifestyle",
+      "description": "Modern white suit portrait on an outdoor bench; good for premium lookbooks and clean fashion landing pages.",
+      "recommended_placement": [
+        "lookbook",
+        "hero"
+      ]
+    },
+    {
+      "path": "suits/suit_10_black_city_fashion.jpg",
+      "category": "suits",
+      "title": "Black city fashion suit",
+      "description": "Urban fashion portrait in a fitted black suit; strong option for ad slots, banners, and premium editorial layouts.",
+      "recommended_placement": [
+        "ad-tile",
+        "editorial-block"
+      ]
+    },
+    {
+      "path": "handbags/handbag_01_minimal_pedestal_bags.jpg",
+      "category": "handbags",
+      "title": "Minimal pedestal handbags",
+      "description": "Minimalist orange handbags on white pedestals; ideal for clean product grids and featured accessories sections.",
+      "recommended_placement": [
+        "product-card",
+        "hero"
+      ]
+    },
+    {
+      "path": "handbags/handbag_02_vintage_gold_handle.jpg",
+      "category": "handbags",
+      "title": "Vintage handbag with gold handle",
+      "description": "Vintage-style structured bag with a metallic handle; best for elegant product windows and boutique themes.",
+      "recommended_placement": [
+        "product-card",
+        "boutique-section"
+      ]
+    },
+    {
+      "path": "handbags/handbag_04_blue_mint_quilted.jpg",
+      "category": "handbags",
+      "title": "Blue and mint quilted handbags",
+      "description": "Pastel quilted handbags on pedestals; ideal for fashion promos and colorful collection pages.",
+      "recommended_placement": [
+        "promo-banner",
+        "collection-grid"
+      ]
+    },
+    {
+      "path": "handbags/handbag_05_orange_designer_stand.jpg",
+      "category": "handbags",
+      "title": "Orange designer handbag on stand",
+      "description": "Bold orange designer-style handbag showcased in a boutique; great for spotlight products and homepage callouts.",
+      "recommended_placement": [
+        "hero",
+        "spotlight-product"
+      ]
+    },
+    {
+      "path": "handbags/handbag_06_green_croc_texture.jpg",
+      "category": "handbags",
+      "title": "Green crocodile texture handbag",
+      "description": "Green crocodile-texture handbag in bright daylight; strong fit for luxury accessories and statement-item sections.",
+      "recommended_placement": [
+        "product-card",
+        "statement-section"
+      ]
+    },
+    {
+      "path": "handbags/handbag_08_brown_store_crossbody.jpg",
+      "category": "handbags",
+      "title": "Brown boutique crossbody bag",
+      "description": "Brown leather-style bag displayed in a glossy store setting; good for shopping-inspired sections and product tiles.",
+      "recommended_placement": [
+        "product-card",
+        "boutique-banner"
+      ]
+    },
+    {
+      "path": "handbags/handbag_09_black_white_metal_trim.jpg",
+      "category": "handbags",
+      "title": "Black and white metal-trim handbag",
+      "description": "Structured handbag with gold metal trim on soft fabric; ideal for editorial luxury layouts and premium promos.",
+      "recommended_placement": [
+        "editorial-block",
+        "feature-card"
+      ]
+    },
+    {
+      "path": "handbags/handbag_10_flatlay_bag_perfume_makeup.jpg",
+      "category": "handbags",
+      "title": "Handbag flat lay with beauty items",
+      "description": "Flat lay of a white luxury handbag with perfume and makeup; perfect for lifestyle banners and accessories storytelling.",
+      "recommended_placement": [
+        "lifestyle-card",
+        "promo-banner"
+      ]
+    },
+    {
+      "path": "perfume/perfume_01_fur_surface_collection.jpg",
+      "category": "perfume",
+      "title": "Perfume collection on plush fur",
+      "description": "Assorted perfume bottles arranged on plush fur; ideal for hero banners and luxury fragrance category intros.",
+      "recommended_placement": [
+        "hero",
+        "category-header"
+      ]
+    },
+    {
+      "path": "perfume/perfume_02_chanel_no5_minimal.jpg",
+      "category": "perfume",
+      "title": "Minimal perfume bottle on white",
+      "description": "Minimal perfume product shot on a clean white background; excellent for simple ecommerce product windows.",
+      "recommended_placement": [
+        "product-card",
+        "catalog-grid"
+      ]
+    },
+    {
+      "path": "perfume/perfume_03_warm_lit_givenchy.jpg",
+      "category": "perfume",
+      "title": "Warm-lit amber fragrance bottle",
+      "description": "Warm ambient lighting around a tall fragrance bottle; fits moody ads and premium fragrance landing pages.",
+      "recommended_placement": [
+        "hero",
+        "ad-tile"
+      ]
+    },
+    {
+      "path": "perfume/perfume_04_pink_bottle_white_surface.jpg",
+      "category": "perfume",
+      "title": "Pink perfume bottle on white",
+      "description": "Soft pink perfume bottle against a clean background; best for feminine fragrance sections and product cards.",
+      "recommended_placement": [
+        "product-card",
+        "collection-grid"
+      ]
+    },
+    {
+      "path": "perfume/perfume_05_escada_with_petals.jpg",
+      "category": "perfume",
+      "title": "Perfume bottle with petals",
+      "description": "Romantic fragrance bottle styled with scattered petals; useful for seasonal campaigns and romantic product promos.",
+      "recommended_placement": [
+        "promo-banner",
+        "seasonal-section"
+      ]
+    },
+    {
+      "path": "perfume/perfume_06_glitter_bottle_peonies.jpg",
+      "category": "perfume",
+      "title": "Glitter perfume with peonies",
+      "description": "Sparkling perfume bottle with bold pink florals; great for beauty ads and eye-catching hero cards.",
+      "recommended_placement": [
+        "hero",
+        "ad-banner"
+      ]
+    },
+    {
+      "path": "perfume/perfume_07_clean_bottle_with_dried_roses.jpg",
+      "category": "perfume",
+      "title": "Clean bottle with dried roses",
+      "description": "Simple glass bottle styled with dried roses; ideal for minimalist fragrance pages and supporting content blocks.",
+      "recommended_placement": [
+        "feature-block",
+        "product-card"
+      ]
+    },
+    {
+      "path": "perfume/perfume_09_designer_bottle_group.jpg",
+      "category": "perfume",
+      "title": "Designer perfume bottle group",
+      "description": "Three premium fragrance bottles in a clean studio arrangement; works well for category grids and comparison layouts.",
+      "recommended_placement": [
+        "collection-grid",
+        "category-header"
+      ]
+    },
+    {
+      "path": "bullion/bullion_01_gold_nugget_bars.jpg",
+      "category": "bullion",
+      "title": "Gold nugget-style bars",
+      "description": "Cluster of polished gold pieces on a light background; good for wealth, investment, or precious metal product sections.",
+      "recommended_placement": [
+        "product-card",
+        "finance-banner"
+      ]
+    },
+    {
+      "path": "bullion/bullion_02_gold_bar_stack.jpg",
+      "category": "bullion",
+      "title": "Stacked gold bars",
+      "description": "Classic stack of gold bars rendered in warm light; ideal for bullion category pages and investment promos.",
+      "recommended_placement": [
+        "hero",
+        "category-header"
+      ]
+    },
+    {
+      "path": "bullion/bullion_03_fine_gold_closeup.jpg",
+      "category": "bullion",
+      "title": "Fine gold bar close-up",
+      "description": "Close-up of engraved fine gold bars; useful for premium metal listings and high-value offer cards.",
+      "recommended_placement": [
+        "product-card",
+        "feature-card"
+      ]
+    },
+    {
+      "path": "bullion/bullion_04_single_gold_ingot.jpg",
+      "category": "bullion",
+      "title": "Single gold ingot",
+      "description": "Single gold ingot isolated on a neutral background; clean option for simple ecommerce product windows.",
+      "recommended_placement": [
+        "product-card",
+        "catalog-grid"
+      ]
+    },
+    {
+      "path": "bullion/bullion_05_mixed_gold_bars.jpg",
+      "category": "bullion",
+      "title": "Mixed gold bars assortment",
+      "description": "Assortment of small gold bars with rich metallic reflections; best for category banners and visual variety.",
+      "recommended_placement": [
+        "collection-grid",
+        "promo-banner"
+      ]
+    },
+    {
+      "path": "bullion/bullion_06_gold_bullion_rows.jpg",
+      "category": "bullion",
+      "title": "Rows of gold bullion",
+      "description": "Rows of large gold bars fading into the background; strong fit for hero headers and investment-themed sections.",
+      "recommended_placement": [
+        "hero",
+        "finance-section"
+      ]
+    },
+    {
+      "path": "bullion/bullion_07_single_gold_bar_wood.jpg",
+      "category": "bullion",
+      "title": "Single gold bar on wood",
+      "description": "Single gold bar resting on wood planks; a cleaner lifestyle-style metal image for supporting product content.",
+      "recommended_placement": [
+        "feature-block",
+        "product-card"
+      ]
+    },
+    {
+      "path": "bullion/bullion_08_gold_bar_pattern.jpg",
+      "category": "bullion",
+      "title": "Gold bar pattern background",
+      "description": "Pattern of repeating gold bars; works well as a background image for promos or premium section dividers.",
+      "recommended_placement": [
+        "background",
+        "promo-banner"
+      ]
+    },
+    {
+      "path": "bullion/bullion_09_silver_bars_stack.jpg",
+      "category": "bullion",
+      "title": "Silver bars stack",
+      "description": "Stacked silver bars in a bright metallic arrangement; ideal for silver bullion listings and precious metal pages.",
+      "recommended_placement": [
+        "product-card",
+        "category-header"
+      ]
+    },
+    {
+      "path": "bullion/bullion_10_silver_coin_reflection.jpg",
+      "category": "bullion",
+      "title": "Silver coin reflective studio shot",
+      "description": "Reflective silver coin studio image; useful for coin or precious metal sections and investment feature cards.",
+      "recommended_placement": [
+        "product-card",
+        "feature-card"
+      ]
+    }
+  ]
+}

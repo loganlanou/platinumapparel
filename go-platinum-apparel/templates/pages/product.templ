@@ -6,6 +6,519 @@ import (
 	"strings"
 )
 
+// Product represents a luxury product in the catalog.
+type Product struct {
+	Name        string
+	Slug        string
+	Price       string
+	Description string
+	Category    string
+	Image       string
+}
+
+// products is the complete catalog of 51 products across 6 categories.
+var products = map[string]Product{
+	// Watches
+	"black-leather-chronograph": {
+		Name:        "Black Leather Chronograph",
+		Slug:        "black-leather-chronograph",
+		Price:       "$18,500",
+		Description: "A stunning timepiece featuring a rich black leather strap and precision chronograph dial. The 42mm case houses a Swiss automatic movement with 68-hour power reserve and sapphire crystal display back.",
+		Category:    "watches",
+		Image:       "watch_01_black_leather_dial.jpg",
+	},
+	"steel-chronograph": {
+		Name:        "Steel Chronograph",
+		Slug:        "steel-chronograph",
+		Price:       "$24,500",
+		Description: "Crafted from surgical-grade 316L stainless steel, this chronograph features a precision Swiss movement with column-wheel mechanism. The sunburst dial catches light at every angle.",
+		Category:    "watches",
+		Image:       "watch_02_steel_chronograph.jpg",
+	},
+	"blue-diver-watch": {
+		Name:        "Blue Diver Watch",
+		Slug:        "blue-diver-watch",
+		Price:       "$32,750",
+		Description: "A professional diving instrument rated to 300 meters. The deep blue ceramic bezel and luminous indices ensure readability in any condition.",
+		Category:    "watches",
+		Image:       "watch_03_blue_diver_watch.jpg",
+	},
+	"platinum-presentation-set": {
+		Name:        "Platinum Presentation Set",
+		Slug:        "platinum-presentation-set",
+		Price:       "$85,000",
+		Description: "An extraordinary collection of four premier timepieces presented in a handcrafted mahogany display case. Each watch represents a different complication mastered by our atelier.",
+		Category:    "watches",
+		Image:       "watch_04_watch_case_selection.jpg",
+	},
+	"grand-complication": {
+		Name:        "Grand Complication",
+		Slug:        "grand-complication",
+		Price:       "$48,900",
+		Description: "The pinnacle of horological achievement, featuring a minute repeater, perpetual calendar, and split-seconds chronograph in a single 40mm platinum case.",
+		Category:    "watches",
+		Image:       "watch_05_macro_luxury_dial.jpg",
+	},
+	"skeleton-mechanical": {
+		Name:        "Skeleton Mechanical",
+		Slug:        "skeleton-mechanical",
+		Price:       "$28,500",
+		Description: "An open-worked masterpiece revealing the intricate mechanics within. The hand-decorated movement features Côtes de Genève finishing and blued steel hands.",
+		Category:    "watches",
+		Image:       "watch_07_skeleton_mechanical.jpg",
+	},
+	"steel-chrono-classic": {
+		Name:        "Steel Chrono Classic",
+		Slug:        "steel-chrono-classic",
+		Price:       "$22,200",
+		Description: "A timeless chronograph design in polished steel. The silver-toned dial features three subdials and a tachymeter bezel for measuring speed.",
+		Category:    "watches",
+		Image:       "watch_09_steel_chrono_studio.jpg",
+	},
+	"blue-sapphire-mesh": {
+		Name:        "Blue Sapphire Mesh",
+		Slug:        "blue-sapphire-mesh",
+		Price:       "$15,800",
+		Description: "Contemporary elegance meets horological precision. The deep blue dial is paired with a refined Milanese mesh bracelet in brushed steel.",
+		Category:    "watches",
+		Image:       "watch_10_blue_sapphire_mesh.jpg",
+	},
+	// Jewelry
+	"teardrop-diamond-ring": {
+		Name:        "Teardrop Diamond Ring",
+		Slug:        "teardrop-diamond-ring",
+		Price:       "$12,500",
+		Description: "A breathtaking pear-shaped diamond set in a delicate 18k white gold band. The 2.5-carat center stone is surrounded by a halo of brilliant-cut diamonds.",
+		Category:    "jewelry",
+		Image:       "jewelry_01_teardrop_diamond_ring.jpg",
+	},
+	"gold-drop-earrings": {
+		Name:        "Gold Drop Earrings",
+		Slug:        "gold-drop-earrings",
+		Price:       "$4,200",
+		Description: "Elegant drop earrings crafted from 18k yellow gold with a mirror-polished finish. The organic teardrop silhouette catches light beautifully.",
+		Category:    "jewelry",
+		Image:       "jewelry_02_gold_earrings_reflection.jpg",
+	},
+	"pearl-diamond-ring": {
+		Name:        "Pearl Diamond Ring",
+		Slug:        "pearl-diamond-ring",
+		Price:       "$6,800",
+		Description: "A lustrous South Sea pearl crowned with a pavé diamond setting in 18k white gold. The 12mm pearl features exceptional luster and orient.",
+		Category:    "jewelry",
+		Image:       "jewelry_03_pearl_diamond_ring.jpg",
+	},
+	"rose-gold-bridal-set": {
+		Name:        "Rose Gold Bridal Set",
+		Slug:        "rose-gold-bridal-set",
+		Price:       "$18,500",
+		Description: "A romantic bridal ensemble in 18k rose gold featuring a round brilliant center diamond surrounded by a cathedral setting with accent stones.",
+		Category:    "jewelry",
+		Image:       "jewelry_05_rose_gold_bridal_set.jpg",
+	},
+	"monochrome-diamond-ring": {
+		Name:        "Monochrome Diamond Ring",
+		Slug:        "monochrome-diamond-ring",
+		Price:       "$22,000",
+		Description: "A bold statement ring featuring a 3-carat emerald-cut diamond in a sleek platinum setting. The architectural design emphasizes clean lines.",
+		Category:    "jewelry",
+		Image:       "jewelry_06_monochrome_diamond_ring.jpg",
+	},
+	"diamond-wave-ring": {
+		Name:        "Diamond Wave Ring",
+		Slug:        "diamond-wave-ring",
+		Price:       "$8,900",
+		Description: "An artistic ring with flowing wave-inspired curves set with graduated diamonds. The 18k white gold setting creates a sense of movement.",
+		Category:    "jewelry",
+		Image:       "jewelry_07_ring_on_wavy_dark_surface.jpg",
+	},
+	"sapphire-diamond-ring": {
+		Name:        "Sapphire Diamond Ring",
+		Slug:        "sapphire-diamond-ring",
+		Price:       "$15,200",
+		Description: "A magnificent Ceylon sapphire surrounded by brilliant-cut diamonds in an 18k gold setting. The 4-carat sapphire displays exceptional cornflower blue.",
+		Category:    "jewelry",
+		Image:       "jewelry_09_sapphire_diamond_gold_ring.jpg",
+	},
+	"diamond-pendant-necklace": {
+		Name:        "Diamond Pendant Necklace",
+		Slug:        "diamond-pendant-necklace",
+		Price:       "$9,500",
+		Description: "A solitaire diamond pendant on a delicate 18k white gold chain. The 1.5-carat round brilliant diamond is set in a four-prong setting.",
+		Category:    "jewelry",
+		Image:       "jewelry_10_diamond_pendant_necklace.jpg",
+	},
+	// Suits
+	"grey-tweed-formal": {
+		Name:        "Grey Tweed Formal",
+		Slug:        "grey-tweed-formal",
+		Price:       "$4,850",
+		Description: "A distinguished grey tweed suit with subtle herringbone pattern. Features a two-button jacket with notch lapels and hand-stitched buttonholes.",
+		Category:    "suits",
+		Image:       "suit_01_groom_boutonniere.jpg",
+	},
+	"riviera-linen-suit": {
+		Name:        "Riviera Linen Suit",
+		Slug:        "riviera-linen-suit",
+		Price:       "$3,200",
+		Description: "Light and breathable Italian linen tailored for warm-weather sophistication. The relaxed silhouette maintains sharp structure.",
+		Category:    "suits",
+		Image:       "suit_02_beach_cufflinks.jpg",
+	},
+	"double-breasted-city": {
+		Name:        "Double-Breasted City",
+		Slug:        "double-breasted-city",
+		Price:       "$5,500",
+		Description: "A power suit for the modern executive. The double-breasted jacket features peak lapels and a slightly suppressed waist for a commanding silhouette.",
+		Category:    "suits",
+		Image:       "suit_04_city_sportscar.jpg",
+	},
+	"midnight-dinner-jacket": {
+		Name:        "Midnight Dinner Jacket",
+		Slug:        "midnight-dinner-jacket",
+		Price:       "$3,800",
+		Description: "An impeccably tailored dinner jacket in midnight black wool with satin peak lapels. The perfect companion for black-tie occasions.",
+		Category:    "suits",
+		Image:       "suit_05_black_jacket_detail.jpg",
+	},
+	"ivory-tailored-suit": {
+		Name:        "Ivory Tailored Suit",
+		Slug:        "ivory-tailored-suit",
+		Price:       "$4,200",
+		Description: "A striking ivory suit crafted from superfine merino wool. The single-breasted silhouette features a shawl collar and elegant drape.",
+		Category:    "suits",
+		Image:       "suit_06_white_womens_suit.jpg",
+	},
+	"executive-tie-set": {
+		Name:        "Executive Tie Set",
+		Slug:        "executive-tie-set",
+		Price:       "$495",
+		Description: "A curated set of hand-woven silk accessories including a tie, pocket square, and cufflinks. Each piece features subtle tonal patterns.",
+		Category:    "suits",
+		Image:       "suit_08_tie_adjustment_closeup.jpg",
+	},
+	"white-modern-suit": {
+		Name:        "White Modern Suit",
+		Slug:        "white-modern-suit",
+		Price:       "$3,950",
+		Description: "A contemporary white suit in stretch Italian cotton blend. The slim-cut silhouette offers modern proportions while maintaining classic elegance.",
+		Category:    "suits",
+		Image:       "suit_09_white_suit_bench.jpg",
+	},
+	"black-city-fashion": {
+		Name:        "Black City Fashion",
+		Slug:        "black-city-fashion",
+		Price:       "$4,100",
+		Description: "An urban-inspired black suit with fashion-forward detailing. Features a cropped jacket with bold shoulders and tapered trousers.",
+		Category:    "suits",
+		Image:       "suit_10_black_city_fashion.jpg",
+	},
+	// Handbags
+	"minimal-pedestal-bag": {
+		Name:        "Minimal Pedestal Bag",
+		Slug:        "minimal-pedestal-bag",
+		Price:       "$2,800",
+		Description: "A sculptural handbag with clean geometric lines in premium calfskin. The structured silhouette is elevated by minimalist gold hardware.",
+		Category:    "handbags",
+		Image:       "handbag_01_minimal_pedestal_bags.jpg",
+	},
+	"vintage-gold-handle": {
+		Name:        "Vintage Gold Handle",
+		Slug:        "vintage-gold-handle",
+		Price:       "$3,500",
+		Description: "A vintage-inspired top-handle bag featuring ornate gold hardware and rich leather craftsmanship. The clasp closure is adorned with Art Deco detailing.",
+		Category:    "handbags",
+		Image:       "handbag_02_vintage_gold_handle.jpg",
+	},
+	"quilted-pastel-bag": {
+		Name:        "Quilted Pastel Bag",
+		Slug:        "quilted-pastel-bag",
+		Price:       "$2,400",
+		Description: "A charming quilted handbag in soft pastel tones with signature chain strap. The diamond quilting is hand-stitched for precision.",
+		Category:    "handbags",
+		Image:       "handbag_04_blue_mint_quilted.jpg",
+	},
+	"orange-designer-bag": {
+		Name:        "Orange Designer Bag",
+		Slug:        "orange-designer-bag",
+		Price:       "$4,200",
+		Description: "A bold designer handbag in vibrant orange leather. The structured tote shape features a distinctive turn-lock closure and interior organization.",
+		Category:    "handbags",
+		Image:       "handbag_05_orange_designer_stand.jpg",
+	},
+	"croc-texture-bag": {
+		Name:        "Croc Texture Bag",
+		Slug:        "croc-texture-bag",
+		Price:       "$5,800",
+		Description: "An exotic crocodile-embossed leather handbag in deep emerald green. The envelope-style closure adds sophistication to the structured design.",
+		Category:    "handbags",
+		Image:       "handbag_06_green_croc_texture.jpg",
+	},
+	"boutique-crossbody": {
+		Name:        "Boutique Crossbody",
+		Slug:        "boutique-crossbody",
+		Price:       "$1,950",
+		Description: "A versatile crossbody bag in rich brown leather with adjustable strap. Perfect for both day and evening with its compact yet spacious design.",
+		Category:    "handbags",
+		Image:       "handbag_08_brown_store_crossbody.jpg",
+	},
+	"metal-trim-structured": {
+		Name:        "Metal Trim Structured",
+		Slug:        "metal-trim-structured",
+		Price:       "$3,200",
+		Description: "A striking structured bag with contrasting black and white panels and polished metal trim. The geometric design makes a bold fashion statement.",
+		Category:    "handbags",
+		Image:       "handbag_09_black_white_metal_trim.jpg",
+	},
+	"luxury-lifestyle-tote": {
+		Name:        "Luxury Lifestyle Tote",
+		Slug:        "luxury-lifestyle-tote",
+		Price:       "$2,600",
+		Description: "A spacious lifestyle tote in buttery soft leather with gold-tone hardware. The generous interior accommodates all daily essentials in style.",
+		Category:    "handbags",
+		Image:       "handbag_10_flatlay_bag_perfume_makeup.jpg",
+	},
+	// Perfume
+	"platinum-collection-set": {
+		Name:        "Platinum Collection Set",
+		Slug:        "platinum-collection-set",
+		Price:       "$850",
+		Description: "An exclusive set of four signature fragrances presented on a luxurious display. Each scent represents a different facet of the Platinum lifestyle.",
+		Category:    "perfume",
+		Image:       "perfume_01_fur_surface_collection.jpg",
+	},
+	"classic-no5-parfum": {
+		Name:        "Classic No.5 Parfum",
+		Slug:        "classic-no5-parfum",
+		Price:       "$295",
+		Description: "A timeless floral aldehyde composition that has defined elegance for generations. Notes of jasmine, rose, and ylang-ylang create an unforgettable sillage.",
+		Category:    "perfume",
+		Image:       "perfume_02_chanel_no5_minimal.jpg",
+	},
+	"amber-night-eau": {
+		Name:        "Amber Night Eau",
+		Slug:        "amber-night-eau",
+		Price:       "$385",
+		Description: "A rich oriental fragrance built around warm amber and smoky vetiver. The opening of bergamot and pink pepper gives way to a heart of jasmine and orris.",
+		Category:    "perfume",
+		Image:       "perfume_03_warm_lit_givenchy.jpg",
+	},
+	"rose-blush-parfum": {
+		Name:        "Rose Blush Parfum",
+		Slug:        "rose-blush-parfum",
+		Price:       "$245",
+		Description: "A fresh and feminine rose fragrance with a modern twist. Delicate rose petals are enhanced by notes of peony and a base of white musk.",
+		Category:    "perfume",
+		Image:       "perfume_04_pink_bottle_white_surface.jpg",
+	},
+	"petal-romance-eau": {
+		Name:        "Petal Romance Eau",
+		Slug:        "petal-romance-eau",
+		Price:       "$195",
+		Description: "A romantic floral bouquet capturing the essence of a garden in bloom. Light notes of lily of the valley and freesia create an ethereal quality.",
+		Category:    "perfume",
+		Image:       "perfume_05_escada_with_petals.jpg",
+	},
+	"glitter-peony-parfum": {
+		Name:        "Glitter Peony Parfum",
+		Slug:        "glitter-peony-parfum",
+		Price:       "$320",
+		Description: "A luminous fragrance centered on fresh peony with sparkling top notes. The crystal-adorned bottle is as exquisite as the scent within.",
+		Category:    "perfume",
+		Image:       "perfume_06_glitter_bottle_peonies.jpg",
+	},
+	"dried-rose-essence": {
+		Name:        "Dried Rose Essence",
+		Slug:        "dried-rose-essence",
+		Price:       "$275",
+		Description: "An artisanal fragrance capturing the beauty of preserved roses. The dry-down reveals notes of sandalwood and cashmere musk.",
+		Category:    "perfume",
+		Image:       "perfume_07_clean_bottle_with_dried_roses.jpg",
+	},
+	"designer-trio-set": {
+		Name:        "Designer Trio Set",
+		Slug:        "designer-trio-set",
+		Price:       "$650",
+		Description: "A curated collection of three designer fragrances for every occasion. Includes day, evening, and special occasion scents in full-size bottles.",
+		Category:    "perfume",
+		Image:       "perfume_09_designer_bottle_group.jpg",
+	},
+	// Bullion
+	"gold-nugget-collection": {
+		Name:        "Gold Nugget Collection",
+		Slug:        "gold-nugget-collection",
+		Price:       "$12,500",
+		Description: "A collection of natural gold nuggets and small bars, each authenticated and certified. These rare specimens showcase gold in its most organic form.",
+		Category:    "bullion",
+		Image:       "bullion_01_gold_nugget_bars.jpg",
+	},
+	"gold-bar-stack": {
+		Name:        "Gold Bar Stack",
+		Slug:        "gold-bar-stack",
+		Price:       "$65,000",
+		Description: "Five LBMA-certified 1kg gold bars stacked in a secure display arrangement. Each bar carries individual serial numbers and purity certification.",
+		Category:    "bullion",
+		Image:       "bullion_02_gold_bar_stack.jpg",
+	},
+	"fine-gold-bar": {
+		Name:        "Fine Gold Bar",
+		Slug:        "fine-gold-bar",
+		Price:       "$7,800",
+		Description: "A single 100g fine gold bar of 999.9 purity. Features precision-struck hallmarks and arrives in a tamper-evident assay card.",
+		Category:    "bullion",
+		Image:       "bullion_03_fine_gold_closeup.jpg",
+	},
+	"single-gold-ingot": {
+		Name:        "Single Gold Ingot",
+		Slug:        "single-gold-ingot",
+		Price:       "$3,950",
+		Description: "A 50g cast gold ingot with traditional pour-line finish. The ingot bears our exclusive mint mark and certification of authenticity.",
+		Category:    "bullion",
+		Image:       "bullion_04_single_gold_ingot.jpg",
+	},
+	"mixed-gold-bars": {
+		Name:        "Mixed Gold Bars",
+		Slug:        "mixed-gold-bars",
+		Price:       "$25,000",
+		Description: "A curated assortment of gold bars in various weights from 10g to 100g. Perfect for beginning or diversifying a precious metals portfolio.",
+		Category:    "bullion",
+		Image:       "bullion_05_mixed_gold_bars.jpg",
+	},
+	"investment-gold-bullion": {
+		Name:        "Investment Gold Bullion",
+		Slug:        "investment-gold-bullion",
+		Price:       "$42,000",
+		Description: "Investment-grade gold bullion bars arranged for maximum impact. Each bar is individually numbered and comes with full provenance documentation.",
+		Category:    "bullion",
+		Image:       "bullion_06_gold_bullion_rows.jpg",
+	},
+	"gold-bar-wood-display": {
+		Name:        "Gold Bar Wood Display",
+		Slug:        "gold-bar-wood-display",
+		Price:       "$8,200",
+		Description: "A 100g gold bar presented on a handcrafted wooden display stand. The contrast of warm wood and gleaming gold creates an impressive desktop centerpiece.",
+		Category:    "bullion",
+		Image:       "bullion_07_single_gold_bar_wood.jpg",
+	},
+	"gold-bar-pattern": {
+		Name:        "Gold Bar Pattern",
+		Slug:        "gold-bar-pattern",
+		Price:       "$95,000",
+		Description: "An impressive collection of uniform gold bars arranged in a geometric pattern. This substantial holding represents a significant investment in physical gold.",
+		Category:    "bullion",
+		Image:       "bullion_08_gold_bar_pattern.jpg",
+	},
+	"silver-bar-stack": {
+		Name:        "Silver Bar Stack",
+		Slug:        "silver-bar-stack",
+		Price:       "$1,250",
+		Description: "A stack of five 1kg silver bars of 999.0 purity. Each bar is LBMA-certified and features detailed hallmarks with individual serial numbers.",
+		Category:    "bullion",
+		Image:       "bullion_09_silver_bars_stack.jpg",
+	},
+	"silver-coin-collector": {
+		Name:        "Silver Coin Collector",
+		Slug:        "silver-coin-collector",
+		Price:       "$485",
+		Description: "A single proof-quality silver coin in a reflective display case. The mirror-finish coin showcases exceptional minting detail and craftsmanship.",
+		Category:    "bullion",
+		Image:       "bullion_10_silver_coin_reflection.jpg",
+	},
+}
+
+// Helper function to format product name from slug
+func formatProductName(slug string) string {
+	return strings.ReplaceAll(slug, "-", " ")
+}
+
+// getProductCategory returns the category for a given product slug.
+func getProductCategory(slug string) string {
+	if p, ok := products[slug]; ok {
+		return p.Category
+	}
+	return ""
+}
+
+// getProductImage returns the main image path for a product from the map.
+func getProductImage(slug string, imageType string) string {
+	p, ok := products[slug]
+	if !ok {
+		return "/static/images/watches/watch_01_black_leather_dial.jpg"
+	}
+	if imageType == "main" || imageType == "thumb1" {
+		return "/static/images/" + p.Category + "/" + p.Image
+	}
+	// For thumbnails 2-4, return other products from the same category
+	thumbs := getThumbImages(slug)
+	switch imageType {
+	case "thumb2":
+		if len(thumbs) > 0 {
+			return thumbs[0]
+		}
+	case "thumb3":
+		if len(thumbs) > 1 {
+			return thumbs[1]
+		}
+	case "thumb4":
+		if len(thumbs) > 2 {
+			return thumbs[2]
+		}
+	}
+	return "/static/images/" + p.Category + "/" + p.Image
+}
+
+// getThumbImages returns up to 3 image paths from the same category (excluding the current product).
+func getThumbImages(slug string) []string {
+	p, ok := products[slug]
+	if !ok {
+		return nil
+	}
+	var thumbs []string
+	for s, prod := range products {
+		if s != slug && prod.Category == p.Category {
+			thumbs = append(thumbs, "/static/images/"+prod.Category+"/"+prod.Image)
+			if len(thumbs) >= 3 {
+				break
+			}
+		}
+	}
+	return thumbs
+}
+
+// getProductPrice returns the price for a product from the map.
+func getProductPrice(slug string) string {
+	if p, ok := products[slug]; ok {
+		return p.Price
+	}
+	return "$2,495"
+}
+
+// getProductDescription returns the description for a product from the map.
+func getProductDescription(slug string) string {
+	if p, ok := products[slug]; ok {
+		return p.Description
+	}
+	return "Crafted with exceptional attention to detail, this piece represents the pinnacle of luxury craftsmanship. Each element has been carefully considered to deliver an unparalleled experience."
+}
+
+// getRelatedProducts returns up to 4 products from the same category, excluding the current product.
+func getRelatedProducts(slug string) []Product {
+	p, ok := products[slug]
+	if !ok {
+		return nil
+	}
+	var related []Product
+	for s, prod := range products {
+		if s != slug && prod.Category == p.Category {
+			related = append(related, prod)
+			if len(related) >= 4 {
+				break
+			}
+		}
+	}
+	return related
+}
+
 templ ProductDetail(slug string) {
 	@layouts.Base(meta.New(formatProductName(slug), "Discover the craftsmanship and details of this exceptional piece.").AsProduct()) {
 		// Breadcrumb
@@ -43,16 +556,16 @@ templ ProductDetail(slug string) {
 
 					// Thumbnail Grid
 					<div class="grid grid-cols-4 gap-3">
-						<button class="thumb-btn aspect-square border-2 border-gold overflow-hidden" onclick="changeMainImage(this, 'main')">
+						<button class="thumb-btn aspect-square border-2 border-gold overflow-hidden" onclick="changeMainImage(this)">
 							<img src={ getProductImage(slug, "thumb1") } alt="View 1" class="w-full h-full object-cover"/>
 						</button>
-						<button class="thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors" onclick="changeMainImage(this, 'thumb2')">
+						<button class="thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors" onclick="changeMainImage(this)">
 							<img src={ getProductImage(slug, "thumb2") } alt="View 2" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity"/>
 						</button>
-						<button class="thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors" onclick="changeMainImage(this, 'thumb3')">
+						<button class="thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors" onclick="changeMainImage(this)">
 							<img src={ getProductImage(slug, "thumb3") } alt="View 3" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity"/>
 						</button>
-						<button class="thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors" onclick="changeMainImage(this, 'thumb4')">
+						<button class="thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors" onclick="changeMainImage(this)">
 							<img src={ getProductImage(slug, "thumb4") } alt="View 4" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity"/>
 						</button>
 					</div>
@@ -184,20 +697,19 @@ templ ProductDetail(slug string) {
 					<h2 class="font-display text-3xl lg:text-4xl text-secondary">Related Products</h2>
 				</div>
 				<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-					@ProductCard("Royal Oak Platinum", "$48,900", "https://images.unsplash.com/photo-1622434641406-a158123450f9?w=600&q=85", "/product/royal-oak-platinum")
-					@ProductCard("Submariner Gold", "$32,750", "https://images.unsplash.com/photo-1548171915-e79a380a2a4b?w=600&q=85", "/product/submariner-gold")
-					@ProductCard("Datejust Classic", "$18,200", "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600&q=85", "/product/datejust-classic")
-					@ProductCard("GMT Master II", "$28,500", "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&q=85", "/product/gmt-master")
+					for _, rp := range getRelatedProducts(slug) {
+						@ProductCard(rp.Name, rp.Price, "/static/images/"+rp.Category+"/"+rp.Image, "/product/"+rp.Slug)
+					}
 				</div>
 			</div>
 		</section>
 
 		// JavaScript for gallery and quantity
 		<script>
-			function changeMainImage(thumb, imageKey) {
+			function changeMainImage(thumb) {
 				const mainImg = document.getElementById('main-product-image');
 				const thumbImg = thumb.querySelector('img');
-				mainImg.src = thumbImg.src.replace('w=200', 'w=800');
+				mainImg.src = thumbImg.src;
 
 				document.querySelectorAll('.thumb-btn').forEach(t => {
 					t.classList.remove('border-gold');
@@ -226,160 +738,9 @@ templ ProductDetail(slug string) {
 	}
 }
 
-// Helper function to format product name from slug
-func formatProductName(slug string) string {
-	return strings.ReplaceAll(slug, "-", " ")
-}
-
-// Get product image based on slug
-func getProductImage(slug string, imageType string) string {
-	// Default watch images
-	images := map[string]string{
-		"main":   "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=800&q=90",
-		"thumb1": "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=200&q=80",
-		"thumb2": "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=200&q=80",
-		"thumb3": "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=200&q=80",
-		"thumb4": "https://images.unsplash.com/photo-1639037687665-8f59c79a71e8?w=200&q=80",
-	}
-
-	// Product-specific images
-	switch slug {
-	case "perpetual-chronograph", "platinum-chronograph":
-		images = map[string]string{
-			"main":   "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=800&q=90",
-			"thumb1": "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=200&q=80",
-			"thumb2": "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=200&q=80",
-			"thumb3": "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=200&q=80",
-			"thumb4": "https://images.unsplash.com/photo-1639037687665-8f59c79a71e8?w=200&q=80",
-		}
-	case "royal-oak-platinum":
-		images = map[string]string{
-			"main":   "https://images.unsplash.com/photo-1622434641406-a158123450f9?w=800&q=90",
-			"thumb1": "https://images.unsplash.com/photo-1622434641406-a158123450f9?w=200&q=80",
-			"thumb2": "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=200&q=80",
-			"thumb3": "https://images.unsplash.com/photo-1639037687665-8f59c79a71e8?w=200&q=80",
-			"thumb4": "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=200&q=80",
-		}
-	case "submariner-gold":
-		images = map[string]string{
-			"main":   "https://images.unsplash.com/photo-1548171915-e79a380a2a4b?w=800&q=90",
-			"thumb1": "https://images.unsplash.com/photo-1548171915-e79a380a2a4b?w=200&q=80",
-			"thumb2": "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=200&q=80",
-			"thumb3": "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=200&q=80",
-			"thumb4": "https://images.unsplash.com/photo-1639037687665-8f59c79a71e8?w=200&q=80",
-		}
-	case "datejust-classic":
-		images = map[string]string{
-			"main":   "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=800&q=90",
-			"thumb1": "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=200&q=80",
-			"thumb2": "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=200&q=80",
-			"thumb3": "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=200&q=80",
-			"thumb4": "https://images.unsplash.com/photo-1639037687665-8f59c79a71e8?w=200&q=80",
-		}
-	case "midnight-tuxedo":
-		images = map[string]string{
-			"main":   "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=800&q=90",
-			"thumb1": "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=200&q=80",
-			"thumb2": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=200&q=80",
-			"thumb3": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=200&q=80",
-			"thumb4": "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=200&q=80",
-		}
-	case "navy-pinstripe-suit":
-		images = map[string]string{
-			"main":   "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=800&q=90",
-			"thumb1": "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=200&q=80",
-			"thumb2": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=200&q=80",
-			"thumb3": "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=200&q=80",
-			"thumb4": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=200&q=80",
-		}
-	case "gold-signet-ring":
-		images = map[string]string{
-			"main":   "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=90",
-			"thumb1": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=200&q=80",
-			"thumb2": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&q=80",
-			"thumb3": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&q=80",
-			"thumb4": "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=200&q=80",
-		}
-	case "diamond-cufflinks":
-		images = map[string]string{
-			"main":   "https://images.unsplash.com/photo-1590548784585-643d2b9f2925?w=800&q=90",
-			"thumb1": "https://images.unsplash.com/photo-1590548784585-643d2b9f2925?w=200&q=80",
-			"thumb2": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&q=80",
-			"thumb3": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=200&q=80",
-			"thumb4": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&q=80",
-		}
-	case "crocodile-wallet":
-		images = map[string]string{
-			"main":   "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800&q=90",
-			"thumb1": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=200&q=80",
-			"thumb2": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80",
-			"thumb3": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200&q=80",
-			"thumb4": "https://images.unsplash.com/photo-1606503825008-909a67e63c3d?w=200&q=80",
-		}
-	case "executive-briefcase":
-		images = map[string]string{
-			"main":   "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=90",
-			"thumb1": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80",
-			"thumb2": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=200&q=80",
-			"thumb3": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200&q=80",
-			"thumb4": "https://images.unsplash.com/photo-1606503825008-909a67e63c3d?w=200&q=80",
-		}
-	}
-
-	return images[imageType]
-}
-
-// Get product price
-func getProductPrice(slug string) string {
-	prices := map[string]string{
-		"perpetual-chronograph": "$24,500",
-		"platinum-chronograph":  "$24,500",
-		"royal-oak-platinum":    "$48,900",
-		"submariner-gold":       "$32,750",
-		"datejust-classic":      "$18,200",
-		"gmt-master":            "$28,500",
-		"midnight-tuxedo":       "$4,850",
-		"navy-pinstripe-suit":   "$3,200",
-		"charcoal-wool-blazer":  "$1,950",
-		"gold-signet-ring":      "$2,850",
-		"diamond-cufflinks":     "$4,200",
-		"platinum-chain":        "$3,500",
-		"onyx-bracelet":         "$1,850",
-		"crocodile-wallet":      "$1,450",
-		"executive-briefcase":   "$2,800",
-		"calfskin-belt":         "$485",
-		"italian-silk-tie":      "$295",
-	}
-	if price, ok := prices[slug]; ok {
-		return price
-	}
-	return "$2,495"
-}
-
-// Get product description
-func getProductDescription(slug string) string {
-	descriptions := map[string]string{
-		"perpetual-chronograph": "A masterpiece of horological engineering, this timepiece features a hand-assembled Swiss movement with 72-hour power reserve. The 41mm case is crafted from solid platinum, housing a midnight blue dial with applied 18k gold indices.",
-		"platinum-chronograph":  "A masterpiece of horological engineering, this timepiece features a hand-assembled Swiss movement with 72-hour power reserve. The 41mm case is crafted from solid platinum, housing a midnight blue dial with applied 18k gold indices.",
-		"royal-oak-platinum":    "The iconic octagonal bezel defines this legendary timepiece. Featuring a Grande Tapisserie dial, the Royal Oak combines sporty elegance with ultra-thin movement technology in a 41mm platinum case.",
-		"submariner-gold":       "The ultimate diving watch, crafted in 18k yellow gold with a Cerachrom bezel insert in black ceramic. Water-resistant to 300 meters with a self-winding mechanical movement.",
-		"datejust-classic":      "The quintessential classic timepiece featuring the signature fluted bezel, Cyclops lens, and jubilee bracelet. A timeless design that has defined elegance since 1945.",
-		"midnight-tuxedo":       "Impeccably tailored from the finest Italian wool, this tuxedo features a satin peak lapel, hand-stitched buttonholes, and a contemporary slim fit. Perfect for black-tie occasions.",
-		"navy-pinstripe-suit":   "A sophisticated two-piece suit crafted from Super 150s wool with subtle chalk stripes. Features a half-canvas construction for refined drape and comfort.",
-		"gold-signet-ring":      "Hand-engraved solid 18k gold signet ring featuring classic heraldic design. Each piece is individually crafted by our master jewelers using traditional techniques.",
-		"diamond-cufflinks":     "Exquisite cufflinks featuring brilliant-cut diamonds set in 18k white gold. The perfect finishing touch for formal occasions.",
-		"crocodile-wallet":      "Handcrafted from genuine Niloticus crocodile leather with suede lining. Features multiple card slots, bill compartments, and our signature gold-plated hardware.",
-		"executive-briefcase":   "A statement piece crafted from full-grain Italian leather with brass hardware. Features a padded laptop compartment and multiple organizer pockets.",
-	}
-	if desc, ok := descriptions[slug]; ok {
-		return desc
-	}
-	return "Crafted with exceptional attention to detail, this piece represents the pinnacle of luxury craftsmanship. Each element has been carefully considered to deliver an unparalleled experience."
-}
-
 // Product specifications - inline version with Tailwind
 templ productSpecsInline(slug string) {
-	if strings.Contains(slug, "chronograph") || strings.Contains(slug, "submariner") || strings.Contains(slug, "datejust") || strings.Contains(slug, "royal-oak") || strings.Contains(slug, "gmt") {
+	if getProductCategory(slug) == "watches" {
 		<div class="flex flex-col gap-1">
 			<span class="text-xs text-muted uppercase tracking-wider">Movement</span>
 			<span class="text-sm text-secondary">Swiss Automatic</span>
@@ -404,7 +765,24 @@ templ productSpecsInline(slug string) {
 			<span class="text-xs text-muted uppercase tracking-wider">Crystal</span>
 			<span class="text-sm text-secondary">Sapphire</span>
 		</div>
-	} else if strings.Contains(slug, "tuxedo") || strings.Contains(slug, "suit") || strings.Contains(slug, "blazer") {
+	} else if getProductCategory(slug) == "jewelry" {
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Material</span>
+			<span class="text-sm text-secondary">18k Gold</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Weight</span>
+			<span class="text-sm text-secondary">12.5g</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Finish</span>
+			<span class="text-sm text-secondary">Polished</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Hallmark</span>
+			<span class="text-sm text-secondary">750</span>
+		</div>
+	} else if getProductCategory(slug) == "suits" {
 		<div class="flex flex-col gap-1">
 			<span class="text-xs text-muted uppercase tracking-wider">Fabric</span>
 			<span class="text-sm text-secondary">Super 150s Wool</span>
@@ -429,39 +807,65 @@ templ productSpecsInline(slug string) {
 			<span class="text-xs text-muted uppercase tracking-wider">Care</span>
 			<span class="text-sm text-secondary">Dry Clean Only</span>
 		</div>
-	} else if strings.Contains(slug, "ring") || strings.Contains(slug, "cufflinks") || strings.Contains(slug, "bracelet") || strings.Contains(slug, "chain") {
+	} else if getProductCategory(slug) == "handbags" {
 		<div class="flex flex-col gap-1">
 			<span class="text-xs text-muted uppercase tracking-wider">Material</span>
-			<span class="text-sm text-secondary">18k Gold</span>
+			<span class="text-sm text-secondary">Premium Calfskin</span>
 		</div>
 		<div class="flex flex-col gap-1">
-			<span class="text-xs text-muted uppercase tracking-wider">Weight</span>
-			<span class="text-sm text-secondary">12.5g</span>
-		</div>
-		<div class="flex flex-col gap-1">
-			<span class="text-xs text-muted uppercase tracking-wider">Finish</span>
-			<span class="text-sm text-secondary">Polished</span>
-		</div>
-		<div class="flex flex-col gap-1">
-			<span class="text-xs text-muted uppercase tracking-wider">Hallmark</span>
-			<span class="text-sm text-secondary">750</span>
-		</div>
-	} else {
-		<div class="flex flex-col gap-1">
-			<span class="text-xs text-muted uppercase tracking-wider">Material</span>
-			<span class="text-sm text-secondary">Premium Leather</span>
-		</div>
-		<div class="flex flex-col gap-1">
-			<span class="text-xs text-muted uppercase tracking-wider">Origin</span>
-			<span class="text-sm text-secondary">Italy</span>
+			<span class="text-xs text-muted uppercase tracking-wider">Dimensions</span>
+			<span class="text-sm text-secondary">28 x 20 x 12 cm</span>
 		</div>
 		<div class="flex flex-col gap-1">
 			<span class="text-xs text-muted uppercase tracking-wider">Hardware</span>
 			<span class="text-sm text-secondary">Gold-Plated</span>
 		</div>
 		<div class="flex flex-col gap-1">
-			<span class="text-xs text-muted uppercase tracking-wider">Lining</span>
-			<span class="text-sm text-secondary">Suede</span>
+			<span class="text-xs text-muted uppercase tracking-wider">Closure</span>
+			<span class="text-sm text-secondary">Magnetic Snap</span>
+		</div>
+	} else if getProductCategory(slug) == "perfume" {
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Size</span>
+			<span class="text-sm text-secondary">100ml</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Concentration</span>
+			<span class="text-sm text-secondary">Eau de Parfum</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Notes</span>
+			<span class="text-sm text-secondary">Floral / Oriental</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Origin</span>
+			<span class="text-sm text-secondary">France</span>
+		</div>
+	} else if getProductCategory(slug) == "bullion" {
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Purity</span>
+			<span class="text-sm text-secondary">999.9 Fine</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Weight</span>
+			<span class="text-sm text-secondary">100g</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Certification</span>
+			<span class="text-sm text-secondary">LBMA Certified</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Assay Mark</span>
+			<span class="text-sm text-secondary">Verified</span>
+		</div>
+	} else {
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Material</span>
+			<span class="text-sm text-secondary">Premium</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Origin</span>
+			<span class="text-sm text-secondary">Artisan Crafted</span>
 		</div>
 	}
 }
