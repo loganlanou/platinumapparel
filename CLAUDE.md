@@ -46,6 +46,7 @@ All configuration via `.envrc` with direnv:
 | `STRIPE_SECRET_KEY` | Stripe secret | `sk_test_...` |
 | `STRIPE_PUBLISHABLE_KEY` | Stripe public key | `pk_test_...` |
 | `STRIPE_WEBHOOK_SECRET` | Stripe webhook secret | `whsec_...` |
+| `TAILSCALE_HOSTNAME` | Tailscale hostname for network URL | `prometheus` |
 
 ## Key Commands
 

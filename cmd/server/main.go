@@ -45,6 +45,9 @@ func main() {
 	go func() {
 		addr := ":" + cfg.Port
 		slog.Info("starting server", "port", cfg.Port, "env", cfg.Env, "url", "http://localhost:"+cfg.Port)
+		if cfg.TailscaleHostname != "" {
+			slog.Info("network access", "url", "http://"+cfg.TailscaleHostname+":"+cfg.Port)
+		}
 		if err := e.Start(addr); err != nil {
 			slog.Info("shutting down server")
 		}

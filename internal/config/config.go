@@ -21,6 +21,7 @@ type Config struct {
 	StripeSecretKey      string
 	StripePublishableKey string
 	StripeWebhookSecret  string
+	TailscaleHostname    string
 }
 
 func Load() *Config {
@@ -38,6 +39,7 @@ func Load() *Config {
 		StripeSecretKey:      os.Getenv("STRIPE_SECRET_KEY"),
 		StripePublishableKey: os.Getenv("STRIPE_PUBLISHABLE_KEY"),
 		StripeWebhookSecret:  os.Getenv("STRIPE_WEBHOOK_SECRET"),
+		TailscaleHostname:    os.Getenv("TAILSCALE_HOSTNAME"),
 	}
 
 	if cfg.DatabaseURL == "" {
