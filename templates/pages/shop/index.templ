@@ -16,7 +16,6 @@ templ Index() {
 				<p class="page-subtitle">Browse our complete collection of luxury pieces, curated for the distinguished gentleman.</p>
 			</div>
 		</section>
-
 		// Shop Content
 		<section class="shop-content">
 			<aside class="shop-filters" data-animate="fade-up">
@@ -52,7 +51,6 @@ templ Index() {
 					</ul>
 				</div>
 			</aside>
-
 			<main class="shop-products">
 				<div class="shop-toolbar">
 					<span class="product-count">Showing 24 of 51 products</span>
@@ -63,45 +61,38 @@ templ Index() {
 						<option value="price-high">Price: High to Low</option>
 					</select>
 				</div>
-
 				<div class="products-grid">
 					// Watches
 					@pages.ProductCard("Black Leather Chronograph", "$18,500", "/static/images/watches/watch_01_black_leather_dial.jpg", "/product/black-leather-chronograph")
 					@pages.ProductCard("Steel Chronograph", "$24,500", "/static/images/watches/watch_02_steel_chronograph.jpg", "/product/steel-chronograph")
 					@pages.ProductCard("Blue Diver Watch", "$32,750", "/static/images/watches/watch_03_blue_diver_watch.jpg", "/product/blue-diver-watch")
 					@pages.ProductCard("Grand Complication", "$48,900", "/static/images/watches/watch_05_macro_luxury_dial.jpg", "/product/grand-complication")
-
 					// Jewelry
 					@pages.ProductCard("Teardrop Diamond Ring", "$12,500", "/static/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg", "/product/teardrop-diamond-ring")
 					@pages.ProductCard("Gold Drop Earrings", "$4,200", "/static/images/jewelry/jewelry_02_gold_earrings_reflection.jpg", "/product/gold-drop-earrings")
 					@pages.ProductCard("Rose Gold Bridal Set", "$18,500", "/static/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg", "/product/rose-gold-bridal-set")
 					@pages.ProductCard("Sapphire Diamond Ring", "$15,200", "/static/images/jewelry/jewelry_09_sapphire_diamond_gold_ring.jpg", "/product/sapphire-diamond-ring")
-
 					// Suits
 					@pages.ProductCard("Grey Tweed Formal", "$4,850", "/static/images/suits/suit_01_groom_boutonniere.jpg", "/product/grey-tweed-formal")
 					@pages.ProductCard("Riviera Linen Suit", "$3,200", "/static/images/suits/suit_02_beach_cufflinks.jpg", "/product/riviera-linen-suit")
 					@pages.ProductCard("Double-Breasted City", "$5,500", "/static/images/suits/suit_04_city_sportscar.jpg", "/product/double-breasted-city")
 					@pages.ProductCard("Midnight Dinner Jacket", "$3,800", "/static/images/suits/suit_05_black_jacket_detail.jpg", "/product/midnight-dinner-jacket")
-
 					// Handbags
 					@pages.ProductCard("Minimal Pedestal Bag", "$2,800", "/static/images/handbags/handbag_01_minimal_pedestal_bags.jpg", "/product/minimal-pedestal-bag")
 					@pages.ProductCard("Vintage Gold Handle", "$3,500", "/static/images/handbags/handbag_02_vintage_gold_handle.jpg", "/product/vintage-gold-handle")
 					@pages.ProductCard("Orange Designer Bag", "$4,200", "/static/images/handbags/handbag_05_orange_designer_stand.jpg", "/product/orange-designer-bag")
 					@pages.ProductCard("Croc Texture Bag", "$5,800", "/static/images/handbags/handbag_06_green_croc_texture.jpg", "/product/croc-texture-bag")
-
 					// Perfume
 					@pages.ProductCard("Platinum Collection Set", "$850", "/static/images/perfume/perfume_01_fur_surface_collection.jpg", "/product/platinum-collection-set")
 					@pages.ProductCard("Amber Night Eau", "$385", "/static/images/perfume/perfume_03_warm_lit_givenchy.jpg", "/product/amber-night-eau")
 					@pages.ProductCard("Glitter Peony Parfum", "$320", "/static/images/perfume/perfume_06_glitter_bottle_peonies.jpg", "/product/glitter-peony-parfum")
 					@pages.ProductCard("Designer Trio Set", "$650", "/static/images/perfume/perfume_09_designer_bottle_group.jpg", "/product/designer-trio-set")
-
 					// Bullion
 					@pages.ProductCard("Gold Nugget Collection", "$12,500", "/static/images/bullion/bullion_01_gold_nugget_bars.jpg", "/product/gold-nugget-collection")
 					@pages.ProductCard("Gold Bar Stack", "$65,000", "/static/images/bullion/bullion_02_gold_bar_stack.jpg", "/product/gold-bar-stack")
 					@pages.ProductCard("Mixed Gold Bars", "$25,000", "/static/images/bullion/bullion_05_mixed_gold_bars.jpg", "/product/mixed-gold-bars")
 					@pages.ProductCard("Silver Bar Stack", "$1,250", "/static/images/bullion/bullion_09_silver_bars_stack.jpg", "/product/silver-bar-stack")
 				</div>
-
 				<div class="section-cta" data-animate="fade-up">
 					<a href="/shop?page=2" class="btn-outline"><span>Load More Products</span></a>
 				</div>
@@ -130,7 +121,7 @@ func categoryTitle(slug string) string {
 }
 
 templ Category(category string) {
-	@layouts.Base(meta.New(categoryTitle(category) + " | Shop", "Browse our " + categoryTitle(category) + " collection.")) {
+	@layouts.Base(meta.New(categoryTitle(category)+" | Shop", "Browse our "+categoryTitle(category)+" collection.")) {
 		<section class="page-hero shop-hero">
 			<div class="page-hero-content" data-animate="fade-up">
 				<span class="page-label">Category</span>

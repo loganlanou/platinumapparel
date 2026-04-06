@@ -15,7 +15,6 @@ templ Collections() {
 				<p class="page-subtitle">Each collection represents a distinct expression of luxury, crafted for those who appreciate the finest things in life.</p>
 			</div>
 		</section>
-
 		// Collections Showcase
 		<section class="page-content">
 			<div class="collections-showcase">
@@ -43,7 +42,6 @@ templ Collections() {
 						</a>
 					</div>
 				</div>
-
 				// Tailored Suits Collection
 				<div class="showcase-item reverse" data-animate="fade-up">
 					<div class="showcase-image image-reveal">
@@ -68,7 +66,6 @@ templ Collections() {
 						</a>
 					</div>
 				</div>
-
 				// Fine Jewelry Collection
 				<div class="showcase-item" data-animate="fade-up">
 					<div class="showcase-image image-reveal">
@@ -93,7 +90,6 @@ templ Collections() {
 						</a>
 					</div>
 				</div>
-
 				// Handbags Collection
 				<div class="showcase-item reverse" data-animate="fade-up">
 					<div class="showcase-image image-reveal">
@@ -118,7 +114,6 @@ templ Collections() {
 						</a>
 					</div>
 				</div>
-
 				// Fragrances Collection
 				<div class="showcase-item" data-animate="fade-up">
 					<div class="showcase-image image-reveal">
@@ -143,7 +138,6 @@ templ Collections() {
 						</a>
 					</div>
 				</div>
-
 				// Precious Metals Collection
 				<div class="showcase-item reverse" data-animate="fade-up">
 					<div class="showcase-image image-reveal">
@@ -170,7 +164,6 @@ templ Collections() {
 				</div>
 			</div>
 		</section>
-
 		// CTA Section
 		<section class="bespoke-section">
 			<div class="bespoke-background">
@@ -209,7 +202,7 @@ func collectionTitle(slug string) string {
 }
 
 templ CollectionDetail(slug string) {
-	@layouts.Base(meta.New(collectionTitle(slug) + " Collection", "Explore our curated " + collectionTitle(slug) + " collection of luxury pieces.")) {
+	@layouts.Base(meta.New(collectionTitle(slug)+" Collection", "Explore our curated "+collectionTitle(slug)+" collection of luxury pieces.")) {
 		<section class="page-hero">
 			<div class="page-hero-content" data-animate="fade-up">
 				<span class="page-label">Collection</span>
