@@ -10,18 +10,18 @@ import (
 )
 
 type Handler struct {
-	cfg     *config.Config
-	db      *database.DB
-	clerk   *clerk.Service
-	stripe  *stripe.Service
+	cfg    *config.Config
+	db     *database.DB
+	clerk  *clerk.Service
+	stripe *stripe.Service
 }
 
 func New(cfg *config.Config, db *database.DB, clerkSvc *clerk.Service, stripeSvc *stripe.Service) *Handler {
 	return &Handler{
-		cfg:     cfg,
-		db:      db,
-		clerk:   clerkSvc,
-		stripe:  stripeSvc,
+		cfg:    cfg,
+		db:     db,
+		clerk:  clerkSvc,
+		stripe: stripeSvc,
 	}
 }
 
