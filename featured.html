@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Featured luxury menswear, jewelry, and timepieces from Platinum Apparel." />
+  <title>Featured | Platinum Apparel</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="mainNav">
+    <div class="brand">
+      <a href="index.html" class="brand-link">
+        <span class="brand-mark">PA</span>
+        <div>
+          <div class="brand-name">Platinum Apparel</div>
+          <div class="brand-tag">Est. 1899</div>
+        </div>
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a class="active" href="featured.html" aria-current="page">Featured</a>
+      <a href="resale.html">Pre-Owned</a>
+      <a href="craft.html">Craftsmanship</a>
+      <a href="heritage.html">Heritage</a>
+      <a href="bespoke.html">Bespoke</a>
+    </nav>
+    <div class="nav-right">
+      <button class="nav-icon" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </button>
+      <button class="nav-icon" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </button>
+      <a class="nav-cta" href="bespoke.html">Book Consultation</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav-links">
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a class="active" href="featured.html" aria-current="page">Featured</a>
+      <a href="resale.html">Pre-Owned</a>
+      <a href="craft.html">Craftsmanship</a>
+      <a href="heritage.html">Heritage</a>
+      <a href="bespoke.html">Bespoke</a>
+      <a class="nav-cta mobile" href="bespoke.html">Book Consultation</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-bg">
+        <img src="images/featured-watch.jpg" alt="Luxury timepiece">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content" data-animate>
+        <div class="eyebrow">Featured Pieces</div>
+        <h1>Signature works for the discerning collector</h1>
+        <p class="hero-subtitle">
+          Limited releases selected by our master curators for extraordinary craftsmanship and timeless appeal.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="section-header centered" data-animate>
+        <div class="eyebrow">Curator Selection</div>
+        <h2>This season's signature works</h2>
+        <p>Hand-selected to embody the Platinum Apparel standard.</p>
+      </div>
+      <div class="featured-grid">
+        <article class="product-card" data-animate>
+          <div class="product-image">
+            <img src="images/product-watch2.jpg" alt="Luxury timepiece" loading="lazy">
+            <div class="product-actions">
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Timepieces</div>
+            <h4 class="product-name">Sovereign Automatic</h4>
+            <p class="product-desc">18K Rose Gold | Meteorite Dial</p>
+            <div class="product-price">$18,500</div>
+          </div>
+        </article>
+        <article class="product-card" data-animate>
+          <div class="product-image">
+            <img src="images/product-necklace.jpg" alt="Gold necklace" loading="lazy">
+            <div class="product-actions">
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Jewelry</div>
+            <h4 class="product-name">Obsidian Signet Ring</h4>
+            <p class="product-desc">Platinum 950 | Black Diamond</p>
+            <div class="product-price">$4,200</div>
+          </div>
+        </article>
+        <article class="product-card" data-animate>
+          <div class="product-image">
+            <img src="images/product-blazer.jpg" alt="Designer blazer" loading="lazy">
+            <div class="product-actions">
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Menswear</div>
+            <h4 class="product-name">Midnight Tuxedo</h4>
+            <p class="product-desc">Cashmere Blend | Silk Lapels</p>
+            <div class="product-price">$8,900</div>
+          </div>
+        </article>
+        <article class="product-card" data-animate>
+          <div class="product-image">
+            <img src="images/product-bracelet.jpg" alt="Gold bracelet" loading="lazy">
+            <div class="product-actions">
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Accessories</div>
+            <h4 class="product-name">Heritage Cufflinks</h4>
+            <p class="product-desc">Yellow Gold | Onyx Inlay</p>
+            <div class="product-price">$2,800</div>
+          </div>
+        </article>
+      </div>
+      <div class="featured-cta" data-animate>
+        <a class="btn-primary" href="bespoke.html">Request a Private Viewing</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header" data-animate>
+        <div class="eyebrow">Pre-Owned Watches</div>
+        <h2>Certified pre-owned inventory</h2>
+        <p>Rolex, Patek Philippe, Audemars Piguet, Omega, and limited references curated weekly.</p>
+      </div>
+      <div class="resale-grid">
+        <article class="resale-card" data-animate>
+          <div class="resale-image">
+            <img src="images/resale-omega.jpg" alt="Omega watch" loading="lazy">
+            <span class="resale-badge">Rolex</span>
+          </div>
+          <div class="resale-info">
+            <h4>Daytona Ceramic</h4>
+            <p>Oystersteel | 40mm | 2023</p>
+            <div class="resale-meta">Certified | Full set</div>
+          </div>
+        </article>
+        <article class="resale-card" data-animate>
+          <div class="resale-image">
+            <img src="images/resale-cartier.jpg" alt="Cartier watch" loading="lazy">
+            <span class="resale-badge">Omega</span>
+          </div>
+          <div class="resale-info">
+            <h4>Speedmaster</h4>
+            <p>Moonwatch | 42mm | 2022</p>
+            <div class="resale-meta">Authenticated | Serviced</div>
+          </div>
+        </article>
+        <article class="resale-card" data-animate>
+          <div class="resale-image">
+            <img src="images/resale-watch6.jpg" alt="Luxury watch" loading="lazy">
+            <span class="resale-badge">Audemars Piguet</span>
+          </div>
+          <div class="resale-info">
+            <h4>Royal Oak Offshore</h4>
+            <p>Titanium | 44mm | 2021</p>
+            <div class="resale-meta">Verified | Warranty</div>
+          </div>
+        </article>
+      </div>
+      <div class="resale-cta" data-animate>
+        <a class="btn-primary" href="resale.html">View All Pre-Owned</a>
+        <a class="btn-ghost" href="bespoke.html">Source a Reference</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark">PA</span>
+          <div>
+            <div class="brand-name">Platinum Apparel</div>
+            <div class="brand-tag">Est. 1899</div>
+          </div>
+        </div>
+        <p class="footer-desc">Luxury menswear, fine jewelry, and precision timepieces curated for the discerning collector.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Collections</h4>
+          <a href="collections.html#menswear">Menswear</a>
+          <a href="collections.html#jewelry">Jewelry</a>
+          <a href="collections.html#timepieces">Timepieces</a>
+          <a href="featured.html">Accessories</a>
+        </div>
+        <div class="footer-column">
+          <h4>Services</h4>
+          <a href="bespoke.html">Bespoke</a>
+          <a href="bespoke.html">Consultations</a>
+          <a href="craft.html">Care & Repair</a>
+          <a href="resale.html">Pre-Owned</a>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <a href="heritage.html">Our Story</a>
+          <a href="craft.html">Craftsmanship</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+        </div>
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <a href="mailto:concierge@platinumapparel.com">concierge@platinumapparel.com</a>
+          <a href="tel:+12125550198">+1 (212) 555-0198</a>
+          <p class="footer-locations">New York | London | Dubai</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Platinum Apparel. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Settings</a>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      Platinum Apparel is an independent reseller and is not affiliated with Rolex SA, Patek Philippe, Audemars Piguet, Omega, or any other brand.
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
