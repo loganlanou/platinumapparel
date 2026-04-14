@@ -1277,6 +1277,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  margin-top: 4rem;
 }
 
 .luxury-banner-bg {
@@ -1596,6 +1597,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-top: 4rem;
 }
 
 .bespoke-background {
@@ -3503,6 +3505,7 @@
   align-items: center;
   justify-content: center;
   padding: 6rem 4rem;
+  margin-top: 4rem;
 }
 
 .bespoke-testimonial .testimonial-bg {
