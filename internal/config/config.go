@@ -3,6 +3,7 @@ package config
 import (
 	"log/slog"
 	"os"
+	"path/filepath"
 )
 
 type SiteConfig struct {
@@ -26,12 +27,12 @@ type Config struct {
 
 func Load() *Config {
 	cfg := &Config{
-		DatabaseURL: os.Getenv("DATABASE_URL"),
+		DatabaseURL: databaseURL(),
 		Port:        getEnvOrDefault("PORT", "3000"),
 		Env:         getEnvOrDefault("ENV", "development"),
 		Site: SiteConfig{
 			Name:           getEnvOrDefault("SITE_NAME", "Platinum Apparel"),
-			URL:            getEnvOrDefault("SITE_URL", "http://localhost:3000"),
+			URL:            siteURL(),
 			DefaultOGImage: getEnvOrDefault("DEFAULT_OG_IMAGE", "/static/images/og-default.png"),
 		},
 		ClerkSecretKey:       os.Getenv("CLERK_SECRET_KEY"),
@@ -40,11 +41,6 @@ func Load() *Config {
 		StripePublishableKey: os.Getenv("STRIPE_PUBLISHABLE_KEY"),
 		StripeWebhookSecret:  os.Getenv("STRIPE_WEBHOOK_SECRET"),
 		TailscaleHostname:    os.Getenv("TAILSCALE_HOSTNAME"),
-	}
-
-	if cfg.DatabaseURL == "" {
-		slog.Error("DATABASE_URL environment variable is required")
-		os.Exit(1)
 	}
 
 	return cfg
@@ -63,4 +59,23 @@ func getEnvOrDefault(key, defaultValue string) string {
 		return value
 	}
 	return defaultValue
+}
+
+func databaseURL() string {
+	if value := os.Getenv("DATABASE_URL"); value != "" {
+		return value
+	}
+
+	slog.Warn("DATABASE_URL not set; using temporary SQLite database")
+	return filepath.Join(os.TempDir(), "platinumapparel.db")
+}
+
+func siteURL() string {
+	if value := os.Getenv("SITE_URL"); value != "" {
+		return value
+	}
+	if value := os.Getenv("VERCEL_URL"); value != "" {
+		return "https://" + value
+	}
+	return "http://localhost:3000"
 }
