@@ -10,9 +10,7 @@ tmp/
 .envrc
 .env
 
-# Generated files (can be regenerated)
-*_templ.go
-internal/database/sqlc/
+# Generated Go output is committed so Vercel's Go builder can compile from a fresh clone.
 
 # Dependencies
 node_modules/
@@ -26,8 +24,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Tailwind output (generated)
-static/css/output.css
+# Tailwind output is committed so Vercel can serve styles without a separate CSS build.
 
 # SQLite database
 data/*.db

@@ -3,8 +3,8 @@ package meta
 import (
 	"context"
 
-	"platinumapparel/internal/config"
-	"platinumapparel/internal/ctxkeys"
+	"handler/internal/config"
+	"handler/internal/ctxkeys"
 )
 
 func SiteFromCtx(ctx context.Context) config.SiteConfig {

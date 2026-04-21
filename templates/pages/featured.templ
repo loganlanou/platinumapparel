@@ -1,8 +1,8 @@
 package pages
 
 import (
-	"platinumapparel/internal/meta"
-	"platinumapparel/templates/layouts"
+	"handler/internal/meta"
+	"handler/templates/layouts"
 )
 
 templ Featured() {
@@ -19,7 +19,7 @@ templ Featured() {
 		<section class="featured-highlight-section">
 			<div class="highlight-wrapper" data-animate="fade-up">
 				<div class="highlight-image image-reveal">
-					<img src="/static/images/watches/watch_05_macro_luxury_dial.jpg" alt="Grand Complication" loading="eager"/>
+					<img src="/static/images/watches/watch_05_macro_luxury_dial.jpg" alt="Grand Complication" loading="eager" fetchpriority="high" decoding="async"/>
 					<span class="highlight-badge">Piece of the Month</span>
 				</div>
 				<div class="highlight-content">

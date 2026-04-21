@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"platinumapparel/internal/config"
-	"platinumapparel/internal/database"
-	"platinumapparel/internal/services/clerk"
-	"platinumapparel/internal/services/stripe"
+	"handler/internal/config"
+	"handler/internal/database"
+	"handler/internal/services/clerk"
+	"handler/internal/services/stripe"
 
 	"github.com/labstack/echo/v4"
 )
@@ -27,7 +27,8 @@ func New(cfg *config.Config, db *database.DB, clerkSvc *clerk.Service, stripeSvc
 
 func (h *Handler) RegisterRoutes(e *echo.Echo) {
 	// Static files
-	e.Static("/static", "static")
+	e.GET("/static/*", h.StaticAsset)
+	e.HEAD("/static/*", h.StaticAsset)
 
 	// Health check
 	e.GET("/health", h.Health)

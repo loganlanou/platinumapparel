@@ -1,8 +1,8 @@
 package pages
 
 import (
-	"platinumapparel/internal/meta"
-	"platinumapparel/templates/layouts"
+	"handler/internal/meta"
+	"handler/templates/layouts"
 )
 
 templ Home() {
@@ -10,7 +10,7 @@ templ Home() {
 		// Hero Section - Cinematic Full Screen
 		<section class="hero">
 			<div class="hero-background">
-				<img src="/static/images/watches/watch_04_watch_case_selection.jpg" alt="Luxury timepiece collection" class="hero-bg-image"/>
+				<img src="/static/images/watches/watch_04_watch_case_selection.jpg" alt="Luxury timepiece collection" class="hero-bg-image" loading="eager" fetchpriority="high" decoding="async"/>
 			</div>
 			<div class="hero-overlay"></div>
 			<div class="hero-content" data-animate="fade-up">
@@ -347,7 +347,7 @@ templ Home() {
 templ ProductCard(name, price, image, href string) {
 	<a href={ templ.SafeURL(href) } class="product-card" data-animate="fade-up">
 		<div class="product-image">
-			<img src={ image } alt={ name } loading="lazy"/>
+			<img src={ image } alt={ name } loading="lazy" decoding="async"/>
 			<div class="product-overlay">
 				<span class="quick-view">Quick View</span>
 			</div>

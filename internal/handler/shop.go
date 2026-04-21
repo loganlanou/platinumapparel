@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"platinumapparel/templates/pages/shop"
+	"handler/templates/pages/shop"
 
 	"github.com/labstack/echo/v4"
 )

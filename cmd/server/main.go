@@ -8,12 +8,12 @@ import (
 	"syscall"
 	"time"
 
-	"platinumapparel/internal/config"
-	"platinumapparel/internal/database"
-	"platinumapparel/internal/handler"
-	"platinumapparel/internal/middleware"
-	"platinumapparel/internal/services/clerk"
-	"platinumapparel/internal/services/stripe"
+	"handler/internal/config"
+	"handler/internal/database"
+	"handler/internal/handler"
+	"handler/internal/middleware"
+	"handler/internal/services/clerk"
+	"handler/internal/services/stripe"
 
 	"github.com/labstack/echo/v4"
 )

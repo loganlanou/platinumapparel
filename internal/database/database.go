@@ -9,7 +9,7 @@ import (
 
 	_ "modernc.org/sqlite"
 
-	"platinumapparel/internal/database/sqlc"
+	"handler/internal/database/sqlc"
 )
 
 type DB struct {

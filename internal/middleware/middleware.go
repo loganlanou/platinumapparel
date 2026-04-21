@@ -5,9 +5,9 @@ import (
 	"log/slog"
 	"time"
 
-	"platinumapparel/internal/config"
-	"platinumapparel/internal/ctxkeys"
-	"platinumapparel/internal/services/clerk"
+	"handler/internal/config"
+	"handler/internal/ctxkeys"
+	"handler/internal/services/clerk"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

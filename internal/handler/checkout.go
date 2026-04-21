@@ -5,8 +5,8 @@ import (
 	"log/slog"
 	"net/http"
 
-	"platinumapparel/internal/services/stripe"
-	"platinumapparel/templates/pages/shop"
+	"handler/internal/services/stripe"
+	"handler/templates/pages/shop"
 
 	"github.com/labstack/echo/v4"
 )

@@ -3,7 +3,7 @@ package handler
 import (
 	"net/http"
 
-	"platinumapparel/templates/pages"
+	"handler/templates/pages"
 
 	"github.com/labstack/echo/v4"
 )

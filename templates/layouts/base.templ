@@ -1,6 +1,6 @@
 package layouts
 
-import "platinumapparel/internal/meta"
+import "handler/internal/meta"
 
 templ Base(m meta.PageMeta) {
 	<!DOCTYPE html>
@@ -9,11 +9,12 @@ templ Base(m meta.PageMeta) {
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			@MetaTags(m)
+			<link rel="preload" href="/static/css/output.css" as="style"/>
 			<link rel="stylesheet" href="/static/css/output.css"/>
 			<link rel="preconnect" href="https://fonts.googleapis.com"/>
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 			<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-			<script src="https://unpkg.com/htmx.org@2.0.4"></script>
+			<script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
 			// Clerk authentication (configured via env)
 			if meta.ClerkPublishableKeyFromCtx(ctx) != "" {
 				<script async crossorigin="anonymous" data-clerk-publishable-key={ meta.ClerkPublishableKeyFromCtx(ctx) } src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" type="text/javascript"></script>
