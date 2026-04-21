@@ -1,5 +1,6 @@
 # Binaries
 platinumapparel
+server
 *.exe
 
 # Build artifacts
@@ -32,6 +33,10 @@ data/*.db
 
 # Vercel
 .vercel
+
+# Local Codex/session artifacts
+.codex
+go-platinum-apparel/
 
 # SQLite temporary files
 *.db-shm
