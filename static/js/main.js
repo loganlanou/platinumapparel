@@ -34,8 +34,8 @@
   const hero = document.querySelector('.hero');
 
   if (pageLoader) {
-    // Minimum display time for loader
-    const minLoadTime = 1800;
+    // Keep the cinematic loader effect brief so it doesn't slow real navigation.
+    const minLoadTime = 180;
     const startTime = Date.now();
 
     const hideLoader = () => {
@@ -55,10 +55,10 @@
       }, remaining);
     };
 
-    if (document.readyState === 'complete') {
+    if (document.readyState !== 'loading') {
       hideLoader();
     } else {
-      window.addEventListener('load', hideLoader);
+      document.addEventListener('DOMContentLoaded', hideLoader, { once: true });
     }
   } else if (hero) {
     // If no loader, still animate hero
