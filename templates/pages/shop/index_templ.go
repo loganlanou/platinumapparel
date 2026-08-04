@@ -47,7 +47,7 @@ func Index() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " <section class=\"page-hero shop-hero\"><div class=\"page-hero-content\" data-animate=\"fade-up\"><span class=\"page-label\">Shop</span><h1 class=\"page-title\">All Products</h1><p class=\"page-subtitle\">Browse our complete collection of luxury pieces, curated for the distinguished gentleman.</p></div></section> <section class=\"shop-content\"><aside class=\"shop-filters\" data-animate=\"fade-up\"><div class=\"filter-group\"><h3 class=\"filter-title\">Category</h3><ul class=\"filter-options\"><li><a href=\"/shop\" class=\"filter-link active\">All Products</a></li><li><a href=\"/shop/category/watches\" class=\"filter-link\">Timepieces</a></li><li><a href=\"/shop/category/jewelry\" class=\"filter-link\">Fine Jewelry</a></li><li><a href=\"/shop/category/suits\" class=\"filter-link\">Tailored Suits</a></li><li><a href=\"/shop/category/handbags\" class=\"filter-link\">Handbags</a></li><li><a href=\"/shop/category/perfume\" class=\"filter-link\">Fragrances</a></li><li><a href=\"/shop/category/bullion\" class=\"filter-link\">Precious Metals</a></li></ul></div><div class=\"filter-group\"><h3 class=\"filter-title\">Collection</h3><ul class=\"filter-options\"><li><a href=\"/shop?collection=signature\" class=\"filter-link\">Signature</a></li><li><a href=\"/shop?collection=heritage\" class=\"filter-link\">Heritage</a></li><li><a href=\"/shop?collection=artisan\" class=\"filter-link\">Artisan</a></li><li><a href=\"/shop?collection=limited\" class=\"filter-link\">Limited Edition</a></li></ul></div><div class=\"filter-group\"><h3 class=\"filter-title\">Price Range</h3><ul class=\"filter-options\"><li><a href=\"/shop?price=under-1000\" class=\"filter-link\">Under $1,000</a></li><li><a href=\"/shop?price=1000-5000\" class=\"filter-link\">$1,000 - $5,000</a></li><li><a href=\"/shop?price=5000-15000\" class=\"filter-link\">$5,000 - $15,000</a></li><li><a href=\"/shop?price=15000-50000\" class=\"filter-link\">$15,000 - $50,000</a></li><li><a href=\"/shop?price=over-50000\" class=\"filter-link\">Over $50,000</a></li></ul></div></aside><main class=\"shop-products\"><div class=\"shop-toolbar\"><span class=\"product-count\">Showing 24 of 51 products</span> <select class=\"sort-select\"><option value=\"featured\">Featured</option> <option value=\"newest\">Newest Arrivals</option> <option value=\"price-low\">Price: Low to High</option> <option value=\"price-high\">Price: High to Low</option></select></div><div class=\"products-grid\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " <section class=\"page-hero shop-hero\"><div class=\"page-hero-content\" data-animate=\"fade-up\"><span class=\"page-label\">Shop</span><h1 class=\"page-title\">All Products</h1><p class=\"page-subtitle\">Browse our complete collection of luxury pieces, curated for the distinguished gentleman.</p></div></section> <section class=\"shop-content\" id=\"catalog\"><aside class=\"shop-filters\" data-animate=\"fade-up\"><div class=\"filter-group\"><h3 class=\"filter-title\">Category</h3><ul class=\"filter-options\"><li><a href=\"/shop\" class=\"filter-link active\">All Products</a></li><li><a href=\"/shop/category/watches\" class=\"filter-link\">Timepieces</a></li><li><a href=\"/shop/category/jewelry\" class=\"filter-link\">Fine Jewelry</a></li><li><a href=\"/shop/category/suits\" class=\"filter-link\">Tailored Suits</a></li><li><a href=\"/shop/category/handbags\" class=\"filter-link\">Handbags</a></li><li><a href=\"/shop/category/perfume\" class=\"filter-link\">Fragrances</a></li><li><a href=\"/shop/category/bullion\" class=\"filter-link\">Precious Metals</a></li></ul></div><div class=\"filter-group\"><h3 class=\"filter-title\">Price Range</h3><ul class=\"filter-options\"><li><a href=\"/shop?price=under-1000\" class=\"filter-link\">Under $1,000</a></li><li><a href=\"/shop?price=1000-5000\" class=\"filter-link\">$1,000 - $5,000</a></li><li><a href=\"/shop?price=5000-15000\" class=\"filter-link\">$5,000 - $15,000</a></li><li><a href=\"/shop?price=15000-50000\" class=\"filter-link\">$15,000 - $50,000</a></li><li><a href=\"/shop?price=over-50000\" class=\"filter-link\">Over $50,000</a></li></ul></div></aside><main class=\"shop-products\"><div class=\"shop-toolbar\"><label class=\"catalog-search\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"></line></svg> <input id=\"catalogSearch\" type=\"search\" placeholder=\"Search by piece or maison\" aria-label=\"Search the catalog\"></label> <span class=\"product-count\" id=\"productCount\">50 curated pieces</span> <select class=\"sort-select\" id=\"catalogSort\" aria-label=\"Sort products\"><option value=\"featured\">Featured</option> <option value=\"newest\">Newest Arrivals</option> <option value=\"price-low\">Price: Low to High</option> <option value=\"price-high\">Price: High to Low</option></select></div><div class=\"products-grid\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -147,7 +147,111 @@ func Index() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div><div class=\"section-cta\" data-animate=\"fade-up\"><a href=\"/shop?page=2\" class=\"btn-outline\"><span>Load More Products</span></a></div></main></section>")
+			templ_7745c5c3_Err = pages.ProductCard("Platinum Presentation Set", "$85,000", "/static/images/watches/watch_04_watch_case_selection.jpg", "/product/platinum-presentation-set").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Skeleton Mechanical", "$28,500", "/static/images/watches/watch_07_skeleton_mechanical.jpg", "/product/skeleton-mechanical").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Steel Chrono Classic", "$22,200", "/static/images/watches/watch_09_steel_chrono_studio.jpg", "/product/steel-chrono-classic").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Blue Sapphire Mesh", "$15,800", "/static/images/watches/watch_10_blue_sapphire_mesh.jpg", "/product/blue-sapphire-mesh").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Pearl Diamond Ring", "$6,800", "/static/images/jewelry/jewelry_03_pearl_diamond_ring.jpg", "/product/pearl-diamond-ring").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Monochrome Diamond Ring", "$22,000", "/static/images/jewelry/jewelry_06_monochrome_diamond_ring.jpg", "/product/monochrome-diamond-ring").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Diamond Wave Ring", "$8,900", "/static/images/jewelry/jewelry_07_ring_on_wavy_dark_surface.jpg", "/product/diamond-wave-ring").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Diamond Pendant Necklace", "$9,500", "/static/images/jewelry/jewelry_10_diamond_pendant_necklace.jpg", "/product/diamond-pendant-necklace").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Ivory Tailored Suit", "$4,200", "/static/images/suits/suit_06_white_womens_suit.jpg", "/product/ivory-tailored-suit").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Executive Tie Set", "$495", "/static/images/suits/suit_08_tie_adjustment_closeup.jpg", "/product/executive-tie-set").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("White Modern Suit", "$3,950", "/static/images/suits/suit_09_white_suit_bench.jpg", "/product/white-modern-suit").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Black City Fashion", "$4,100", "/static/images/suits/suit_10_black_city_fashion.jpg", "/product/black-city-fashion").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Quilted Pastel Bag", "$2,400", "/static/images/handbags/handbag_04_blue_mint_quilted.jpg", "/product/quilted-pastel-bag").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Boutique Crossbody", "$1,950", "/static/images/handbags/handbag_08_brown_store_crossbody.jpg", "/product/boutique-crossbody").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Metal Trim Structured", "$3,200", "/static/images/handbags/handbag_09_black_white_metal_trim.jpg", "/product/metal-trim-structured").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Luxury Lifestyle Tote", "$2,600", "/static/images/handbags/handbag_10_flatlay_bag_perfume_makeup.jpg", "/product/luxury-lifestyle-tote").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Classic No.5 Parfum", "$295", "/static/images/perfume/perfume_02_chanel_no5_minimal.jpg", "/product/classic-no5-parfum").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Rose Blush Parfum", "$245", "/static/images/perfume/perfume_04_pink_bottle_white_surface.jpg", "/product/rose-blush-parfum").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Petal Romance Eau", "$195", "/static/images/perfume/perfume_05_escada_with_petals.jpg", "/product/petal-romance-eau").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Dried Rose Essence", "$275", "/static/images/perfume/perfume_07_clean_bottle_with_dried_roses.jpg", "/product/dried-rose-essence").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Fine Gold Bar", "$7,800", "/static/images/bullion/bullion_03_fine_gold_closeup.jpg", "/product/fine-gold-bar").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Single Gold Ingot", "$3,950", "/static/images/bullion/bullion_04_single_gold_ingot.jpg", "/product/single-gold-ingot").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Investment Gold Bullion", "$42,000", "/static/images/bullion/bullion_06_gold_bullion_rows.jpg", "/product/investment-gold-bullion").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Gold Bar Wood Display", "$8,200", "/static/images/bullion/bullion_07_single_gold_bar_wood.jpg", "/product/gold-bar-wood-display").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Gold Bar Pattern", "$95,000", "/static/images/bullion/bullion_08_gold_bar_pattern.jpg", "/product/gold-bar-pattern").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = pages.ProductCard("Silver Coin Collector", "$485", "/static/images/bullion/bullion_10_silver_coin_reflection.jpg", "/product/silver-coin-collector").Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div><div class=\"catalog-empty\" id=\"catalogEmpty\" hidden><h3>No pieces match your search.</h3><p>Try another name or contact our concierge for private sourcing.</p><a href=\"/concierge#sourcing\" class=\"btn-outline\"><span>Private Sourcing</span></a></div></main></section>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -220,7 +324,7 @@ func Category(category string) templ.Component {
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(categoryTitle(category))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/shop/index.templ`, Line: 128, Col: 52}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/shop/index.templ`, Line: 148, Col: 52}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
@@ -233,7 +337,7 @@ func Category(category string) templ.Component {
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(categoryTitle(category))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/shop/index.templ`, Line: 129, Col: 74}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/shop/index.templ`, Line: 149, Col: 74}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {

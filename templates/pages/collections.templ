@@ -174,7 +174,7 @@ templ Collections() {
 				<span class="bespoke-label">Personal Shopping</span>
 				<h2 class="bespoke-title">Private Appointments</h2>
 				<p class="bespoke-text">Experience our collections in an intimate setting with a dedicated style consultant. Book a private appointment at our flagship boutique.</p>
-				<a href="/appointments" class="btn-gold">
+				<a href="/concierge#appointments" class="btn-gold">
 					<span>Book Appointment</span>
 				</a>
 			</div>
@@ -201,13 +201,41 @@ func collectionTitle(slug string) string {
 	}
 }
 
+func IsKnownCollection(slug string) bool {
+	switch slug {
+	case "watches", "timepieces", "jewelry", "suits", "signature", "handbags", "perfume", "fragrances", "bullion":
+		return true
+	default:
+		return false
+	}
+}
+
+func collectionDescription(slug string) string {
+	switch slug {
+	case "watches", "timepieces":
+		return "Explore mechanical icons, independent horology and exceptional references selected for design, condition and provenance."
+	case "jewelry":
+		return "Discover diamonds, important gemstones and precious-metal signatures chosen for proportion, craftsmanship and enduring beauty."
+	case "suits", "signature":
+		return "Discover full-canvas tailoring, considered proportions and exceptional cloth from celebrated mills and specialist ateliers."
+	case "handbags":
+		return "Explore enduring silhouettes in exceptional leathers, selected for construction, condition and lasting relevance."
+	case "perfume", "fragrances":
+		return "Discover distinguished compositions from iconic houses and independent perfumers, presented for collecting and gifting."
+	case "bullion":
+		return "Explore verified investment-grade gold and silver with documented weight, fineness and secure insured handling."
+	default:
+		return "Discover a considered selection of exceptional pieces, each reviewed by our private client team."
+	}
+}
+
 templ CollectionDetail(slug string) {
-	@layouts.Base(meta.New(collectionTitle(slug)+" Collection", "Explore our curated "+collectionTitle(slug)+" collection of luxury pieces.")) {
+	@layouts.Base(meta.New(collectionTitle(slug)+" Collection", collectionDescription(slug))) {
 		<section class="page-hero">
 			<div class="page-hero-content" data-animate="fade-up">
 				<span class="page-label">Collection</span>
 				<h1 class="page-title">{ collectionTitle(slug) }</h1>
-				<p class="page-subtitle">Discover our finest selection of luxury pieces.</p>
+				<p class="page-subtitle">{ collectionDescription(slug) }</p>
 			</div>
 		</section>
 		<section class="featured-section">

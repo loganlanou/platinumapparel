@@ -62,7 +62,7 @@ func Base(m meta.PageMeta) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</head><body class=\"bg-primary text-secondary min-h-screen antialiased\"><div id=\"pageLoader\" class=\"page-loader\"><div class=\"loader-content\"><div class=\"loader-logo\">PLATINUM</div><div class=\"loader-bar\"></div></div></div><a href=\"#main-content\" class=\"skip-link\">Skip to main content</a>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</head><body class=\"bg-primary text-secondary min-h-screen antialiased\"><a href=\"#main-content\" class=\"skip-link\">Skip to main content</a>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

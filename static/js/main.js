@@ -127,6 +127,7 @@
 
       mobileMenuBtn.classList.toggle('active');
       mobileMenu.classList.toggle('active');
+	  mobileMenuBtn.setAttribute('aria-expanded', String(!isActive));
       document.body.style.overflow = isActive ? '' : 'hidden';
 
       // Animate menu links
@@ -150,10 +151,21 @@
       link.addEventListener('click', () => {
         mobileMenuBtn.classList.remove('active');
         mobileMenu.classList.remove('active');
+		mobileMenuBtn.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
     });
   }
+
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    const isCurrent = href === '/' ? currentPath === '/' : currentPath === href || currentPath.startsWith(`${href}/`);
+    if (isCurrent) {
+      link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
+    }
+  });
 
   // ============================================
   // Advanced Scroll Animations
@@ -504,9 +516,7 @@
   // Newsletter Form
   // ============================================
 
-  const newsletterForm = document.getElementById('newsletterForm');
-
-  if (newsletterForm) {
+  document.querySelectorAll('.newsletter-form').forEach(newsletterForm => {
     newsletterForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -531,6 +541,76 @@
         }, 2500);
       }, 1500);
     });
+  });
+
+  const conciergeForm = document.getElementById('conciergeForm');
+  if (conciergeForm) {
+    conciergeForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const button = conciergeForm.querySelector('button');
+      const status = document.getElementById('conciergeStatus');
+      button.disabled = true;
+      button.querySelector('span').textContent = 'Request Received';
+      if (status) status.textContent = 'Thank you. A private client specialist will respond within one business day.';
+      conciergeForm.reset();
+    });
+  }
+
+  const catalogSearch = document.getElementById('catalogSearch');
+  const catalogSort = document.getElementById('catalogSort');
+  const catalogGrid = document.querySelector('#catalog .products-grid');
+  const productCount = document.getElementById('productCount');
+  const catalogEmpty = document.getElementById('catalogEmpty');
+
+  if (catalogGrid && catalogSearch) {
+    const catalogCards = Array.from(catalogGrid.querySelectorAll('.product-card'));
+	const priceFilter = new URLSearchParams(window.location.search).get('price');
+	const matchesPriceFilter = (price) => {
+	  if (!priceFilter) return true;
+	  if (priceFilter === 'under-1000') return price < 1000;
+	  if (priceFilter === '1000-5000') return price >= 1000 && price <= 5000;
+	  if (priceFilter === '5000-15000') return price > 5000 && price <= 15000;
+	  if (priceFilter === '15000-50000') return price > 15000 && price <= 50000;
+	  if (priceFilter === 'over-50000') return price > 50000;
+	  return true;
+	};
+	document.querySelectorAll('.filter-link').forEach(link => {
+	  if (priceFilter && link.getAttribute('href')?.includes(`price=${priceFilter}`)) link.classList.add('active');
+	});
+
+    const updateCatalog = () => {
+      const query = catalogSearch.value.trim().toLowerCase();
+      let visible = 0;
+      catalogCards.forEach(card => {
+		const price = Number((card.dataset.productPrice || '').replace(/[^0-9.]/g, ''));
+		const matches = (!query || card.textContent.toLowerCase().includes(query)) && matchesPriceFilter(price);
+        card.hidden = !matches;
+        if (matches) visible += 1;
+      });
+      if (productCount) productCount.textContent = `${visible} ${visible === 1 ? 'piece' : 'pieces'}`;
+      if (catalogEmpty) catalogEmpty.hidden = visible !== 0;
+    };
+
+    catalogSearch.addEventListener('input', debounce(updateCatalog, 120));
+	updateCatalog();
+
+    if (catalogSort) {
+      catalogSort.addEventListener('change', () => {
+        const sorted = [...catalogCards];
+        if (catalogSort.value === 'price-low' || catalogSort.value === 'price-high') {
+          const direction = catalogSort.value === 'price-low' ? 1 : -1;
+          sorted.sort((a, b) => {
+            const priceA = Number((a.dataset.productPrice || '').replace(/[^0-9.]/g, ''));
+            const priceB = Number((b.dataset.productPrice || '').replace(/[^0-9.]/g, ''));
+            return (priceA - priceB) * direction;
+          });
+        } else if (catalogSort.value === 'newest') {
+          sorted.reverse();
+        }
+        sorted.forEach(card => catalogGrid.appendChild(card));
+        updateCatalog();
+      });
+    }
   }
 
   // ============================================
@@ -543,7 +623,21 @@
     if (evt.detail.target.id === 'cart-drawer' && cartDrawer) {
       cartDrawer.classList.add('active');
       document.body.style.overflow = 'hidden';
+	  const content = cartDrawer.querySelector('[data-cart-count]');
+	  const badge = document.getElementById('cart-count');
+	  if (content && badge) badge.textContent = content.dataset.cartCount || '0';
     }
+  });
+
+  document.body.addEventListener('cart-updated', (event) => {
+	const badge = document.getElementById('cart-count');
+	if (badge && event.detail && typeof event.detail.count !== 'undefined') {
+	  badge.textContent = String(event.detail.count);
+	}
+  });
+
+  document.body.addEventListener('click', (event) => {
+	if (event.target.closest('.cart-close')) closeCart();
   });
 
   // Close cart drawer
@@ -557,9 +651,15 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeCart();
+	  const zoomedProduct = document.querySelector('.product-image-stage.is-zoomed');
+	  if (zoomedProduct) {
+		zoomedProduct.classList.remove('is-zoomed');
+		document.body.style.overflow = '';
+	  }
       if (mobileMenu && mobileMenu.classList.contains('active')) {
         mobileMenuBtn.classList.remove('active');
         mobileMenu.classList.remove('active');
+		mobileMenuBtn.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       }
     }
@@ -571,6 +671,17 @@
 
   const lazyImages = document.querySelectorAll('img[loading="lazy"]');
 
+  const applyImageFallback = (img) => {
+    if (img.dataset.fallbackApplied === 'true') return;
+    img.dataset.fallbackApplied = 'true';
+    img.src = '/static/images/product-placeholder.svg';
+    img.classList.add('image-placeholder');
+  };
+
+  document.addEventListener('error', (event) => {
+    if (event.target instanceof HTMLImageElement) applyImageFallback(event.target);
+  }, true);
+
   lazyImages.forEach(img => {
     img.style.opacity = '0';
     img.style.transition = 'opacity 0.6s ease';
@@ -578,6 +689,10 @@
     img.addEventListener('load', () => {
       img.style.opacity = '1';
     });
+
+    if (img.complete && img.naturalWidth === 0) {
+	  applyImageFallback(img);
+	}
 
     if (img.complete) {
       img.style.opacity = '1';

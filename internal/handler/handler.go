@@ -41,6 +41,7 @@ func (h *Handler) RegisterRoutes(e *echo.Echo) {
 	e.GET("/craft", h.Craft)
 	e.GET("/heritage", h.Heritage)
 	e.GET("/bespoke", h.Bespoke)
+	e.GET("/concierge", h.Concierge)
 	e.GET("/product/:slug", h.ProductDetail)
 
 	// Shop routes

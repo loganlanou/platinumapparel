@@ -9,8 +9,10 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
+	"encoding/json"
 	"handler/internal/meta"
 	"handler/templates/layouts"
+	"strconv"
 	"strings"
 )
 
@@ -24,7 +26,7 @@ type Product struct {
 	Image       string
 }
 
-// products is the complete catalog of 51 products across 6 categories.
+// products is the complete catalog of 50 products across 6 categories.
 var products = map[string]Product{
 	// Watches
 	"black-leather-chronograph": {
@@ -44,10 +46,10 @@ var products = map[string]Product{
 		Image:       "watch_02_steel_chronograph.jpg",
 	},
 	"blue-diver-watch": {
-		Name:        "Blue Diver Watch",
+		Name:        "Deepsea Sea-Dweller",
 		Slug:        "blue-diver-watch",
 		Price:       "$32,750",
-		Description: "A professional diving instrument rated to 300 meters. The deep blue ceramic bezel and luminous indices ensure readability in any condition.",
+		Description: "A professional Rolex diving instrument in Oystersteel, engineered for extreme depth and fitted with a unidirectional Cerachrom bezel. The Chromalight display, Ringlock case architecture and automatic helium escape valve deliver uncompromising underwater performance.",
 		Category:    "watches",
 		Image:       "watch_03_blue_diver_watch.jpg",
 	},
@@ -60,10 +62,10 @@ var products = map[string]Product{
 		Image:       "watch_04_watch_case_selection.jpg",
 	},
 	"grand-complication": {
-		Name:        "Grand Complication",
+		Name:        "Carrera Chronograph",
 		Slug:        "grand-complication",
-		Price:       "$48,900",
-		Description: "The pinnacle of horological achievement, featuring a minute repeater, perpetual calendar, and split-seconds chronograph in a single 40mm platinum case.",
+		Price:       "$7,250",
+		Description: "A sporting TAG Heuer chronograph with a highly legible tri-compax display, applied indices and precise automatic timing. Its polished and brushed case finishing gives the modern Carrera profile a refined, architectural presence.",
 		Category:    "watches",
 		Image:       "watch_05_macro_luxury_dial.jpg",
 	},
@@ -76,10 +78,10 @@ var products = map[string]Product{
 		Image:       "watch_07_skeleton_mechanical.jpg",
 	},
 	"steel-chrono-classic": {
-		Name:        "Steel Chrono Classic",
+		Name:        "L3 Chronograph",
 		Slug:        "steel-chrono-classic",
-		Price:       "$22,200",
-		Description: "A timeless chronograph design in polished steel. The silver-toned dial features three subdials and a tachymeter bezel for measuring speed.",
+		Price:       "$4,950",
+		Description: "A contemporary Maurice de Mauriac chronograph in brushed steel, balancing instrument-style legibility with independent Swiss character. The multi-register dial, day-date display and tactile pushers are designed for confident everyday wear.",
 		Category:    "watches",
 		Image:       "watch_09_steel_chrono_studio.jpg",
 	},
@@ -434,9 +436,120 @@ var products = map[string]Product{
 	},
 }
 
+// productBrands identifies represented houses where the image and listing support it.
+// Remaining pieces belong to a named Platinum private-label atelier rather than being
+// attributed to a third-party house without supporting product documentation.
+var productBrands = map[string]string{
+	"blue-diver-watch":     "Rolex",
+	"grand-complication":   "TAG Heuer",
+	"steel-chrono-classic": "Maurice de Mauriac",
+	"classic-no5-parfum":   "Chanel",
+	"amber-night-eau":      "Givenchy",
+	"petal-romance-eau":    "Escada",
+	"designer-trio-set":    "The Maison Edit",
+}
+
+func ProductExists(slug string) bool {
+	_, ok := products[slug]
+	return ok
+}
+
 // Helper function to format product name from slug
 func formatProductName(slug string) string {
+	if p, ok := products[slug]; ok {
+		return p.Name
+	}
 	return strings.ReplaceAll(slug, "-", " ")
+}
+
+func getProductBrand(slug string) string {
+	if brand, ok := productBrands[slug]; ok {
+		return brand
+	}
+	if p, ok := products[slug]; ok {
+		switch p.Category {
+		case "watches":
+			return "Platinum Horology"
+		case "jewelry":
+			return "Platinum Joaillerie"
+		case "suits":
+			return "Platinum Sartoria"
+		case "handbags":
+			return "Platinum Maroquinerie"
+		case "perfume":
+			return "Platinum Parfums"
+		case "bullion":
+			return "Platinum Reserve"
+		}
+	}
+	return "Platinum Atelier"
+}
+
+func getProductFromHref(href string) (Product, bool) {
+	slug := strings.TrimPrefix(href, "/product/")
+	p, ok := products[slug]
+	return p, ok
+}
+
+func getProductCardName(href, fallback string) string {
+	if p, ok := getProductFromHref(href); ok {
+		return p.Name
+	}
+	return fallback
+}
+
+func getProductCardPrice(href, fallback string) string {
+	if p, ok := getProductFromHref(href); ok {
+		return p.Price
+	}
+	return fallback
+}
+
+func getProductReference(slug string) string {
+	category := getProductCategory(slug)
+	prefix := "OBJ"
+	if len(category) >= 3 {
+		prefix = strings.ToUpper(category[:3])
+	}
+	code := strings.ToUpper(strings.ReplaceAll(slug, "-", ""))
+	if len(code) > 8 {
+		code = code[:8]
+	}
+	return "PA-" + prefix + "-" + code
+}
+
+func productCartValues(slug string) string {
+	p, ok := products[slug]
+	if !ok {
+		return "{}"
+	}
+	price, _ := strconv.ParseInt(strings.ReplaceAll(strings.TrimPrefix(p.Price, "$"), ",", ""), 10, 64)
+	values, _ := json.Marshal(map[string]string{
+		"product_id":   p.Slug,
+		"product_name": getProductBrand(slug) + " " + p.Name,
+		"price_cents":  strconv.FormatInt(price*100, 10),
+		"image_url":    "/static/images/" + p.Category + "/" + p.Image,
+	})
+	return string(values)
+}
+
+func getProductNarrative(slug string) string {
+	switch getProductCategory(slug) {
+	case "watches":
+		return "Individually inspected for timekeeping, exterior condition and correct operation. The piece is presented with a detailed condition report and our authenticity commitment."
+	case "jewelry":
+		return "Selected for exceptional proportion, finish and light performance. Precious-metal marks and principal stones are examined before the piece enters the collection."
+	case "suits":
+		return "Cut to create a clean, balanced silhouette and finished with hand-worked details. Complimentary first alterations are coordinated by our client team."
+	case "handbags":
+		return "Chosen for material quality, construction and enduring design. Hardware, stitching, interior and closure are carefully inspected before delivery."
+	case "perfume":
+		return "Stored in controlled conditions and presented in signature packaging. A fragrance specialist can advise on composition, concentration and gifting."
+	case "bullion":
+		return "Weight, fineness and identifying marks are verified before dispatch. The piece is supplied with applicable assay or provenance documentation and insured handling."
+	default:
+		return "Selected and inspected by the Platinum private client team, with full product guidance available before purchase."
+	}
 }
 
 // getProductCategory returns the category for a given product slug.
@@ -560,118 +673,118 @@ func ProductDetail(slug string) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " <nav class=\"px-4 lg:px-8 py-4 text-sm text-muted border-b border-border\"><a href=\"/\" class=\"hover:text-gold transition-colors\">Home</a> <span class=\"mx-2 text-border\">/</span> <a href=\"/shop\" class=\"hover:text-gold transition-colors\">Shop</a> <span class=\"mx-2 text-border\">/</span> <span class=\"text-secondary capitalize\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " <nav class=\"product-page-breadcrumb px-4 lg:px-8 py-4 text-sm text-muted border-b border-border\" aria-label=\"Breadcrumb\"><a href=\"/\" class=\"hover:text-gold transition-colors\">Home</a> <span class=\"mx-2 text-border\">/</span> <a href=\"/shop\" class=\"hover:text-gold transition-colors\">Shop</a> <span class=\"mx-2 text-border\">/</span> <span class=\"text-secondary\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
-			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(formatProductName(slug))
+			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(getProductBrand(slug))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 530, Col: 68}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 643, Col: 55}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</span></nav> <section class=\"max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-16\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16\"><div class=\"w-full\"><div class=\"relative aspect-square bg-card border border-border overflow-hidden mb-4\"><img id=\"main-product-image\" src=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, " ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
-			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(getProductImage(slug, "main"))
+			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(formatProductName(slug))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 541, Col: 42}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 643, Col: 83}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" alt=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</span></nav> <section class=\"max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-16\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16\"><div class=\"w-full\"><div id=\"product-image-stage\" class=\"product-image-stage relative aspect-square bg-card border border-border overflow-hidden mb-4\"><img id=\"main-product-image\" src=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
-			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(formatProductName(slug))
+			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(getProductImage(slug, "main"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 542, Col: 36}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 654, Col: 42}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"w-full h-full object-cover transition-transform duration-500 hover:scale-105\"> <button class=\"absolute bottom-4 right-4 w-10 h-10 bg-dark/80 border border-border text-secondary flex items-center justify-center hover:bg-gold hover:text-dark hover:border-gold transition-all\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle> <path d=\"m21 21-4.35-4.35\"></path> <path d=\"M11 8v6\"></path> <path d=\"M8 11h6\"></path></svg></button></div><div class=\"grid grid-cols-4 gap-3\"><button class=\"thumb-btn aspect-square border-2 border-gold overflow-hidden\" onclick=\"changeMainImage(this)\"><img src=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" alt=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var6 string
-			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(getProductImage(slug, "thumb1"))
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(formatProductName(slug))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 557, Col: 49}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 655, Col: 36}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" alt=\"View 1\" class=\"w-full h-full object-cover\"></button> <button class=\"thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors\" onclick=\"changeMainImage(this)\"><img src=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" class=\"w-full h-full object-cover transition-transform duration-500 hover:scale-105\"> <button class=\"product-zoom-button absolute bottom-4 right-4 w-10 h-10 bg-dark/80 border border-border text-secondary flex items-center justify-center hover:bg-gold hover:text-dark hover:border-gold transition-all\" onclick=\"toggleProductZoom()\" aria-label=\"Enlarge product image\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle> <path d=\"m21 21-4.35-4.35\"></path> <path d=\"M11 8v6\"></path> <path d=\"M8 11h6\"></path></svg></button></div><div class=\"grid grid-cols-4 gap-3\"><button class=\"thumb-btn aspect-square border-2 border-gold overflow-hidden\" onclick=\"changeMainImage(this)\"><img src=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var7 string
-			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(getProductImage(slug, "thumb2"))
+			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(getProductImage(slug, "thumb1"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 560, Col: 49}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 670, Col: 49}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" alt=\"View 2\" class=\"w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity\"></button> <button class=\"thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors\" onclick=\"changeMainImage(this)\"><img src=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" alt=\"View 1\" class=\"w-full h-full object-cover\"></button><div class=\"product-view-placeholder\"><span>Detail</span><small>Available on request</small></div><div class=\"product-view-placeholder\"><span>Profile</span><small>Available on request</small></div><div class=\"product-view-placeholder\"><span>Packaging</span><small>Available on request</small></div></div></div><div class=\"w-full flex flex-col\"><div class=\"mb-6 pb-6 border-b border-border\"><span class=\"inline-block text-xs tracking-[0.3em] uppercase text-gold mb-2\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var8 string
-			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(getProductImage(slug, "thumb3"))
+			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(getProductBrand(slug))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 563, Col: 49}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 681, Col: 106}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\" alt=\"View 3\" class=\"w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity\"></button> <button class=\"thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors\" onclick=\"changeMainImage(this)\"><img src=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</span><h1 class=\"font-display text-3xl lg:text-4xl text-secondary mb-4\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var9 string
-			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(getProductImage(slug, "thumb4"))
+			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(formatProductName(slug))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 566, Col: 49}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 682, Col: 97}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\" alt=\"View 4\" class=\"w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity\"></button></div></div><div class=\"w-full flex flex-col\"><div class=\"mb-6 pb-6 border-b border-border\"><span class=\"inline-block text-xs tracking-[0.3em] uppercase text-gold mb-2\">Signature Collection</span><h1 class=\"font-display text-3xl lg:text-4xl text-secondary mb-4 capitalize\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</h1><div class=\"font-display text-2xl text-gold\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var10 string
-			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(formatProductName(slug))
+			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(getProductPrice(slug))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 575, Col: 108}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 683, Col: 74}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</h1><div class=\"font-display text-2xl text-gold\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</div><div class=\"product-reference\"><span class=\"availability-dot\"></span>Available <span>·</span> Ref. ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var11 string
-			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(getProductPrice(slug))
+			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(getProductReference(slug))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 576, Col: 74}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 684, Col: 133}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
@@ -684,13 +797,26 @@ func ProductDetail(slug string) templ.Component {
 			var templ_7745c5c3_Var12 string
 			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(getProductDescription(slug))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 580, Col: 79}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 688, Col: 79}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</p></div><div class=\"mb-8 p-6 bg-card border border-border\"><h3 class=\"text-xs tracking-[0.2em] uppercase text-gold mb-4\">Specifications</h3><div class=\"grid grid-cols-2 gap-4\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</p><p class=\"text-muted-light leading-relaxed mt-4\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var13 string
+			templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(getProductNarrative(slug))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 689, Col: 82}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</p></div><div class=\"mb-8 p-6 bg-card border border-border\"><h3 class=\"text-xs tracking-[0.2em] uppercase text-gold mb-4\">Specifications</h3><div class=\"grid grid-cols-2 gap-4\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -698,7 +824,46 @@ func ProductDetail(slug string) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</div></div><div class=\"flex flex-col sm:flex-row gap-4 mb-4\"><div class=\"flex items-center border border-border bg-card\"><button onclick=\"decrementQty()\" class=\"w-12 h-12 text-secondary text-xl hover:bg-gold hover:text-dark transition-all\">−</button> <input type=\"number\" id=\"product-qty\" value=\"1\" min=\"1\" max=\"10\" readonly class=\"w-16 h-12 bg-transparent border-x border-border text-center text-secondary\"> <button onclick=\"incrementQty()\" class=\"w-12 h-12 text-secondary text-xl hover:bg-gold hover:text-dark transition-all\">+</button></div><button class=\"flex-1 h-12 bg-gold text-dark font-medium tracking-wider uppercase text-sm hover:bg-gold-light transition-all\" hx-post=\"/cart/add\" hx-vals='{\"product_id\": \"1\", \"quantity\": \"1\"}' hx-swap=\"none\">Add to Cart</button></div><button class=\"w-full h-12 border border-border text-secondary flex items-center justify-center gap-3 hover:border-gold hover:text-gold transition-all mb-8\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"></path></svg> <span class=\"text-sm tracking-wider uppercase\">Add to Wishlist</span></button><div class=\"grid grid-cols-2 gap-4 p-4 bg-card border border-border mb-8\"><div class=\"flex items-center gap-3 text-sm text-muted-light\"><svg class=\"text-gold flex-shrink-0\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"1\" y=\"3\" width=\"22\" height=\"5\" rx=\"2\"></rect> <path d=\"M21 8v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8\"></path> <path d=\"M10 12h4\"></path></svg> <span>Free Shipping</span></div><div class=\"flex items-center gap-3 text-sm text-muted-light\"><svg class=\"text-gold flex-shrink-0\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z\"></path></svg> <span>Gift Packaging</span></div><div class=\"flex items-center gap-3 text-sm text-muted-light\"><svg class=\"text-gold flex-shrink-0\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"></path></svg> <span>5-Year Warranty</span></div><div class=\"flex items-center gap-3 text-sm text-muted-light\"><svg class=\"text-gold flex-shrink-0\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><polyline points=\"9 11 12 14 22 4\"></polyline> <path d=\"M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11\"></path></svg> <span>Free Returns</span></div></div><div class=\"border-t border-border\"><details class=\"border-b border-border group\"><summary class=\"flex items-center justify-between py-4 cursor-pointer text-secondary hover:text-gold transition-colors\"><span class=\"text-sm\">Product Details</span> <svg class=\"text-gold transition-transform group-open:rotate-180\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg></summary><div class=\"pb-4 text-sm text-muted-light leading-relaxed\">Each piece in our Signature Collection represents the pinnacle of craftsmanship. Hand-finished by our master artisans, this item showcases meticulous attention to detail and the finest materials sourced from around the world.</div></details> <details class=\"border-b border-border group\"><summary class=\"flex items-center justify-between py-4 cursor-pointer text-secondary hover:text-gold transition-colors\"><span class=\"text-sm\">Shipping & Returns</span> <svg class=\"text-gold transition-transform group-open:rotate-180\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg></summary><div class=\"pb-4 text-sm text-muted-light leading-relaxed\">Complimentary express shipping on all orders. Items arrive in our signature luxury packaging. Returns accepted within 30 days of delivery in original condition.</div></details> <details class=\"border-b border-border group\"><summary class=\"flex items-center justify-between py-4 cursor-pointer text-secondary hover:text-gold transition-colors\"><span class=\"text-sm\">Care Instructions</span> <svg class=\"text-gold transition-transform group-open:rotate-180\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg></summary><div class=\"pb-4 text-sm text-muted-light leading-relaxed\">Store in a cool, dry place away from direct sunlight. Clean with a soft, lint-free cloth. For timepieces, service every 3-5 years to maintain optimal performance.</div></details></div></div></div></section> <section class=\"py-16 lg:py-24 px-4 lg:px-8 bg-dark border-t border-border\"><div class=\"max-w-7xl mx-auto\"><div class=\"text-center mb-12\"><span class=\"inline-block text-xs tracking-[0.3em] uppercase text-gold mb-3\">You May Also Like</span><h2 class=\"font-display text-3xl lg:text-4xl text-secondary\">Related Products</h2></div><div class=\"grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</div></div><div class=\"flex flex-col sm:flex-row gap-4 mb-4\"><div class=\"flex items-center border border-border bg-card\"><button onclick=\"decrementQty()\" class=\"w-12 h-12 text-secondary text-xl hover:bg-gold hover:text-dark transition-all\">−</button> <input type=\"number\" id=\"product-qty\" name=\"quantity\" value=\"1\" min=\"1\" max=\"10\" readonly class=\"w-16 h-12 bg-transparent border-x border-border text-center text-secondary\"> <button onclick=\"incrementQty()\" class=\"w-12 h-12 text-secondary text-xl hover:bg-gold hover:text-dark transition-all\">+</button></div><button class=\"flex-1 h-12 bg-gold text-dark font-medium tracking-wider uppercase text-sm hover:bg-gold-light transition-all\" hx-post=\"/cart/add\" hx-vals=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var14 string
+			templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(productCartValues(slug))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 708, Col: 40}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "\" hx-include=\"#product-qty\" hx-target=\"#cart-drawer\" hx-swap=\"innerHTML\">Add to Cart</button></div><a href=\"/concierge#contact\" class=\"w-full h-12 border border-border text-secondary flex items-center justify-center gap-3 hover:border-gold hover:text-gold transition-all mb-8\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"></path></svg> <span class=\"text-sm tracking-wider uppercase\">Ask a Specialist</span></a><div class=\"grid grid-cols-2 gap-4 p-4 bg-card border border-border mb-8\"><div class=\"flex items-center gap-3 text-sm text-muted-light\"><svg class=\"text-gold flex-shrink-0\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"1\" y=\"3\" width=\"22\" height=\"5\" rx=\"2\"></rect> <path d=\"M21 8v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8\"></path> <path d=\"M10 12h4\"></path></svg> <span>Free Shipping</span></div><div class=\"flex items-center gap-3 text-sm text-muted-light\"><svg class=\"text-gold flex-shrink-0\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z\"></path></svg> <span>Gift Packaging</span></div><div class=\"flex items-center gap-3 text-sm text-muted-light\"><svg class=\"text-gold flex-shrink-0\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"></path></svg> <span>5-Year Warranty</span></div><div class=\"flex items-center gap-3 text-sm text-muted-light\"><svg class=\"text-gold flex-shrink-0\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><polyline points=\"9 11 12 14 22 4\"></polyline> <path d=\"M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11\"></path></svg> <span>Free Returns</span></div></div><div class=\"border-t border-border\"><details class=\"border-b border-border group\"><summary class=\"flex items-center justify-between py-4 cursor-pointer text-secondary hover:text-gold transition-colors\"><span class=\"text-sm\">Product Details</span> <svg class=\"text-gold transition-transform group-open:rotate-180\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg></summary><div class=\"pb-4 text-sm text-muted-light leading-relaxed\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var15 string
+			templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(getProductDescription(slug))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 763, Col: 37}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, " ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var16 string
+			templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(getProductNarrative(slug))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/product.templ`, Line: 763, Col: 67}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</div></details> <details class=\"border-b border-border group\"><summary class=\"flex items-center justify-between py-4 cursor-pointer text-secondary hover:text-gold transition-colors\"><span class=\"text-sm\">Shipping & Returns</span> <svg class=\"text-gold transition-transform group-open:rotate-180\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg></summary><div class=\"pb-4 text-sm text-muted-light leading-relaxed\">Complimentary insured express delivery is included. A signature is required on arrival. Unworn ready-to-wear pieces may be returned within 14 days; bespoke, personalized, fragrance and market-priced bullion orders are final sale.</div></details> <details class=\"border-b border-border group\"><summary class=\"flex items-center justify-between py-4 cursor-pointer text-secondary hover:text-gold transition-colors\"><span class=\"text-sm\">Care Instructions</span> <svg class=\"text-gold transition-transform group-open:rotate-180\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg></summary><div class=\"pb-4 text-sm text-muted-light leading-relaxed\">Store in a cool, dry place away from direct sunlight. Clean with a soft, lint-free cloth. For timepieces, service every 3-5 years to maintain optimal performance.</div></details></div></div></div></section> <section class=\"py-16 lg:py-24 px-4 lg:px-8 bg-dark border-t border-border\"><div class=\"max-w-7xl mx-auto\"><div class=\"text-center mb-12\"><span class=\"inline-block text-xs tracking-[0.3em] uppercase text-gold mb-3\">You May Also Like</span><h2 class=\"font-display text-3xl lg:text-4xl text-secondary\">Related Products</h2></div><div class=\"grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -708,13 +873,13 @@ func ProductDetail(slug string) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</div></div></section> <script>\n\t\t\tfunction changeMainImage(thumb) {\n\t\t\t\tconst mainImg = document.getElementById('main-product-image');\n\t\t\t\tconst thumbImg = thumb.querySelector('img');\n\t\t\t\tmainImg.src = thumbImg.src;\n\n\t\t\t\tdocument.querySelectorAll('.thumb-btn').forEach(t => {\n\t\t\t\t\tt.classList.remove('border-gold');\n\t\t\t\t\tt.classList.add('border-border');\n\t\t\t\t\tt.querySelector('img').classList.add('opacity-70');\n\t\t\t\t});\n\t\t\t\tthumb.classList.remove('border-border');\n\t\t\t\tthumb.classList.add('border-gold');\n\t\t\t\tthumb.querySelector('img').classList.remove('opacity-70');\n\t\t\t}\n\n\t\t\tfunction incrementQty() {\n\t\t\t\tconst input = document.getElementById('product-qty');\n\t\t\t\tif (parseInt(input.value) < 10) {\n\t\t\t\t\tinput.value = parseInt(input.value) + 1;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tfunction decrementQty() {\n\t\t\t\tconst input = document.getElementById('product-qty');\n\t\t\t\tif (parseInt(input.value) > 1) {\n\t\t\t\t\tinput.value = parseInt(input.value) - 1;\n\t\t\t\t}\n\t\t\t}\n\t\t</script>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</div></div></section> <script>\n\t\t\tfunction changeMainImage(thumb) {\n\t\t\t\tconst mainImg = document.getElementById('main-product-image');\n\t\t\t\tconst thumbImg = thumb.querySelector('img');\n\t\t\t\tmainImg.src = thumbImg.src;\n\n\t\t\t\tdocument.querySelectorAll('.thumb-btn').forEach(t => {\n\t\t\t\t\tt.classList.remove('border-gold');\n\t\t\t\t\tt.classList.add('border-border');\n\t\t\t\t\tt.querySelector('img').classList.add('opacity-70');\n\t\t\t\t});\n\t\t\t\tthumb.classList.remove('border-border');\n\t\t\t\tthumb.classList.add('border-gold');\n\t\t\t\tthumb.querySelector('img').classList.remove('opacity-70');\n\t\t\t}\n\n\t\t\tfunction incrementQty() {\n\t\t\t\tconst input = document.getElementById('product-qty');\n\t\t\t\tif (parseInt(input.value) < 10) {\n\t\t\t\t\tinput.value = parseInt(input.value) + 1;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tfunction decrementQty() {\n\t\t\t\tconst input = document.getElementById('product-qty');\n\t\t\t\tif (parseInt(input.value) > 1) {\n\t\t\t\t\tinput.value = parseInt(input.value) - 1;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tfunction toggleProductZoom() {\n\t\t\t\tconst stage = document.getElementById('product-image-stage');\n\t\t\t\tif (!stage) return;\n\t\t\t\tconst active = stage.classList.toggle('is-zoomed');\n\t\t\t\tdocument.body.style.overflow = active ? 'hidden' : '';\n\t\t\t}\n\t\t</script>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layouts.Base(meta.New(formatProductName(slug), "Discover the craftsmanship and details of this exceptional piece.").AsProduct()).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layouts.Base(meta.New(getProductBrand(slug)+" "+formatProductName(slug), getProductDescription(slug)).AsProduct()).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -739,43 +904,48 @@ func productSpecsInline(slug string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var13 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var13 == nil {
-			templ_7745c5c3_Var13 = templ.NopComponent
+		templ_7745c5c3_Var17 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var17 == nil {
+			templ_7745c5c3_Var17 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		if getProductCategory(slug) == "watches" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Movement</span> <span class=\"text-sm text-secondary\">Swiss Automatic</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Case Size</span> <span class=\"text-sm text-secondary\">41mm</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Case Material</span> <span class=\"text-sm text-secondary\">Platinum / 18k Gold</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Water Resistance</span> <span class=\"text-sm text-secondary\">100m</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Power Reserve</span> <span class=\"text-sm text-secondary\">72 Hours</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Crystal</span> <span class=\"text-sm text-secondary\">Sapphire</span></div>")
+		if slug == "blue-diver-watch" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Movement</span> <span class=\"text-sm text-secondary\">Rolex Calibre 3235</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Case Size</span> <span class=\"text-sm text-secondary\">44mm</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Case Material</span> <span class=\"text-sm text-secondary\">Oystersteel</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Water Resistance</span> <span class=\"text-sm text-secondary\">3,900m / 12,800ft</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Power Reserve</span> <span class=\"text-sm text-secondary\">Approximately 70 hours</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Crystal</span> <span class=\"text-sm text-secondary\">Scratch-resistant sapphire</span></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		} else if getProductCategory(slug) == "watches" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Movement</span> <span class=\"text-sm text-secondary\">Swiss Automatic</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Case Size</span> <span class=\"text-sm text-secondary\">41mm</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Case Material</span> <span class=\"text-sm text-secondary\">Platinum / 18k Gold</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Water Resistance</span> <span class=\"text-sm text-secondary\">100m</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Power Reserve</span> <span class=\"text-sm text-secondary\">72 Hours</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Crystal</span> <span class=\"text-sm text-secondary\">Sapphire</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		} else if getProductCategory(slug) == "jewelry" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Material</span> <span class=\"text-sm text-secondary\">18k Gold</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Weight</span> <span class=\"text-sm text-secondary\">12.5g</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Finish</span> <span class=\"text-sm text-secondary\">Polished</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Hallmark</span> <span class=\"text-sm text-secondary\">750</span></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Material</span> <span class=\"text-sm text-secondary\">18k Gold</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Weight</span> <span class=\"text-sm text-secondary\">12.5g</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Finish</span> <span class=\"text-sm text-secondary\">Polished</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Hallmark</span> <span class=\"text-sm text-secondary\">750</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		} else if getProductCategory(slug) == "suits" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Fabric</span> <span class=\"text-sm text-secondary\">Super 150s Wool</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Lining</span> <span class=\"text-sm text-secondary\">Bemberg Cupro</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Buttons</span> <span class=\"text-sm text-secondary\">Horn</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Construction</span> <span class=\"text-sm text-secondary\">Full Canvas</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Origin</span> <span class=\"text-sm text-secondary\">Italy</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Care</span> <span class=\"text-sm text-secondary\">Dry Clean Only</span></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Fabric</span> <span class=\"text-sm text-secondary\">Super 150s Wool</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Lining</span> <span class=\"text-sm text-secondary\">Bemberg Cupro</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Buttons</span> <span class=\"text-sm text-secondary\">Horn</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Construction</span> <span class=\"text-sm text-secondary\">Full Canvas</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Origin</span> <span class=\"text-sm text-secondary\">Italy</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Care</span> <span class=\"text-sm text-secondary\">Dry Clean Only</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		} else if getProductCategory(slug) == "handbags" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Material</span> <span class=\"text-sm text-secondary\">Premium Calfskin</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Dimensions</span> <span class=\"text-sm text-secondary\">28 x 20 x 12 cm</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Hardware</span> <span class=\"text-sm text-secondary\">Gold-Plated</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Closure</span> <span class=\"text-sm text-secondary\">Magnetic Snap</span></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Material</span> <span class=\"text-sm text-secondary\">Premium Calfskin</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Dimensions</span> <span class=\"text-sm text-secondary\">28 x 20 x 12 cm</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Hardware</span> <span class=\"text-sm text-secondary\">Gold-Plated</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Closure</span> <span class=\"text-sm text-secondary\">Magnetic Snap</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		} else if getProductCategory(slug) == "perfume" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Size</span> <span class=\"text-sm text-secondary\">100ml</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Concentration</span> <span class=\"text-sm text-secondary\">Eau de Parfum</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Notes</span> <span class=\"text-sm text-secondary\">Floral / Oriental</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Origin</span> <span class=\"text-sm text-secondary\">France</span></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Size</span> <span class=\"text-sm text-secondary\">100ml</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Concentration</span> <span class=\"text-sm text-secondary\">Eau de Parfum</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Notes</span> <span class=\"text-sm text-secondary\">Floral / Oriental</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Origin</span> <span class=\"text-sm text-secondary\">France</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		} else if getProductCategory(slug) == "bullion" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Purity</span> <span class=\"text-sm text-secondary\">999.9 Fine</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Weight</span> <span class=\"text-sm text-secondary\">100g</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Certification</span> <span class=\"text-sm text-secondary\">LBMA Certified</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Assay Mark</span> <span class=\"text-sm text-secondary\">Verified</span></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Purity</span> <span class=\"text-sm text-secondary\">999.9 Fine</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Weight</span> <span class=\"text-sm text-secondary\">100g</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Certification</span> <span class=\"text-sm text-secondary\">LBMA Certified</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Assay Mark</span> <span class=\"text-sm text-secondary\">Verified</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		} else {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Material</span> <span class=\"text-sm text-secondary\">Premium</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Origin</span> <span class=\"text-sm text-secondary\">Artisan Crafted</span></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "<div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Material</span> <span class=\"text-sm text-secondary\">Premium</span></div><div class=\"flex flex-col gap-1\"><span class=\"text-xs text-muted uppercase tracking-wider\">Origin</span> <span class=\"text-sm text-secondary\">Artisan Crafted</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

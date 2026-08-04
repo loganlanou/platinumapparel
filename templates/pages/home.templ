@@ -3,6 +3,7 @@ package pages
 import (
 	"handler/internal/meta"
 	"handler/templates/layouts"
+	"strings"
 )
 
 templ Home() {
@@ -14,7 +15,7 @@ templ Home() {
 			</div>
 			<div class="hero-overlay"></div>
 			<div class="hero-content" data-animate="fade-up">
-				<span class="hero-label">The 2025 Collection</span>
+				<span class="hero-label">The Private Collection</span>
 				<h1 class="hero-title">
 					<span class="title-line">Timeless</span>
 					<span class="title-line accent">Elegance</span>
@@ -35,6 +36,14 @@ templ Home() {
 				<span>Scroll to discover</span>
 				<div class="scroll-indicator"></div>
 			</div>
+		</section>
+		// Curated Houses
+		<section class="maison-strip" aria-label="Luxury houses available through private sourcing">
+			<div class="maison-strip-intro"><span>Curated houses</span><p>Signature pieces and privately sourced references from the world’s leading maisons.</p></div>
+			<div class="maison-list">
+				<span>Rolex</span><span>Patek Philippe</span><span>Cartier</span><span>Hermès</span><span>Chanel</span><span>Brioni</span><span>Loro Piana</span>
+			</div>
+			<a href="/concierge#sourcing">Private sourcing <span aria-hidden="true">→</span></a>
 		</section>
 		// Collections Grid - 3x2 Magazine Style
 		<section class="collections-section" id="collections">
@@ -345,16 +354,18 @@ templ Home() {
 }
 
 templ ProductCard(name, price, image, href string) {
-	<a href={ templ.SafeURL(href) } class="product-card" data-animate="fade-up">
+	<a href={ templ.SafeURL(href) } class="product-card" data-animate="fade-up" data-product-name={ getProductCardName(href, name) } data-product-price={ getProductCardPrice(href, price) }>
 		<div class="product-image">
-			<img src={ image } alt={ name } loading="lazy" decoding="async"/>
+			<img src={ image } alt={ getProductCardName(href, name) } loading="lazy" decoding="async"/>
+			<span class="product-badge">Curated</span>
 			<div class="product-overlay">
-				<span class="quick-view">Quick View</span>
+				<span class="quick-view">View Details</span>
 			</div>
 		</div>
 		<div class="product-info">
-			<h3 class="product-name">{ name }</h3>
-			<span class="product-price">{ price }</span>
+			<span class="product-brand">{ getProductBrand(strings.TrimPrefix(href, "/product/")) }</span>
+			<h3 class="product-name">{ getProductCardName(href, name) }</h3>
+			<div class="product-card-meta"><span class="product-price">{ getProductCardPrice(href, price) }</span><span class="product-status">Available</span></div>
 		</div>
 	</a>
 }

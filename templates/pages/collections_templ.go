@@ -46,7 +46,7 @@ func Collections() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " <section class=\"page-hero\"><div class=\"page-hero-content\" data-animate=\"fade-up\"><span class=\"page-label\">Curated Excellence</span><h1 class=\"page-title\">Our Collections</h1><p class=\"page-subtitle\">Each collection represents a distinct expression of luxury, crafted for those who appreciate the finest things in life.</p></div></section> <section class=\"page-content\"><div class=\"collections-showcase\"><div class=\"showcase-item\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/watches/watch_04_watch_case_selection.jpg\" alt=\"Luxury Timepieces\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Horlogerie</span><h2 class=\"showcase-title\">Fine Timepieces</h2><p class=\"showcase-description\">Our timepiece collection represents the apex of horological artistry. Each watch is a masterpiece of precision engineering and aesthetic perfection, destined to be treasured for generations.</p><ul class=\"showcase-features\"><li>Swiss-made movements with COSC certification</li><li>Sapphire crystal with anti-reflective coating</li><li>18k gold and platinum cases</li><li>Water resistant to 300 meters</li></ul><a href=\"/collections/watches\" class=\"btn-primary\"><span>Explore Timepieces</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div><div class=\"showcase-item reverse\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/suits/suit_04_city_sportscar.jpg\" alt=\"Tailored Suits\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Signature</span><h2 class=\"showcase-title\">Tailored Suits</h2><p class=\"showcase-description\">Our flagship collection embodies the pinnacle of sartorial excellence. Each piece is meticulously crafted from the world's finest fabrics, featuring hand-finished details that define true luxury.</p><ul class=\"showcase-features\"><li>Hand-stitched Milanese buttonholes</li><li>Full-canvas construction</li><li>Exclusive Super 180s wool from Italy</li><li>Mother of pearl buttons</li></ul><a href=\"/collections/suits\" class=\"btn-primary\"><span>Explore Suits</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div><div class=\"showcase-item\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg\" alt=\"Fine Jewelry\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Precious</span><h2 class=\"showcase-title\">Fine Jewelry</h2><p class=\"showcase-description\">Exquisite jewelry crafted from the finest precious metals and ethically sourced gemstones. Each piece is a statement of refined taste and enduring value.</p><ul class=\"showcase-features\"><li>18k gold and platinum settings</li><li>GIA-certified diamonds</li><li>Hand-engraved details</li><li>Lifetime warranty on craftsmanship</li></ul><a href=\"/collections/jewelry\" class=\"btn-primary\"><span>Explore Jewelry</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div><div class=\"showcase-item reverse\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/handbags/handbag_05_orange_designer_stand.jpg\" alt=\"Luxury Handbags\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Artisan</span><h2 class=\"showcase-title\">Luxury Handbags</h2><p class=\"showcase-description\">Hand-selected materials meet artisanal craftsmanship in our handbag collection. Each piece is designed to complement and complete the distinguished wardrobe.</p><ul class=\"showcase-features\"><li>Italian calfskin</li><li>Hand-stitched construction</li><li>Custom hardware</li><li>Signature dust bags</li></ul><a href=\"/collections/handbags\" class=\"btn-primary\"><span>Explore Handbags</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div><div class=\"showcase-item\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/perfume/perfume_01_fur_surface_collection.jpg\" alt=\"Fragrances\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Essence</span><h2 class=\"showcase-title\">Fragrances</h2><p class=\"showcase-description\">A curated selection of the world's most distinguished fragrances, each bottle a masterwork of olfactory art and refined presentation.</p><ul class=\"showcase-features\"><li>Master perfumer compositions</li><li>Rare natural essences</li><li>Handblown glass bottles</li><li>Gift-ready presentation</li></ul><a href=\"/collections/perfume\" class=\"btn-primary\"><span>Explore Fragrances</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div><div class=\"showcase-item reverse\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/bullion/bullion_06_gold_bullion_rows.jpg\" alt=\"Precious Metals\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Investment</span><h2 class=\"showcase-title\">Precious Metals</h2><p class=\"showcase-description\">Investment-grade gold and silver bullion, individually verified and presented with the distinction befitting precious metals of the highest caliber.</p><ul class=\"showcase-features\"><li>LBMA-certified gold and silver</li><li>Individual serial numbers</li><li>Tamper-evident packaging</li><li>Certificate of authenticity</li></ul><a href=\"/collections/bullion\" class=\"btn-primary\"><span>Explore Precious Metals</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div></div></section> <section class=\"bespoke-section\"><div class=\"bespoke-background\"><img src=\"/static/images/suits/suit_02_beach_cufflinks.jpg\" alt=\"Luxury boutique\" loading=\"lazy\"><div class=\"bespoke-overlay\"></div></div><div class=\"bespoke-content\" data-animate=\"fade-up\"><span class=\"bespoke-label\">Personal Shopping</span><h2 class=\"bespoke-title\">Private Appointments</h2><p class=\"bespoke-text\">Experience our collections in an intimate setting with a dedicated style consultant. Book a private appointment at our flagship boutique.</p><a href=\"/appointments\" class=\"btn-gold\"><span>Book Appointment</span></a></div></section>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " <section class=\"page-hero\"><div class=\"page-hero-content\" data-animate=\"fade-up\"><span class=\"page-label\">Curated Excellence</span><h1 class=\"page-title\">Our Collections</h1><p class=\"page-subtitle\">Each collection represents a distinct expression of luxury, crafted for those who appreciate the finest things in life.</p></div></section> <section class=\"page-content\"><div class=\"collections-showcase\"><div class=\"showcase-item\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/watches/watch_04_watch_case_selection.jpg\" alt=\"Luxury Timepieces\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Horlogerie</span><h2 class=\"showcase-title\">Fine Timepieces</h2><p class=\"showcase-description\">Our timepiece collection represents the apex of horological artistry. Each watch is a masterpiece of precision engineering and aesthetic perfection, destined to be treasured for generations.</p><ul class=\"showcase-features\"><li>Swiss-made movements with COSC certification</li><li>Sapphire crystal with anti-reflective coating</li><li>18k gold and platinum cases</li><li>Water resistant to 300 meters</li></ul><a href=\"/collections/watches\" class=\"btn-primary\"><span>Explore Timepieces</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div><div class=\"showcase-item reverse\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/suits/suit_04_city_sportscar.jpg\" alt=\"Tailored Suits\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Signature</span><h2 class=\"showcase-title\">Tailored Suits</h2><p class=\"showcase-description\">Our flagship collection embodies the pinnacle of sartorial excellence. Each piece is meticulously crafted from the world's finest fabrics, featuring hand-finished details that define true luxury.</p><ul class=\"showcase-features\"><li>Hand-stitched Milanese buttonholes</li><li>Full-canvas construction</li><li>Exclusive Super 180s wool from Italy</li><li>Mother of pearl buttons</li></ul><a href=\"/collections/suits\" class=\"btn-primary\"><span>Explore Suits</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div><div class=\"showcase-item\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg\" alt=\"Fine Jewelry\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Precious</span><h2 class=\"showcase-title\">Fine Jewelry</h2><p class=\"showcase-description\">Exquisite jewelry crafted from the finest precious metals and ethically sourced gemstones. Each piece is a statement of refined taste and enduring value.</p><ul class=\"showcase-features\"><li>18k gold and platinum settings</li><li>GIA-certified diamonds</li><li>Hand-engraved details</li><li>Lifetime warranty on craftsmanship</li></ul><a href=\"/collections/jewelry\" class=\"btn-primary\"><span>Explore Jewelry</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div><div class=\"showcase-item reverse\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/handbags/handbag_05_orange_designer_stand.jpg\" alt=\"Luxury Handbags\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Artisan</span><h2 class=\"showcase-title\">Luxury Handbags</h2><p class=\"showcase-description\">Hand-selected materials meet artisanal craftsmanship in our handbag collection. Each piece is designed to complement and complete the distinguished wardrobe.</p><ul class=\"showcase-features\"><li>Italian calfskin</li><li>Hand-stitched construction</li><li>Custom hardware</li><li>Signature dust bags</li></ul><a href=\"/collections/handbags\" class=\"btn-primary\"><span>Explore Handbags</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div><div class=\"showcase-item\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/perfume/perfume_01_fur_surface_collection.jpg\" alt=\"Fragrances\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Essence</span><h2 class=\"showcase-title\">Fragrances</h2><p class=\"showcase-description\">A curated selection of the world's most distinguished fragrances, each bottle a masterwork of olfactory art and refined presentation.</p><ul class=\"showcase-features\"><li>Master perfumer compositions</li><li>Rare natural essences</li><li>Handblown glass bottles</li><li>Gift-ready presentation</li></ul><a href=\"/collections/perfume\" class=\"btn-primary\"><span>Explore Fragrances</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div><div class=\"showcase-item reverse\" data-animate=\"fade-up\"><div class=\"showcase-image image-reveal\"><img src=\"/static/images/bullion/bullion_06_gold_bullion_rows.jpg\" alt=\"Precious Metals\" loading=\"lazy\"></div><div class=\"showcase-content\"><span class=\"showcase-label\">Investment</span><h2 class=\"showcase-title\">Precious Metals</h2><p class=\"showcase-description\">Investment-grade gold and silver bullion, individually verified and presented with the distinction befitting precious metals of the highest caliber.</p><ul class=\"showcase-features\"><li>LBMA-certified gold and silver</li><li>Individual serial numbers</li><li>Tamper-evident packaging</li><li>Certificate of authenticity</li></ul><a href=\"/collections/bullion\" class=\"btn-primary\"><span>Explore Precious Metals</span> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line> <polyline points=\"12 5 19 12 12 19\"></polyline></svg></a></div></div></div></section> <section class=\"bespoke-section\"><div class=\"bespoke-background\"><img src=\"/static/images/suits/suit_02_beach_cufflinks.jpg\" alt=\"Luxury boutique\" loading=\"lazy\"><div class=\"bespoke-overlay\"></div></div><div class=\"bespoke-content\" data-animate=\"fade-up\"><span class=\"bespoke-label\">Personal Shopping</span><h2 class=\"bespoke-title\">Private Appointments</h2><p class=\"bespoke-text\">Experience our collections in an intimate setting with a dedicated style consultant. Book a private appointment at our flagship boutique.</p><a href=\"/concierge#appointments\" class=\"btn-gold\"><span>Book Appointment</span></a></div></section>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -76,6 +76,34 @@ func collectionTitle(slug string) string {
 		return "Precious Metals"
 	default:
 		return "Timepieces"
+	}
+}
+
+func IsKnownCollection(slug string) bool {
+	switch slug {
+	case "watches", "timepieces", "jewelry", "suits", "signature", "handbags", "perfume", "fragrances", "bullion":
+		return true
+	default:
+		return false
+	}
+}
+
+func collectionDescription(slug string) string {
+	switch slug {
+	case "watches", "timepieces":
+		return "Explore mechanical icons, independent horology and exceptional references selected for design, condition and provenance."
+	case "jewelry":
+		return "Discover diamonds, important gemstones and precious-metal signatures chosen for proportion, craftsmanship and enduring beauty."
+	case "suits", "signature":
+		return "Discover full-canvas tailoring, considered proportions and exceptional cloth from celebrated mills and specialist ateliers."
+	case "handbags":
+		return "Explore enduring silhouettes in exceptional leathers, selected for construction, condition and lasting relevance."
+	case "perfume", "fragrances":
+		return "Discover distinguished compositions from iconic houses and independent perfumers, presented for collecting and gifting."
+	case "bullion":
+		return "Explore verified investment-grade gold and silver with documented weight, fineness and secure insured handling."
+	default:
+		return "Discover a considered selection of exceptional pieces, each reviewed by our private client team."
 	}
 }
 
@@ -119,13 +147,26 @@ func CollectionDetail(slug string) templ.Component {
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(collectionTitle(slug))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/collections.templ`, Line: 209, Col: 50}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/collections.templ`, Line: 237, Col: 50}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</h1><p class=\"page-subtitle\">Discover our finest selection of luxury pieces.</p></div></section><section class=\"featured-section\"><div class=\"products-grid\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</h1><p class=\"page-subtitle\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var6 string
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(collectionDescription(slug))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/collections.templ`, Line: 238, Col: 58}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</p></div></section><section class=\"featured-section\"><div class=\"products-grid\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -135,7 +176,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -143,7 +184,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -151,7 +192,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -159,7 +200,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -167,7 +208,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -175,7 +216,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -183,7 +224,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -196,7 +237,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -204,7 +245,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -212,7 +253,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -220,7 +261,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -228,7 +269,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -236,7 +277,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -244,7 +285,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -257,7 +298,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -265,7 +306,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -273,7 +314,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -281,7 +322,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -289,7 +330,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -297,7 +338,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -305,7 +346,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -318,7 +359,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -326,7 +367,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -334,7 +375,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -342,7 +383,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -350,7 +391,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -358,7 +399,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -366,7 +407,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -379,7 +420,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -387,7 +428,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -395,7 +436,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -403,7 +444,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -411,7 +452,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -419,7 +460,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -427,7 +468,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -440,7 +481,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -448,7 +489,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -456,7 +497,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -464,7 +505,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -472,7 +513,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -480,7 +521,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -488,7 +529,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -496,7 +537,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -504,7 +545,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -517,7 +558,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 49, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -525,7 +566,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 49, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 50, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -533,7 +574,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 50, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 51, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -541,7 +582,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 51, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 52, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -549,7 +590,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 52, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 53, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -557,7 +598,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 53, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 54, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -565,7 +606,7 @@ func CollectionDetail(slug string) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 54, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 55, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -574,13 +615,13 @@ func CollectionDetail(slug string) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 55, "</div></section>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 56, "</div></section>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layouts.Base(meta.New(collectionTitle(slug)+" Collection", "Explore our curated "+collectionTitle(slug)+" collection of luxury pieces.")).Render(templ.WithChildren(ctx, templ_7745c5c3_Var4), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layouts.Base(meta.New(collectionTitle(slug)+" Collection", collectionDescription(slug))).Render(templ.WithChildren(ctx, templ_7745c5c3_Var4), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
