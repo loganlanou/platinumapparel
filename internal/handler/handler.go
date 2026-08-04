@@ -29,6 +29,8 @@ func (h *Handler) RegisterRoutes(e *echo.Echo) {
 	// Static files
 	e.GET("/static/*", h.StaticAsset)
 	e.HEAD("/static/*", h.StaticAsset)
+	e.GET("/favicon.ico", h.Favicon)
+	e.HEAD("/favicon.ico", h.Favicon)
 
 	// Health check
 	e.GET("/health", h.Health)

@@ -520,7 +520,7 @@ func productCartValues(slug string) string {
 		"product_id":   p.Slug,
 		"product_name": getProductBrand(slug) + " " + p.Name,
 		"price_cents":  strconv.FormatInt(price*100, 10),
-		"image_url":    "/static/images/" + p.Category + "/" + p.Image,
+		"image_url":    "/static/optimized/images/" + p.Category + "/" + p.Image,
 	})
 	return string(values)
 }
@@ -556,10 +556,10 @@ func getProductCategory(slug string) string {
 func getProductImage(slug string, imageType string) string {
 	p, ok := products[slug]
 	if !ok {
-		return "/static/images/watches/watch_01_black_leather_dial.jpg"
+		return "/static/optimized/images/watches/watch_01_black_leather_dial.jpg"
 	}
 	if imageType == "main" || imageType == "thumb1" {
-		return "/static/images/" + p.Category + "/" + p.Image
+		return "/static/optimized/images/" + p.Category + "/" + p.Image
 	}
 	// For thumbnails 2-4, return other products from the same category
 	thumbs := getThumbImages(slug)
@@ -577,7 +577,7 @@ func getProductImage(slug string, imageType string) string {
 			return thumbs[2]
 		}
 	}
-	return "/static/images/" + p.Category + "/" + p.Image
+	return "/static/optimized/images/" + p.Category + "/" + p.Image
 }
 
 // getThumbImages returns up to 3 image paths from the same category (excluding the current product).
@@ -589,7 +589,7 @@ func getThumbImages(slug string) []string {
 	var thumbs []string
 	for s, prod := range products {
 		if s != slug && prod.Category == p.Category {
-			thumbs = append(thumbs, "/static/images/"+prod.Category+"/"+prod.Image)
+			thumbs = append(thumbs, "/static/optimized/images/"+prod.Category+"/"+prod.Image)
 			if len(thumbs) >= 3 {
 				break
 			}
@@ -652,6 +652,8 @@ templ ProductDetail(slug string) {
 						<img
 							id="main-product-image"
 							src={ getProductImage(slug, "main") }
+							srcset={ responsiveImageSrcSet(getProductImage(slug, "main")) }
+							sizes="(max-width: 1024px) calc(100vw - 32px), 50vw"
 							alt={ formatProductName(slug) }
 							class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
 						/>
@@ -667,7 +669,7 @@ templ ProductDetail(slug string) {
 					// Thumbnail Grid
 					<div class="grid grid-cols-4 gap-3">
 						<button class="thumb-btn aspect-square border-2 border-gold overflow-hidden" onclick="changeMainImage(this)">
-							<img src={ getProductImage(slug, "thumb1") } alt="View 1" class="w-full h-full object-cover"/>
+							<img src={ getProductImage(slug, "thumb1") } srcset={ responsiveImageSrcSet(getProductImage(slug, "thumb1")) } sizes="25vw" alt="View 1" class="w-full h-full object-cover"/>
 						</button>
 						<div class="product-view-placeholder"><span>Detail</span><small>Available on request</small></div>
 						<div class="product-view-placeholder"><span>Profile</span><small>Available on request</small></div>
@@ -798,7 +800,7 @@ templ ProductDetail(slug string) {
 				</div>
 				<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
 					for _, rp := range getRelatedProducts(slug) {
-						@ProductCard(rp.Name, rp.Price, "/static/images/"+rp.Category+"/"+rp.Image, "/product/"+rp.Slug)
+						@ProductCard(rp.Name, rp.Price, "/static/optimized/images/"+rp.Category+"/"+rp.Image, "/product/"+rp.Slug)
 					}
 				</div>
 			</div>

@@ -11,10 +11,13 @@ import (
 )
 
 const (
-	sourceRoot      = "static/images"
-	destinationRoot = "static/optimized/images"
-	maxDimension    = 1600
-	jpegQuality     = 72
+	sourceRoot            = "static/images"
+	destinationRoot       = "static/optimized/images"
+	mobileDestinationRoot = "static/mobile/images"
+	maxDimension          = 1600
+	mobileMaxDimension    = 900
+	jpegQuality           = 72
+	mobileJPEGQuality     = 68
 )
 
 func main() {
@@ -39,7 +42,12 @@ func main() {
 		}
 
 		dstPath := filepath.Join(destinationRoot, relPath)
-		if err := optimizeJPEG(srcPath, dstPath); err != nil {
+		if err := optimizeJPEG(srcPath, dstPath, maxDimension, jpegQuality); err != nil {
+			return fmt.Errorf("%s: %w", srcPath, err)
+		}
+
+		mobileDstPath := filepath.Join(mobileDestinationRoot, relPath)
+		if err := optimizeJPEG(srcPath, mobileDstPath, mobileMaxDimension, mobileJPEGQuality); err != nil {
 			return fmt.Errorf("%s: %w", srcPath, err)
 		}
 
@@ -54,7 +62,7 @@ func main() {
 	fmt.Printf("optimized %d image(s)\n", processed)
 }
 
-func optimizeJPEG(srcPath, dstPath string) error {
+func optimizeJPEG(srcPath, dstPath string, dimensionLimit, quality int) error {
 	srcFile, err := os.Open(srcPath)
 	if err != nil {
 		return err
@@ -66,7 +74,7 @@ func optimizeJPEG(srcPath, dstPath string) error {
 		return err
 	}
 
-	resized := resizeToFit(img, maxDimension)
+	resized := resizeToFit(img, dimensionLimit)
 
 	if err := os.MkdirAll(filepath.Dir(dstPath), 0o755); err != nil {
 		return err
@@ -78,7 +86,7 @@ func optimizeJPEG(srcPath, dstPath string) error {
 	}
 	defer dstFile.Close()
 
-	return jpeg.Encode(dstFile, resized, &jpeg.Options{Quality: jpegQuality})
+	return jpeg.Encode(dstFile, resized, &jpeg.Options{Quality: quality})
 }
 
 func resizeToFit(src image.Image, limit int) image.Image {

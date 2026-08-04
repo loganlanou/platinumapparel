@@ -30,6 +30,16 @@ func (h *Handler) StaticAsset(c echo.Context) error {
 	return c.File(filePath)
 }
 
+func (h *Handler) Favicon(c echo.Context) error {
+	icon, err := os.ReadFile(filepath.Join(staticRoot, "favicon.svg"))
+	if err != nil {
+		return echo.NewHTTPError(http.StatusNotFound)
+	}
+	c.Response().Header().Set(echo.HeaderContentType, "image/svg+xml")
+	c.Response().Header().Set(echo.HeaderCacheControl, "public, max-age=31536000, immutable")
+	return c.Blob(http.StatusOK, "image/svg+xml", icon)
+}
+
 func sanitizeStaticPath(raw string) (string, bool) {
 	if raw == "" || strings.ContainsRune(raw, 0) {
 		return "", false
