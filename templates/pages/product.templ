@@ -1,8 +1,10 @@
 package pages
 
 import (
+	"encoding/json"
 	"handler/internal/meta"
 	"handler/templates/layouts"
+	"strconv"
 	"strings"
 )
 
@@ -16,7 +18,7 @@ type Product struct {
 	Image       string
 }
 
-// products is the complete catalog of 51 products across 6 categories.
+// products is the complete catalog of 50 products across 6 categories.
 var products = map[string]Product{
 	// Watches
 	"black-leather-chronograph": {
@@ -36,10 +38,10 @@ var products = map[string]Product{
 		Image:       "watch_02_steel_chronograph.jpg",
 	},
 	"blue-diver-watch": {
-		Name:        "Blue Diver Watch",
+		Name:        "Deepsea Sea-Dweller",
 		Slug:        "blue-diver-watch",
 		Price:       "$32,750",
-		Description: "A professional diving instrument rated to 300 meters. The deep blue ceramic bezel and luminous indices ensure readability in any condition.",
+		Description: "A professional Rolex diving instrument in Oystersteel, engineered for extreme depth and fitted with a unidirectional Cerachrom bezel. The Chromalight display, Ringlock case architecture and automatic helium escape valve deliver uncompromising underwater performance.",
 		Category:    "watches",
 		Image:       "watch_03_blue_diver_watch.jpg",
 	},
@@ -52,10 +54,10 @@ var products = map[string]Product{
 		Image:       "watch_04_watch_case_selection.jpg",
 	},
 	"grand-complication": {
-		Name:        "Grand Complication",
+		Name:        "Carrera Chronograph",
 		Slug:        "grand-complication",
-		Price:       "$48,900",
-		Description: "The pinnacle of horological achievement, featuring a minute repeater, perpetual calendar, and split-seconds chronograph in a single 40mm platinum case.",
+		Price:       "$7,250",
+		Description: "A sporting TAG Heuer chronograph with a highly legible tri-compax display, applied indices and precise automatic timing. Its polished and brushed case finishing gives the modern Carrera profile a refined, architectural presence.",
 		Category:    "watches",
 		Image:       "watch_05_macro_luxury_dial.jpg",
 	},
@@ -68,10 +70,10 @@ var products = map[string]Product{
 		Image:       "watch_07_skeleton_mechanical.jpg",
 	},
 	"steel-chrono-classic": {
-		Name:        "Steel Chrono Classic",
+		Name:        "L3 Chronograph",
 		Slug:        "steel-chrono-classic",
-		Price:       "$22,200",
-		Description: "A timeless chronograph design in polished steel. The silver-toned dial features three subdials and a tachymeter bezel for measuring speed.",
+		Price:       "$4,950",
+		Description: "A contemporary Maurice de Mauriac chronograph in brushed steel, balancing instrument-style legibility with independent Swiss character. The multi-register dial, day-date display and tactile pushers are designed for confident everyday wear.",
 		Category:    "watches",
 		Image:       "watch_09_steel_chrono_studio.jpg",
 	},
@@ -426,9 +428,120 @@ var products = map[string]Product{
 	},
 }
 
+// productBrands identifies represented houses where the image and listing support it.
+// Remaining pieces belong to a named Platinum private-label atelier rather than being
+// attributed to a third-party house without supporting product documentation.
+var productBrands = map[string]string{
+	"blue-diver-watch":     "Rolex",
+	"grand-complication":   "TAG Heuer",
+	"steel-chrono-classic": "Maurice de Mauriac",
+	"classic-no5-parfum":   "Chanel",
+	"amber-night-eau":      "Givenchy",
+	"petal-romance-eau":    "Escada",
+	"designer-trio-set":    "The Maison Edit",
+}
+
+func ProductExists(slug string) bool {
+	_, ok := products[slug]
+	return ok
+}
+
 // Helper function to format product name from slug
 func formatProductName(slug string) string {
+	if p, ok := products[slug]; ok {
+		return p.Name
+	}
 	return strings.ReplaceAll(slug, "-", " ")
+}
+
+func getProductBrand(slug string) string {
+	if brand, ok := productBrands[slug]; ok {
+		return brand
+	}
+	if p, ok := products[slug]; ok {
+		switch p.Category {
+		case "watches":
+			return "Platinum Horology"
+		case "jewelry":
+			return "Platinum Joaillerie"
+		case "suits":
+			return "Platinum Sartoria"
+		case "handbags":
+			return "Platinum Maroquinerie"
+		case "perfume":
+			return "Platinum Parfums"
+		case "bullion":
+			return "Platinum Reserve"
+		}
+	}
+	return "Platinum Atelier"
+}
+
+func getProductFromHref(href string) (Product, bool) {
+	slug := strings.TrimPrefix(href, "/product/")
+	p, ok := products[slug]
+	return p, ok
+}
+
+func getProductCardName(href, fallback string) string {
+	if p, ok := getProductFromHref(href); ok {
+		return p.Name
+	}
+	return fallback
+}
+
+func getProductCardPrice(href, fallback string) string {
+	if p, ok := getProductFromHref(href); ok {
+		return p.Price
+	}
+	return fallback
+}
+
+func getProductReference(slug string) string {
+	category := getProductCategory(slug)
+	prefix := "OBJ"
+	if len(category) >= 3 {
+		prefix = strings.ToUpper(category[:3])
+	}
+	code := strings.ToUpper(strings.ReplaceAll(slug, "-", ""))
+	if len(code) > 8 {
+		code = code[:8]
+	}
+	return "PA-" + prefix + "-" + code
+}
+
+func productCartValues(slug string) string {
+	p, ok := products[slug]
+	if !ok {
+		return "{}"
+	}
+	price, _ := strconv.ParseInt(strings.ReplaceAll(strings.TrimPrefix(p.Price, "$"), ",", ""), 10, 64)
+	values, _ := json.Marshal(map[string]string{
+		"product_id":   p.Slug,
+		"product_name": getProductBrand(slug) + " " + p.Name,
+		"price_cents":  strconv.FormatInt(price*100, 10),
+		"image_url":    "/static/optimized/images/" + p.Category + "/" + p.Image,
+	})
+	return string(values)
+}
+
+func getProductNarrative(slug string) string {
+	switch getProductCategory(slug) {
+	case "watches":
+		return "Individually inspected for timekeeping, exterior condition and correct operation. The piece is presented with a detailed condition report and our authenticity commitment."
+	case "jewelry":
+		return "Selected for exceptional proportion, finish and light performance. Precious-metal marks and principal stones are examined before the piece enters the collection."
+	case "suits":
+		return "Cut to create a clean, balanced silhouette and finished with hand-worked details. Complimentary first alterations are coordinated by our client team."
+	case "handbags":
+		return "Chosen for material quality, construction and enduring design. Hardware, stitching, interior and closure are carefully inspected before delivery."
+	case "perfume":
+		return "Stored in controlled conditions and presented in signature packaging. A fragrance specialist can advise on composition, concentration and gifting."
+	case "bullion":
+		return "Weight, fineness and identifying marks are verified before dispatch. The piece is supplied with applicable assay or provenance documentation and insured handling."
+	default:
+		return "Selected and inspected by the Platinum private client team, with full product guidance available before purchase."
+	}
 }
 
 // getProductCategory returns the category for a given product slug.
@@ -443,10 +556,10 @@ func getProductCategory(slug string) string {
 func getProductImage(slug string, imageType string) string {
 	p, ok := products[slug]
 	if !ok {
-		return "/static/images/watches/watch_01_black_leather_dial.jpg"
+		return "/static/optimized/images/watches/watch_01_black_leather_dial.jpg"
 	}
 	if imageType == "main" || imageType == "thumb1" {
-		return "/static/images/" + p.Category + "/" + p.Image
+		return "/static/optimized/images/" + p.Category + "/" + p.Image
 	}
 	// For thumbnails 2-4, return other products from the same category
 	thumbs := getThumbImages(slug)
@@ -464,7 +577,7 @@ func getProductImage(slug string, imageType string) string {
 			return thumbs[2]
 		}
 	}
-	return "/static/images/" + p.Category + "/" + p.Image
+	return "/static/optimized/images/" + p.Category + "/" + p.Image
 }
 
 // getThumbImages returns up to 3 image paths from the same category (excluding the current product).
@@ -476,7 +589,7 @@ func getThumbImages(slug string) []string {
 	var thumbs []string
 	for s, prod := range products {
 		if s != slug && prod.Category == p.Category {
-			thumbs = append(thumbs, "/static/images/"+prod.Category+"/"+prod.Image)
+			thumbs = append(thumbs, "/static/optimized/images/"+prod.Category+"/"+prod.Image)
 			if len(thumbs) >= 3 {
 				break
 			}
@@ -520,14 +633,14 @@ func getRelatedProducts(slug string) []Product {
 }
 
 templ ProductDetail(slug string) {
-	@layouts.Base(meta.New(formatProductName(slug), "Discover the craftsmanship and details of this exceptional piece.").AsProduct()) {
+	@layouts.Base(meta.New(getProductBrand(slug)+" "+formatProductName(slug), getProductDescription(slug)).AsProduct()) {
 		// Breadcrumb
-		<nav class="px-4 lg:px-8 py-4 text-sm text-muted border-b border-border">
+		<nav class="product-page-breadcrumb px-4 lg:px-8 py-4 text-sm text-muted border-b border-border" aria-label="Breadcrumb">
 			<a href="/" class="hover:text-gold transition-colors">Home</a>
 			<span class="mx-2 text-border">/</span>
 			<a href="/shop" class="hover:text-gold transition-colors">Shop</a>
 			<span class="mx-2 text-border">/</span>
-			<span class="text-secondary capitalize">{ formatProductName(slug) }</span>
+			<span class="text-secondary">{ getProductBrand(slug) } { formatProductName(slug) }</span>
 		</nav>
 		// Main Product Section - Two Column Grid
 		<section class="max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-16">
@@ -535,14 +648,16 @@ templ ProductDetail(slug string) {
 				// Left Column - Image Gallery
 				<div class="w-full">
 					// Main Image
-					<div class="relative aspect-square bg-card border border-border overflow-hidden mb-4">
+					<div id="product-image-stage" class="product-image-stage relative aspect-square bg-card border border-border overflow-hidden mb-4">
 						<img
 							id="main-product-image"
 							src={ getProductImage(slug, "main") }
+							srcset={ responsiveImageSrcSet(getProductImage(slug, "main")) }
+							sizes="(max-width: 1024px) calc(100vw - 32px), 50vw"
 							alt={ formatProductName(slug) }
 							class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
 						/>
-						<button class="absolute bottom-4 right-4 w-10 h-10 bg-dark/80 border border-border text-secondary flex items-center justify-center hover:bg-gold hover:text-dark hover:border-gold transition-all">
+						<button class="product-zoom-button absolute bottom-4 right-4 w-10 h-10 bg-dark/80 border border-border text-secondary flex items-center justify-center hover:bg-gold hover:text-dark hover:border-gold transition-all" onclick="toggleProductZoom()" aria-label="Enlarge product image">
 							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
 								<circle cx="11" cy="11" r="8"></circle>
 								<path d="m21 21-4.35-4.35"></path>
@@ -554,30 +669,26 @@ templ ProductDetail(slug string) {
 					// Thumbnail Grid
 					<div class="grid grid-cols-4 gap-3">
 						<button class="thumb-btn aspect-square border-2 border-gold overflow-hidden" onclick="changeMainImage(this)">
-							<img src={ getProductImage(slug, "thumb1") } alt="View 1" class="w-full h-full object-cover"/>
+							<img src={ getProductImage(slug, "thumb1") } srcset={ responsiveImageSrcSet(getProductImage(slug, "thumb1")) } sizes="25vw" alt="View 1" class="w-full h-full object-cover"/>
 						</button>
-						<button class="thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors" onclick="changeMainImage(this)">
-							<img src={ getProductImage(slug, "thumb2") } alt="View 2" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity"/>
-						</button>
-						<button class="thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors" onclick="changeMainImage(this)">
-							<img src={ getProductImage(slug, "thumb3") } alt="View 3" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity"/>
-						</button>
-						<button class="thumb-btn aspect-square border-2 border-border overflow-hidden hover:border-muted transition-colors" onclick="changeMainImage(this)">
-							<img src={ getProductImage(slug, "thumb4") } alt="View 4" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity"/>
-						</button>
+						<div class="product-view-placeholder"><span>Detail</span><small>Available on request</small></div>
+						<div class="product-view-placeholder"><span>Profile</span><small>Available on request</small></div>
+						<div class="product-view-placeholder"><span>Packaging</span><small>Available on request</small></div>
 					</div>
 				</div>
 				// Right Column - Product Details
 				<div class="w-full flex flex-col">
 					// Product Header
 					<div class="mb-6 pb-6 border-b border-border">
-						<span class="inline-block text-xs tracking-[0.3em] uppercase text-gold mb-2">Signature Collection</span>
-						<h1 class="font-display text-3xl lg:text-4xl text-secondary mb-4 capitalize">{ formatProductName(slug) }</h1>
+						<span class="inline-block text-xs tracking-[0.3em] uppercase text-gold mb-2">{ getProductBrand(slug) }</span>
+						<h1 class="font-display text-3xl lg:text-4xl text-secondary mb-4">{ formatProductName(slug) }</h1>
 						<div class="font-display text-2xl text-gold">{ getProductPrice(slug) }</div>
+						<div class="product-reference"><span class="availability-dot"></span>Available <span>·</span> Ref. { getProductReference(slug) }</div>
 					</div>
 					// Description
 					<div class="mb-8">
 						<p class="text-muted-light leading-relaxed">{ getProductDescription(slug) }</p>
+						<p class="text-muted-light leading-relaxed mt-4">{ getProductNarrative(slug) }</p>
 					</div>
 					// Specifications
 					<div class="mb-8 p-6 bg-card border border-border">
@@ -590,25 +701,27 @@ templ ProductDetail(slug string) {
 					<div class="flex flex-col sm:flex-row gap-4 mb-4">
 						<div class="flex items-center border border-border bg-card">
 							<button onclick="decrementQty()" class="w-12 h-12 text-secondary text-xl hover:bg-gold hover:text-dark transition-all">−</button>
-							<input type="number" id="product-qty" value="1" min="1" max="10" readonly class="w-16 h-12 bg-transparent border-x border-border text-center text-secondary"/>
+							<input type="number" id="product-qty" name="quantity" value="1" min="1" max="10" readonly class="w-16 h-12 bg-transparent border-x border-border text-center text-secondary"/>
 							<button onclick="incrementQty()" class="w-12 h-12 text-secondary text-xl hover:bg-gold hover:text-dark transition-all">+</button>
 						</div>
 						<button
 							class="flex-1 h-12 bg-gold text-dark font-medium tracking-wider uppercase text-sm hover:bg-gold-light transition-all"
 							hx-post="/cart/add"
-							hx-vals='{"product_id": "1", "quantity": "1"}'
-							hx-swap="none"
+							hx-vals={ productCartValues(slug) }
+							hx-include="#product-qty"
+							hx-target="#cart-drawer"
+							hx-swap="innerHTML"
 						>
 							Add to Cart
 						</button>
 					</div>
 					// Wishlist Button
-					<button class="w-full h-12 border border-border text-secondary flex items-center justify-center gap-3 hover:border-gold hover:text-gold transition-all mb-8">
+					<a href="/concierge#contact" class="w-full h-12 border border-border text-secondary flex items-center justify-center gap-3 hover:border-gold hover:text-gold transition-all mb-8">
 						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
 							<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
 						</svg>
-						<span class="text-sm tracking-wider uppercase">Add to Wishlist</span>
-					</button>
+						<span class="text-sm tracking-wider uppercase">Ask a Specialist</span>
+					</a>
 					// Services Grid
 					<div class="grid grid-cols-2 gap-4 p-4 bg-card border border-border mb-8">
 						<div class="flex items-center gap-3 text-sm text-muted-light">
@@ -649,7 +762,7 @@ templ ProductDetail(slug string) {
 								</svg>
 							</summary>
 							<div class="pb-4 text-sm text-muted-light leading-relaxed">
-								Each piece in our Signature Collection represents the pinnacle of craftsmanship. Hand-finished by our master artisans, this item showcases meticulous attention to detail and the finest materials sourced from around the world.
+								{ getProductDescription(slug) } { getProductNarrative(slug) }
 							</div>
 						</details>
 						<details class="border-b border-border group">
@@ -660,7 +773,7 @@ templ ProductDetail(slug string) {
 								</svg>
 							</summary>
 							<div class="pb-4 text-sm text-muted-light leading-relaxed">
-								Complimentary express shipping on all orders. Items arrive in our signature luxury packaging. Returns accepted within 30 days of delivery in original condition.
+								Complimentary insured express delivery is included. A signature is required on arrival. Unworn ready-to-wear pieces may be returned within 14 days; bespoke, personalized, fragrance and market-priced bullion orders are final sale.
 							</div>
 						</details>
 						<details class="border-b border-border group">
@@ -687,7 +800,7 @@ templ ProductDetail(slug string) {
 				</div>
 				<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
 					for _, rp := range getRelatedProducts(slug) {
-						@ProductCard(rp.Name, rp.Price, "/static/images/"+rp.Category+"/"+rp.Image, "/product/"+rp.Slug)
+						@ProductCard(rp.Name, rp.Price, "/static/optimized/images/"+rp.Category+"/"+rp.Image, "/product/"+rp.Slug)
 					}
 				</div>
 			</div>
@@ -722,13 +835,45 @@ templ ProductDetail(slug string) {
 					input.value = parseInt(input.value) - 1;
 				}
 			}
+
+			function toggleProductZoom() {
+				const stage = document.getElementById('product-image-stage');
+				if (!stage) return;
+				const active = stage.classList.toggle('is-zoomed');
+				document.body.style.overflow = active ? 'hidden' : '';
+			}
 		</script>
 	}
 }
 
 // Product specifications - inline version with Tailwind
 templ productSpecsInline(slug string) {
-	if getProductCategory(slug) == "watches" {
+	if slug == "blue-diver-watch" {
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Movement</span>
+			<span class="text-sm text-secondary">Rolex Calibre 3235</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Case Size</span>
+			<span class="text-sm text-secondary">44mm</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Case Material</span>
+			<span class="text-sm text-secondary">Oystersteel</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Water Resistance</span>
+			<span class="text-sm text-secondary">3,900m / 12,800ft</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Power Reserve</span>
+			<span class="text-sm text-secondary">Approximately 70 hours</span>
+		</div>
+		<div class="flex flex-col gap-1">
+			<span class="text-xs text-muted uppercase tracking-wider">Crystal</span>
+			<span class="text-sm text-secondary">Scratch-resistant sapphire</span>
+		</div>
+	} else if getProductCategory(slug) == "watches" {
 		<div class="flex flex-col gap-1">
 			<span class="text-xs text-muted uppercase tracking-wider">Movement</span>
 			<span class="text-sm text-secondary">Swiss Automatic</span>

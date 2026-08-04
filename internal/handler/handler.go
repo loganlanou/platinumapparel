@@ -29,6 +29,8 @@ func (h *Handler) RegisterRoutes(e *echo.Echo) {
 	// Static files
 	e.GET("/static/*", h.StaticAsset)
 	e.HEAD("/static/*", h.StaticAsset)
+	e.GET("/favicon.ico", h.Favicon)
+	e.HEAD("/favicon.ico", h.Favicon)
 
 	// Health check
 	e.GET("/health", h.Health)
@@ -41,6 +43,7 @@ func (h *Handler) RegisterRoutes(e *echo.Echo) {
 	e.GET("/craft", h.Craft)
 	e.GET("/heritage", h.Heritage)
 	e.GET("/bespoke", h.Bespoke)
+	e.GET("/concierge", h.Concierge)
 	e.GET("/product/:slug", h.ProductDetail)
 
 	// Shop routes

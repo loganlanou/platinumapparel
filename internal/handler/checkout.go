@@ -12,7 +12,8 @@ import (
 )
 
 func (h *Handler) Checkout(c echo.Context) error {
-	return shop.Checkout().Render(c.Request().Context(), c.Response().Writer)
+	cart := readCart(c)
+	return shop.Checkout(cart.Items, cartTotal(cart.Items)).Render(c.Request().Context(), c.Response().Writer)
 }
 
 func (h *Handler) CreateCheckoutSession(c echo.Context) error {
@@ -22,15 +23,13 @@ func (h *Handler) CreateCheckoutSession(c echo.Context) error {
 		})
 	}
 
-	// In production, fetch cart items from database
-	// For now, use dummy data
-	items := []stripe.CartItem{
-		{
-			Name:     "Platinum Chronograph",
-			Price:    249500, // $2,495.00 in cents
-			Quantity: 1,
-			ImageURL: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-		},
+	cart := readCart(c)
+	if len(cart.Items) == 0 {
+		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Your selection is empty"})
+	}
+	items := make([]stripe.CartItem, 0, len(cart.Items))
+	for _, item := range cart.Items {
+		items = append(items, stripe.CartItem{Name: item.Name, Price: item.Price, Quantity: item.Quantity, ImageURL: h.cfg.Site.URL + item.ImageURL})
 	}
 
 	successURL := h.cfg.Site.URL + "/checkout/success?session_id={CHECKOUT_SESSION_ID}"
@@ -63,6 +62,7 @@ func (h *Handler) CheckoutSuccess(c echo.Context) error {
 			return c.Redirect(http.StatusFound, "/")
 		}
 	}
+	clearCart(c)
 
 	return shop.CheckoutSuccess(sessionID).Render(c.Request().Context(), c.Response().Writer)
 }

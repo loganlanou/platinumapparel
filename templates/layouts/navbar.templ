@@ -2,6 +2,13 @@ package layouts
 
 templ Navbar() {
 	<nav id="mainNav" class="main-nav">
+		<div class="nav-assurance-bar">
+			<span>Private client service</span>
+			<span class="assurance-separator">•</span>
+			<span>Authenticated luxury</span>
+			<span class="assurance-separator">•</span>
+			<span>Complimentary insured delivery</span>
+		</div>
 		<div class="nav-container">
 			<a href="/" class="nav-logo">
 				<span class="logo-text">PLATINUM</span>
@@ -16,12 +23,12 @@ templ Navbar() {
 				<a href="/shop" class="nav-link">Shop</a>
 			</div>
 			<div class="nav-actions">
-				<button class="nav-search" aria-label="Search">
+				<a href="/shop#catalog" class="nav-search" aria-label="Search the collection">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
 						<circle cx="11" cy="11" r="8"></circle>
 						<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
 					</svg>
-				</button>
+				</a>
 				<button
 					class="nav-cart"
 					aria-label="Shopping cart"
@@ -36,7 +43,7 @@ templ Navbar() {
 					</svg>
 					<span class="cart-badge" id="cart-count">0</span>
 				</button>
-				<button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu">
+				<button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu" aria-controls="mobileMenu" aria-expanded="false">
 					<span></span>
 					<span></span>
 					<span></span>
@@ -49,7 +56,7 @@ templ Navbar() {
 }
 
 templ MobileMenu() {
-	<div id="mobileMenu" class="mobile-menu">
+	<div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
 		<div class="mobile-menu-content">
 			<a href="/collections" class="mobile-link">Collections</a>
 			<a href="/featured" class="mobile-link">Featured</a>

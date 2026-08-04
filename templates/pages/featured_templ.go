@@ -46,43 +46,43 @@ func Featured() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " <section class=\"page-hero featured-hero\"><div class=\"page-hero-content\" data-animate=\"fade-up\"><span class=\"page-label\">Editor's Selection</span><h1 class=\"page-title\">Featured Pieces</h1><p class=\"page-subtitle\">A curated selection of our most exceptional creations, chosen for their extraordinary craftsmanship and timeless appeal.</p></div></section> <section class=\"featured-highlight-section\"><div class=\"highlight-wrapper\" data-animate=\"fade-up\"><div class=\"highlight-image image-reveal\"><img src=\"/static/images/watches/watch_05_macro_luxury_dial.jpg\" alt=\"Grand Complication\" loading=\"eager\" fetchpriority=\"high\" decoding=\"async\"> <span class=\"highlight-badge\">Piece of the Month</span></div><div class=\"highlight-content\"><span class=\"highlight-category\">Fine Horology</span><h2 class=\"highlight-title\">The Grand Complication</h2><p class=\"highlight-description\">A masterpiece of horological engineering, featuring a hand-assembled Swiss movement with 72-hour power reserve. The 41mm platinum case houses a midnight blue dial with applied 18k gold indices, completed with a hand-stitched alligator strap.</p><ul class=\"highlight-features\"><li>COSC-certified Swiss automatic movement</li><li>72-hour power reserve</li><li>Sapphire crystal with AR coating</li><li>Water resistant to 100 meters</li></ul><div class=\"highlight-price\">$48,900</div><a href=\"/product/grand-complication\" class=\"btn-gold\"><span>View Details</span></a></div></div></section> <section class=\"featured-section\"><div class=\"section-header\" data-animate=\"fade-up\"><span class=\"section-label\">Horology</span><h2 class=\"section-title\">Featured Timepieces</h2></div><div class=\"products-grid\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " <section class=\"page-hero featured-hero\"><div class=\"page-hero-content\" data-animate=\"fade-up\"><span class=\"page-label\">Editor's Selection</span><h1 class=\"page-title\">Featured Pieces</h1><p class=\"page-subtitle\">A curated selection of our most exceptional creations, chosen for their extraordinary craftsmanship and timeless appeal.</p></div></section> <section class=\"featured-highlight-section\"><div class=\"highlight-wrapper\" data-animate=\"fade-up\"><div class=\"highlight-image image-reveal\"><img src=\"/static/optimized/images/watches/watch_05_macro_luxury_dial.jpg\" srcset=\"/static/mobile/images/watches/watch_05_macro_luxury_dial.jpg 900w, /static/optimized/images/watches/watch_05_macro_luxury_dial.jpg 1600w\" sizes=\"100vw\" alt=\"TAG Heuer Carrera Chronograph\" loading=\"eager\" fetchpriority=\"high\" decoding=\"async\"> <span class=\"highlight-badge\">Piece of the Month</span></div><div class=\"highlight-content\"><span class=\"highlight-category\">TAG Heuer · Fine Horology</span><h2 class=\"highlight-title\">Carrera Chronograph</h2><p class=\"highlight-description\">A modern sporting chronograph with a highly legible multi-register dial, applied indices and precise automatic timing. Polished and brushed surfaces give the signature Carrera case a refined, architectural presence.</p><ul class=\"highlight-features\"><li>COSC-certified Swiss automatic movement</li><li>Automatic chronograph calibre</li><li>Sapphire crystal with AR coating</li><li>Water resistant to 100 meters</li></ul><div class=\"highlight-price\">$7,250</div><a href=\"/product/grand-complication\" class=\"btn-gold\"><span>View Details</span></a></div></div></section> <section class=\"featured-section\"><div class=\"section-header\" data-animate=\"fade-up\"><span class=\"section-label\">Horology</span><h2 class=\"section-title\">Featured Timepieces</h2></div><div class=\"products-grid\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Black Leather Chronograph", "$18,500", "/static/images/watches/watch_01_black_leather_dial.jpg", "/product/black-leather-chronograph").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Black Leather Chronograph", "$18,500", "/static/optimized/images/watches/watch_01_black_leather_dial.jpg", "/product/black-leather-chronograph").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Steel Chronograph", "$24,500", "/static/images/watches/watch_02_steel_chronograph.jpg", "/product/steel-chronograph").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Steel Chronograph", "$24,500", "/static/optimized/images/watches/watch_02_steel_chronograph.jpg", "/product/steel-chronograph").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Blue Diver Watch", "$32,750", "/static/images/watches/watch_03_blue_diver_watch.jpg", "/product/blue-diver-watch").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Blue Diver Watch", "$32,750", "/static/optimized/images/watches/watch_03_blue_diver_watch.jpg", "/product/blue-diver-watch").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Skeleton Mechanical", "$28,500", "/static/images/watches/watch_07_skeleton_mechanical.jpg", "/product/skeleton-mechanical").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Skeleton Mechanical", "$28,500", "/static/optimized/images/watches/watch_07_skeleton_mechanical.jpg", "/product/skeleton-mechanical").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div></section> <section class=\"luxury-banner\"><div class=\"luxury-banner-bg\"><img src=\"/static/images/suits/suit_04_city_sportscar.jpg\" alt=\"Sartorial excellence\" loading=\"lazy\"></div><div class=\"luxury-banner-overlay\"></div><div class=\"luxury-banner-content\" data-animate=\"fade-up\"><span class=\"luxury-banner-label\">Sartorial Excellence</span><h2 class=\"luxury-banner-title\">Impeccable<br>Tailoring</h2><p class=\"luxury-banner-text\">Our featured menswear pieces represent the pinnacle of sartorial craftsmanship—hand-selected fabrics, meticulous construction, and timeless design that transcends seasons.</p></div></section> <section class=\"featured-section\"><div class=\"section-header\" data-animate=\"fade-up\"><span class=\"section-label\">Menswear</span><h2 class=\"section-title\">Featured Tailoring</h2></div><div class=\"products-grid\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div></section> <section class=\"luxury-banner\"><div class=\"luxury-banner-bg\"><img src=\"/static/optimized/images/suits/suit_04_city_sportscar.jpg\" srcset=\"/static/mobile/images/suits/suit_04_city_sportscar.jpg 900w, /static/optimized/images/suits/suit_04_city_sportscar.jpg 1600w\" sizes=\"100vw\" alt=\"Sartorial excellence\" loading=\"lazy\"></div><div class=\"luxury-banner-overlay\"></div><div class=\"luxury-banner-content\" data-animate=\"fade-up\"><span class=\"luxury-banner-label\">Sartorial Excellence</span><h2 class=\"luxury-banner-title\">Impeccable<br>Tailoring</h2><p class=\"luxury-banner-text\">Our featured menswear pieces represent the pinnacle of sartorial craftsmanship—hand-selected fabrics, meticulous construction, and timeless design that transcends seasons.</p></div></section> <section class=\"featured-section\"><div class=\"section-header\" data-animate=\"fade-up\"><span class=\"section-label\">Menswear</span><h2 class=\"section-title\">Featured Tailoring</h2></div><div class=\"products-grid\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Grey Tweed Formal", "$4,850", "/static/images/suits/suit_01_groom_boutonniere.jpg", "/product/grey-tweed-formal").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Grey Tweed Formal", "$4,850", "/static/optimized/images/suits/suit_01_groom_boutonniere.jpg", "/product/grey-tweed-formal").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Double-Breasted City", "$5,500", "/static/images/suits/suit_04_city_sportscar.jpg", "/product/double-breasted-city").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Double-Breasted City", "$5,500", "/static/optimized/images/suits/suit_04_city_sportscar.jpg", "/product/double-breasted-city").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("White Modern Suit", "$3,950", "/static/images/suits/suit_09_white_suit_bench.jpg", "/product/white-modern-suit").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("White Modern Suit", "$3,950", "/static/optimized/images/suits/suit_09_white_suit_bench.jpg", "/product/white-modern-suit").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Black City Fashion", "$4,100", "/static/images/suits/suit_10_black_city_fashion.jpg", "/product/black-city-fashion").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Black City Fashion", "$4,100", "/static/optimized/images/suits/suit_10_black_city_fashion.jpg", "/product/black-city-fashion").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -90,19 +90,19 @@ func Featured() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Teardrop Diamond Ring", "$12,500", "/static/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg", "/product/teardrop-diamond-ring").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Teardrop Diamond Ring", "$12,500", "/static/optimized/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg", "/product/teardrop-diamond-ring").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Rose Gold Bridal Set", "$18,500", "/static/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg", "/product/rose-gold-bridal-set").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Rose Gold Bridal Set", "$18,500", "/static/optimized/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg", "/product/rose-gold-bridal-set").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Monochrome Diamond Ring", "$22,000", "/static/images/jewelry/jewelry_06_monochrome_diamond_ring.jpg", "/product/monochrome-diamond-ring").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Monochrome Diamond Ring", "$22,000", "/static/optimized/images/jewelry/jewelry_06_monochrome_diamond_ring.jpg", "/product/monochrome-diamond-ring").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Diamond Pendant Necklace", "$9,500", "/static/images/jewelry/jewelry_10_diamond_pendant_necklace.jpg", "/product/diamond-pendant-necklace").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Diamond Pendant Necklace", "$9,500", "/static/optimized/images/jewelry/jewelry_10_diamond_pendant_necklace.jpg", "/product/diamond-pendant-necklace").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -110,19 +110,19 @@ func Featured() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Minimal Pedestal Bag", "$2,800", "/static/images/handbags/handbag_01_minimal_pedestal_bags.jpg", "/product/minimal-pedestal-bag").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Minimal Pedestal Bag", "$2,800", "/static/optimized/images/handbags/handbag_01_minimal_pedestal_bags.jpg", "/product/minimal-pedestal-bag").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Orange Designer Bag", "$4,200", "/static/images/handbags/handbag_05_orange_designer_stand.jpg", "/product/orange-designer-bag").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Orange Designer Bag", "$4,200", "/static/optimized/images/handbags/handbag_05_orange_designer_stand.jpg", "/product/orange-designer-bag").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Croc Texture Bag", "$5,800", "/static/images/handbags/handbag_06_green_croc_texture.jpg", "/product/croc-texture-bag").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Croc Texture Bag", "$5,800", "/static/optimized/images/handbags/handbag_06_green_croc_texture.jpg", "/product/croc-texture-bag").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Metal Trim Structured", "$3,200", "/static/images/handbags/handbag_09_black_white_metal_trim.jpg", "/product/metal-trim-structured").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Metal Trim Structured", "$3,200", "/static/optimized/images/handbags/handbag_09_black_white_metal_trim.jpg", "/product/metal-trim-structured").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -130,19 +130,19 @@ func Featured() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Platinum Collection Set", "$850", "/static/images/perfume/perfume_01_fur_surface_collection.jpg", "/product/platinum-collection-set").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Platinum Collection Set", "$850", "/static/optimized/images/perfume/perfume_01_fur_surface_collection.jpg", "/product/platinum-collection-set").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Amber Night Eau", "$385", "/static/images/perfume/perfume_03_warm_lit_givenchy.jpg", "/product/amber-night-eau").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Amber Night Eau", "$385", "/static/optimized/images/perfume/perfume_03_warm_lit_givenchy.jpg", "/product/amber-night-eau").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Glitter Peony Parfum", "$320", "/static/images/perfume/perfume_06_glitter_bottle_peonies.jpg", "/product/glitter-peony-parfum").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Glitter Peony Parfum", "$320", "/static/optimized/images/perfume/perfume_06_glitter_bottle_peonies.jpg", "/product/glitter-peony-parfum").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Dried Rose Essence", "$275", "/static/images/perfume/perfume_07_clean_bottle_with_dried_roses.jpg", "/product/dried-rose-essence").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Dried Rose Essence", "$275", "/static/optimized/images/perfume/perfume_07_clean_bottle_with_dried_roses.jpg", "/product/dried-rose-essence").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -150,23 +150,23 @@ func Featured() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Gold Bar Stack", "$65,000", "/static/images/bullion/bullion_02_gold_bar_stack.jpg", "/product/gold-bar-stack").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Gold Bar Stack", "$65,000", "/static/optimized/images/bullion/bullion_02_gold_bar_stack.jpg", "/product/gold-bar-stack").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Mixed Gold Bars", "$25,000", "/static/images/bullion/bullion_05_mixed_gold_bars.jpg", "/product/mixed-gold-bars").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Mixed Gold Bars", "$25,000", "/static/optimized/images/bullion/bullion_05_mixed_gold_bars.jpg", "/product/mixed-gold-bars").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Investment Gold Bullion", "$42,000", "/static/images/bullion/bullion_06_gold_bullion_rows.jpg", "/product/investment-gold-bullion").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Investment Gold Bullion", "$42,000", "/static/optimized/images/bullion/bullion_06_gold_bullion_rows.jpg", "/product/investment-gold-bullion").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = ProductCard("Gold Bar Pattern", "$95,000", "/static/images/bullion/bullion_08_gold_bar_pattern.jpg", "/product/gold-bar-pattern").Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProductCard("Gold Bar Pattern", "$95,000", "/static/optimized/images/bullion/bullion_08_gold_bar_pattern.jpg", "/product/gold-bar-pattern").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div></section> <section class=\"featured-newsletter\"><div class=\"newsletter-content\" data-animate=\"fade-up\"><span class=\"newsletter-label\">Stay Informed</span><h2 class=\"newsletter-title\">Be First to Know</h2><p class=\"newsletter-description\">Subscribe to receive exclusive previews of new arrivals, limited editions, and private sale invitations.</p><form class=\"newsletter-form\" action=\"/newsletter/subscribe\" method=\"POST\"><input type=\"email\" name=\"email\" placeholder=\"Enter your email address\" required> <button type=\"submit\" class=\"btn-gold\"><span>Subscribe</span></button></form></div></section> <section class=\"bespoke-section\"><div class=\"bespoke-background\"><img src=\"/static/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg\" alt=\"Visit our boutique\" loading=\"lazy\"><div class=\"bespoke-overlay\"></div></div><div class=\"bespoke-content\" data-animate=\"fade-up\"><span class=\"bespoke-label\">Exclusive Experience</span><h2 class=\"bespoke-title\">Private Viewing</h2><p class=\"bespoke-text\">Request a private appointment to view our featured pieces in person with a dedicated style consultant.</p><a href=\"/appointments\" class=\"btn-gold\"><span>Book Appointment</span></a></div></section>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div></section> <section class=\"featured-newsletter\"><div class=\"newsletter-content\" data-animate=\"fade-up\"><span class=\"newsletter-label\">Stay Informed</span><h2 class=\"newsletter-title\">Be First to Know</h2><p class=\"newsletter-description\">Subscribe to receive exclusive previews of new arrivals, limited editions, and private sale invitations.</p><form class=\"newsletter-form\" action=\"/concierge#contact\" method=\"GET\"><input type=\"email\" name=\"email\" placeholder=\"Enter your email address\" required> <button type=\"submit\" class=\"btn-gold\"><span>Subscribe</span></button></form></div></section> <section class=\"bespoke-section\"><div class=\"bespoke-background\"><img src=\"/static/optimized/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg\" srcset=\"/static/mobile/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg 900w, /static/optimized/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg 1600w\" sizes=\"100vw\" alt=\"Visit our boutique\" loading=\"lazy\"><div class=\"bespoke-overlay\"></div></div><div class=\"bespoke-content\" data-animate=\"fade-up\"><span class=\"bespoke-label\">Exclusive Experience</span><h2 class=\"bespoke-title\">Private Viewing</h2><p class=\"bespoke-text\">Request a private appointment to view our featured pieces in person with a dedicated style consultant.</p><a href=\"/concierge#appointments\" class=\"btn-gold\"><span>Book Appointment</span></a></div></section>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

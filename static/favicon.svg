@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Platinum Apparel diamond timepiece">
+  <rect width="64" height="64" rx="14" fill="#11110f"/>
+  <path d="M32 7 56 32 32 57 8 32Z" fill="#9a7b3a"/>
+  <path d="M32 12 51 32 32 52 13 32Z" fill="#f7f6f1"/>
+  <circle cx="32" cy="32" r="13" fill="#11110f" stroke="#c9a962" stroke-width="2"/>
+  <path d="M32 20v3M44 32h-3M32 44v-3M20 32h3" stroke="#f7f6f1" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 32V24M32 32l7 4" stroke="#c9a962" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="32" r="2.5" fill="#f7f6f1"/>
+</svg>

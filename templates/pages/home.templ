@@ -3,6 +3,7 @@ package pages
 import (
 	"handler/internal/meta"
 	"handler/templates/layouts"
+	"strings"
 )
 
 templ Home() {
@@ -10,11 +11,11 @@ templ Home() {
 		// Hero Section - Cinematic Full Screen
 		<section class="hero">
 			<div class="hero-background">
-				<img src="/static/images/watches/watch_04_watch_case_selection.jpg" alt="Luxury timepiece collection" class="hero-bg-image" loading="eager" fetchpriority="high" decoding="async"/>
+				<img src="/static/optimized/images/watches/watch_04_watch_case_selection.jpg" srcset="/static/mobile/images/watches/watch_04_watch_case_selection.jpg 900w, /static/optimized/images/watches/watch_04_watch_case_selection.jpg 1600w" sizes="100vw" alt="Luxury timepiece collection" class="hero-bg-image" loading="eager" fetchpriority="high" decoding="async"/>
 			</div>
 			<div class="hero-overlay"></div>
 			<div class="hero-content" data-animate="fade-up">
-				<span class="hero-label">The 2025 Collection</span>
+				<span class="hero-label">The Private Collection</span>
 				<h1 class="hero-title">
 					<span class="title-line">Timeless</span>
 					<span class="title-line accent">Elegance</span>
@@ -36,6 +37,14 @@ templ Home() {
 				<div class="scroll-indicator"></div>
 			</div>
 		</section>
+		// Curated Houses
+		<section class="maison-strip" aria-label="Luxury houses available through private sourcing">
+			<div class="maison-strip-intro"><span>Curated houses</span><p>Signature pieces and privately sourced references from the world’s leading maisons.</p></div>
+			<div class="maison-list">
+				<span>Rolex</span><span>Patek Philippe</span><span>Cartier</span><span>Hermès</span><span>Chanel</span><span>Brioni</span><span>Loro Piana</span>
+			</div>
+			<a href="/concierge#sourcing">Private sourcing <span aria-hidden="true">→</span></a>
+		</section>
 		// Collections Grid - 3x2 Magazine Style
 		<section class="collections-section" id="collections">
 			<div class="section-header" data-animate="fade-up">
@@ -46,7 +55,7 @@ templ Home() {
 				// Watches Card
 				<a href="/collections/watches" class="collection-card" data-animate="fade-up">
 					<div class="card-image">
-						<img src="/static/images/watches/watch_01_black_leather_dial.jpg" alt="Luxury Timepieces" loading="lazy"/>
+						<img src="/static/optimized/images/watches/watch_01_black_leather_dial.jpg" srcset="/static/mobile/images/watches/watch_01_black_leather_dial.jpg 900w, /static/optimized/images/watches/watch_01_black_leather_dial.jpg 1600w" sizes="100vw" alt="Luxury Timepieces" loading="lazy"/>
 					</div>
 					<div class="card-overlay"></div>
 					<div class="card-content">
@@ -65,7 +74,7 @@ templ Home() {
 				// Jewelry Card
 				<a href="/collections/jewelry" class="collection-card" data-animate="fade-up" data-delay="100">
 					<div class="card-image">
-						<img src="/static/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg" alt="Fine Jewelry" loading="lazy"/>
+						<img src="/static/optimized/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg" srcset="/static/mobile/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg 900w, /static/optimized/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg 1600w" sizes="100vw" alt="Fine Jewelry" loading="lazy"/>
 					</div>
 					<div class="card-overlay"></div>
 					<div class="card-content">
@@ -83,7 +92,7 @@ templ Home() {
 				// Suits Card
 				<a href="/collections/suits" class="collection-card" data-animate="fade-up" data-delay="200">
 					<div class="card-image">
-						<img src="/static/images/suits/suit_09_white_suit_bench.jpg" alt="Tailored Suits" loading="lazy"/>
+						<img src="/static/optimized/images/suits/suit_09_white_suit_bench.jpg" srcset="/static/mobile/images/suits/suit_09_white_suit_bench.jpg 900w, /static/optimized/images/suits/suit_09_white_suit_bench.jpg 1600w" sizes="100vw" alt="Tailored Suits" loading="lazy"/>
 					</div>
 					<div class="card-overlay"></div>
 					<div class="card-content">
@@ -101,7 +110,7 @@ templ Home() {
 				// Handbags Card
 				<a href="/collections/handbags" class="collection-card" data-animate="fade-up" data-delay="300">
 					<div class="card-image">
-						<img src="/static/images/handbags/handbag_01_minimal_pedestal_bags.jpg" alt="Luxury Handbags" loading="lazy"/>
+						<img src="/static/optimized/images/handbags/handbag_01_minimal_pedestal_bags.jpg" srcset="/static/mobile/images/handbags/handbag_01_minimal_pedestal_bags.jpg 900w, /static/optimized/images/handbags/handbag_01_minimal_pedestal_bags.jpg 1600w" sizes="100vw" alt="Luxury Handbags" loading="lazy"/>
 					</div>
 					<div class="card-overlay"></div>
 					<div class="card-content">
@@ -119,7 +128,7 @@ templ Home() {
 				// Perfume Card
 				<a href="/collections/perfume" class="collection-card" data-animate="fade-up" data-delay="400">
 					<div class="card-image">
-						<img src="/static/images/perfume/perfume_06_glitter_bottle_peonies.jpg" alt="Fine Fragrances" loading="lazy"/>
+						<img src="/static/optimized/images/perfume/perfume_06_glitter_bottle_peonies.jpg" srcset="/static/mobile/images/perfume/perfume_06_glitter_bottle_peonies.jpg 900w, /static/optimized/images/perfume/perfume_06_glitter_bottle_peonies.jpg 1600w" sizes="100vw" alt="Fine Fragrances" loading="lazy"/>
 					</div>
 					<div class="card-overlay"></div>
 					<div class="card-content">
@@ -137,7 +146,7 @@ templ Home() {
 				// Bullion Card
 				<a href="/collections/bullion" class="collection-card" data-animate="fade-up" data-delay="500">
 					<div class="card-image">
-						<img src="/static/images/bullion/bullion_05_mixed_gold_bars.jpg" alt="Precious Metals" loading="lazy"/>
+						<img src="/static/optimized/images/bullion/bullion_05_mixed_gold_bars.jpg" srcset="/static/mobile/images/bullion/bullion_05_mixed_gold_bars.jpg 900w, /static/optimized/images/bullion/bullion_05_mixed_gold_bars.jpg 1600w" sizes="100vw" alt="Precious Metals" loading="lazy"/>
 					</div>
 					<div class="card-overlay"></div>
 					<div class="card-content">
@@ -162,10 +171,10 @@ templ Home() {
 				<h2 class="section-title">Featured Timepieces</h2>
 			</div>
 			<div class="products-grid">
-				@ProductCard("Black Leather Chronograph", "$18,500", "/static/images/watches/watch_01_black_leather_dial.jpg", "/product/black-leather-chronograph")
-				@ProductCard("Steel Chronograph", "$24,500", "/static/images/watches/watch_02_steel_chronograph.jpg", "/product/steel-chronograph")
-				@ProductCard("Blue Diver Watch", "$32,750", "/static/images/watches/watch_03_blue_diver_watch.jpg", "/product/blue-diver-watch")
-				@ProductCard("Grand Complication", "$48,900", "/static/images/watches/watch_05_macro_luxury_dial.jpg", "/product/grand-complication")
+				@ProductCard("Black Leather Chronograph", "$18,500", "/static/optimized/images/watches/watch_01_black_leather_dial.jpg", "/product/black-leather-chronograph")
+				@ProductCard("Steel Chronograph", "$24,500", "/static/optimized/images/watches/watch_02_steel_chronograph.jpg", "/product/steel-chronograph")
+				@ProductCard("Blue Diver Watch", "$32,750", "/static/optimized/images/watches/watch_03_blue_diver_watch.jpg", "/product/blue-diver-watch")
+				@ProductCard("Grand Complication", "$48,900", "/static/optimized/images/watches/watch_05_macro_luxury_dial.jpg", "/product/grand-complication")
 			</div>
 			<div class="section-cta" data-animate="fade-up">
 				<a href="/collections/watches" class="btn-outline"><span>View All Timepieces</span></a>
@@ -174,7 +183,7 @@ templ Home() {
 		// Luxury Banner - Full Width
 		<section class="luxury-banner">
 			<div class="luxury-banner-bg">
-				<img src="/static/images/suits/suit_04_city_sportscar.jpg" alt="Bespoke tailoring" loading="lazy"/>
+				<img src="/static/optimized/images/suits/suit_04_city_sportscar.jpg" srcset="/static/mobile/images/suits/suit_04_city_sportscar.jpg 900w, /static/optimized/images/suits/suit_04_city_sportscar.jpg 1600w" sizes="100vw" alt="Bespoke tailoring" loading="lazy"/>
 			</div>
 			<div class="luxury-banner-overlay"></div>
 			<div class="luxury-banner-content" data-animate="fade-up">
@@ -197,10 +206,10 @@ templ Home() {
 				<h2 class="section-title">Signature Menswear</h2>
 			</div>
 			<div class="products-grid">
-				@ProductCard("Grey Tweed Formal", "$4,850", "/static/images/suits/suit_01_groom_boutonniere.jpg", "/product/grey-tweed-formal")
-				@ProductCard("Riviera Linen Suit", "$3,200", "/static/images/suits/suit_02_beach_cufflinks.jpg", "/product/riviera-linen-suit")
-				@ProductCard("Double-Breasted City", "$5,500", "/static/images/suits/suit_04_city_sportscar.jpg", "/product/double-breasted-city")
-				@ProductCard("Midnight Dinner Jacket", "$3,800", "/static/images/suits/suit_05_black_jacket_detail.jpg", "/product/midnight-dinner-jacket")
+				@ProductCard("Grey Tweed Formal", "$4,850", "/static/optimized/images/suits/suit_01_groom_boutonniere.jpg", "/product/grey-tweed-formal")
+				@ProductCard("Riviera Linen Suit", "$3,200", "/static/optimized/images/suits/suit_02_beach_cufflinks.jpg", "/product/riviera-linen-suit")
+				@ProductCard("Double-Breasted City", "$5,500", "/static/optimized/images/suits/suit_04_city_sportscar.jpg", "/product/double-breasted-city")
+				@ProductCard("Midnight Dinner Jacket", "$3,800", "/static/optimized/images/suits/suit_05_black_jacket_detail.jpg", "/product/midnight-dinner-jacket")
 			</div>
 			<div class="section-cta" data-animate="fade-up">
 				<a href="/collections/suits" class="btn-outline"><span>View All Menswear</span></a>
@@ -238,10 +247,10 @@ templ Home() {
 				<h2 class="section-title">Fine Jewelry</h2>
 			</div>
 			<div class="products-grid">
-				@ProductCard("Teardrop Diamond Ring", "$12,500", "/static/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg", "/product/teardrop-diamond-ring")
-				@ProductCard("Gold Drop Earrings", "$4,200", "/static/images/jewelry/jewelry_02_gold_earrings_reflection.jpg", "/product/gold-drop-earrings")
-				@ProductCard("Rose Gold Bridal Set", "$18,500", "/static/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg", "/product/rose-gold-bridal-set")
-				@ProductCard("Sapphire Diamond Ring", "$15,200", "/static/images/jewelry/jewelry_09_sapphire_diamond_gold_ring.jpg", "/product/sapphire-diamond-ring")
+				@ProductCard("Teardrop Diamond Ring", "$12,500", "/static/optimized/images/jewelry/jewelry_01_teardrop_diamond_ring.jpg", "/product/teardrop-diamond-ring")
+				@ProductCard("Gold Drop Earrings", "$4,200", "/static/optimized/images/jewelry/jewelry_02_gold_earrings_reflection.jpg", "/product/gold-drop-earrings")
+				@ProductCard("Rose Gold Bridal Set", "$18,500", "/static/optimized/images/jewelry/jewelry_05_rose_gold_bridal_set.jpg", "/product/rose-gold-bridal-set")
+				@ProductCard("Sapphire Diamond Ring", "$15,200", "/static/optimized/images/jewelry/jewelry_09_sapphire_diamond_gold_ring.jpg", "/product/sapphire-diamond-ring")
 			</div>
 			<div class="section-cta" data-animate="fade-up">
 				<a href="/collections/jewelry" class="btn-outline"><span>View All Jewelry</span></a>
@@ -285,10 +294,10 @@ templ Home() {
 				<h2 class="section-title">Luxury Handbags</h2>
 			</div>
 			<div class="products-grid">
-				@ProductCard("Minimal Pedestal Bag", "$2,800", "/static/images/handbags/handbag_01_minimal_pedestal_bags.jpg", "/product/minimal-pedestal-bag")
-				@ProductCard("Vintage Gold Handle", "$3,500", "/static/images/handbags/handbag_02_vintage_gold_handle.jpg", "/product/vintage-gold-handle")
-				@ProductCard("Orange Designer Bag", "$4,200", "/static/images/handbags/handbag_05_orange_designer_stand.jpg", "/product/orange-designer-bag")
-				@ProductCard("Croc Texture Bag", "$5,800", "/static/images/handbags/handbag_06_green_croc_texture.jpg", "/product/croc-texture-bag")
+				@ProductCard("Minimal Pedestal Bag", "$2,800", "/static/optimized/images/handbags/handbag_01_minimal_pedestal_bags.jpg", "/product/minimal-pedestal-bag")
+				@ProductCard("Vintage Gold Handle", "$3,500", "/static/optimized/images/handbags/handbag_02_vintage_gold_handle.jpg", "/product/vintage-gold-handle")
+				@ProductCard("Orange Designer Bag", "$4,200", "/static/optimized/images/handbags/handbag_05_orange_designer_stand.jpg", "/product/orange-designer-bag")
+				@ProductCard("Croc Texture Bag", "$5,800", "/static/optimized/images/handbags/handbag_06_green_croc_texture.jpg", "/product/croc-texture-bag")
 			</div>
 			<div class="section-cta" data-animate="fade-up">
 				<a href="/collections/handbags" class="btn-outline"><span>View All Handbags</span></a>
@@ -301,10 +310,10 @@ templ Home() {
 				<h2 class="section-title">Luxury Fragrances</h2>
 			</div>
 			<div class="products-grid">
-				@ProductCard("Platinum Collection Set", "$850", "/static/images/perfume/perfume_01_fur_surface_collection.jpg", "/product/platinum-collection-set")
-				@ProductCard("Amber Night Eau", "$385", "/static/images/perfume/perfume_03_warm_lit_givenchy.jpg", "/product/amber-night-eau")
-				@ProductCard("Glitter Peony Parfum", "$320", "/static/images/perfume/perfume_06_glitter_bottle_peonies.jpg", "/product/glitter-peony-parfum")
-				@ProductCard("Designer Trio Set", "$650", "/static/images/perfume/perfume_09_designer_bottle_group.jpg", "/product/designer-trio-set")
+				@ProductCard("Platinum Collection Set", "$850", "/static/optimized/images/perfume/perfume_01_fur_surface_collection.jpg", "/product/platinum-collection-set")
+				@ProductCard("Amber Night Eau", "$385", "/static/optimized/images/perfume/perfume_03_warm_lit_givenchy.jpg", "/product/amber-night-eau")
+				@ProductCard("Glitter Peony Parfum", "$320", "/static/optimized/images/perfume/perfume_06_glitter_bottle_peonies.jpg", "/product/glitter-peony-parfum")
+				@ProductCard("Designer Trio Set", "$650", "/static/optimized/images/perfume/perfume_09_designer_bottle_group.jpg", "/product/designer-trio-set")
 			</div>
 			<div class="section-cta" data-animate="fade-up">
 				<a href="/collections/perfume" class="btn-outline"><span>View All Fragrances</span></a>
@@ -317,10 +326,10 @@ templ Home() {
 				<h2 class="section-title">Precious Metals</h2>
 			</div>
 			<div class="products-grid">
-				@ProductCard("Gold Nugget Collection", "$12,500", "/static/images/bullion/bullion_01_gold_nugget_bars.jpg", "/product/gold-nugget-collection")
-				@ProductCard("Gold Bar Stack", "$65,000", "/static/images/bullion/bullion_02_gold_bar_stack.jpg", "/product/gold-bar-stack")
-				@ProductCard("Mixed Gold Bars", "$25,000", "/static/images/bullion/bullion_05_mixed_gold_bars.jpg", "/product/mixed-gold-bars")
-				@ProductCard("Silver Bar Stack", "$1,250", "/static/images/bullion/bullion_09_silver_bars_stack.jpg", "/product/silver-bar-stack")
+				@ProductCard("Gold Nugget Collection", "$12,500", "/static/optimized/images/bullion/bullion_01_gold_nugget_bars.jpg", "/product/gold-nugget-collection")
+				@ProductCard("Gold Bar Stack", "$65,000", "/static/optimized/images/bullion/bullion_02_gold_bar_stack.jpg", "/product/gold-bar-stack")
+				@ProductCard("Mixed Gold Bars", "$25,000", "/static/optimized/images/bullion/bullion_05_mixed_gold_bars.jpg", "/product/mixed-gold-bars")
+				@ProductCard("Silver Bar Stack", "$1,250", "/static/optimized/images/bullion/bullion_09_silver_bars_stack.jpg", "/product/silver-bar-stack")
 			</div>
 			<div class="section-cta" data-animate="fade-up">
 				<a href="/collections/bullion" class="btn-outline"><span>View All Bullion</span></a>
@@ -329,7 +338,7 @@ templ Home() {
 		// Bespoke CTA
 		<section class="bespoke-section">
 			<div class="bespoke-background">
-				<img src="/static/images/suits/suit_02_beach_cufflinks.jpg" alt="Bespoke experience" loading="lazy"/>
+				<img src="/static/optimized/images/suits/suit_02_beach_cufflinks.jpg" srcset="/static/mobile/images/suits/suit_02_beach_cufflinks.jpg 900w, /static/optimized/images/suits/suit_02_beach_cufflinks.jpg 1600w" sizes="100vw" alt="Bespoke experience" loading="lazy"/>
 				<div class="bespoke-overlay"></div>
 			</div>
 			<div class="bespoke-content" data-animate="fade-up">
@@ -345,18 +354,30 @@ templ Home() {
 }
 
 templ ProductCard(name, price, image, href string) {
-	<a href={ templ.SafeURL(href) } class="product-card" data-animate="fade-up">
+	<a href={ templ.SafeURL(href) } class="product-card" data-animate="fade-up" data-product-name={ getProductCardName(href, name) } data-product-price={ getProductCardPrice(href, price) }>
 		<div class="product-image">
-			<img src={ image } alt={ name } loading="lazy" decoding="async"/>
+			<img src={ image } srcset={ responsiveImageSrcSet(image) } sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1200px) 50vw, 25vw" alt={ getProductCardName(href, name) } loading="lazy" decoding="async"/>
+			<span class="product-badge">Curated</span>
 			<div class="product-overlay">
-				<span class="quick-view">Quick View</span>
+				<span class="quick-view">View Details</span>
 			</div>
 		</div>
 		<div class="product-info">
-			<h3 class="product-name">{ name }</h3>
-			<span class="product-price">{ price }</span>
+			<span class="product-brand">{ getProductBrand(strings.TrimPrefix(href, "/product/")) }</span>
+			<h3 class="product-name">{ getProductCardName(href, name) }</h3>
+			<div class="product-card-meta"><span class="product-price">{ getProductCardPrice(href, price) }</span><span class="product-status">Available</span></div>
 		</div>
 	</a>
+}
+
+func responsiveImageSrcSet(image string) string {
+	const optimizedPrefix = "/static/optimized/images/"
+	if !strings.HasPrefix(image, optimizedPrefix) {
+		return ""
+	}
+
+	mobile := strings.Replace(image, optimizedPrefix, "/static/mobile/images/", 1)
+	return mobile + " 900w, " + image + " 1600w"
 }
 
 templ Testimonial(quote, name, title string) {

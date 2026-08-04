@@ -22,6 +22,9 @@ func (h *Handler) Collections(c echo.Context) error {
 
 func (h *Handler) CollectionDetail(c echo.Context) error {
 	slug := c.Param("slug")
+	if !pages.IsKnownCollection(slug) {
+		return echo.NewHTTPError(http.StatusNotFound)
+	}
 	return pages.CollectionDetail(slug).Render(c.Request().Context(), c.Response().Writer)
 }
 
@@ -41,7 +44,14 @@ func (h *Handler) Bespoke(c echo.Context) error {
 	return pages.Bespoke().Render(c.Request().Context(), c.Response().Writer)
 }
 
+func (h *Handler) Concierge(c echo.Context) error {
+	return pages.Concierge().Render(c.Request().Context(), c.Response().Writer)
+}
+
 func (h *Handler) ProductDetail(c echo.Context) error {
 	slug := c.Param("slug")
+	if !pages.ProductExists(slug) {
+		return echo.NewHTTPError(http.StatusNotFound)
+	}
 	return pages.ProductDetail(slug).Render(c.Request().Context(), c.Response().Writer)
 }
